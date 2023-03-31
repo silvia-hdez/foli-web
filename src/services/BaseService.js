@@ -1,31 +1,36 @@
-import axios from 'axios';
-import { getAccessToken, logout } from '../stores/AccessTokenStore';
+import axios from "axios";
+import { getAccessToken, logout } from "../stores/AccesTokenStore";
 
 const INVALID_STATUS_CODES = [401];
 
-export const createHttp = (useAccessToken = false) => { // Si le pongo true, manda el token si le pone false no hay cabecera Authorization
+export const createHttp = (useAccessToken = false) => {
+  // Si le pongo true, manda el token si le pone false no hay cabecera Authorization
   const http = axios.create({
-    baseURL: 'http://localhost:3000',
-  })
+    baseURL: "http://localhost:3000",
+  });
 
   http.interceptors.request.use(
     (config) => {
-      if (useAccessToken && getAccessToken()) { // Si alguien crea una instancia de createHttp pasando useAccesToken a true, quiere decir que esa peticion requiere esta autenticada. Por lo que intento coger el token de la store y meterselo en la cabecera Authorization
-        config.headers.Authorization = `Bearer ${getAccessToken()}`
+      if (useAccessToken && getAccessToken()) {
+        // Si alguien crea una instancia de createHttp pasando useAccesToken a true, quiere decir que esa peticion requiere esta autenticada. Por lo que intento coger el token de la store y meterselo en la cabecera Authorization
+        config.headers.Authorization = `Bearer ${getAccessToken()}`;
       }
 
-      return config
+      return config;
     },
-    err => Promise.reject(err)
-  )
+    (err) => Promise.reject(err)
+  );
 
   http.interceptors.response.use(
     (response) => response.data,
     (err) => {
       // if (error && err.response && err.response.status) // Codigo equivalente
-      if (error?.response?.status && INVALID_STATUS_CODES.includes(error.response.status)) {
+      if (
+        error?.response?.status &&
+        INVALID_STATUS_CODES.includes(error.response.status)
+      ) {
         if (getAccessToken()) {
-          logout()
+          logout();
 
           if (window.location.pathname !== "/login") {
             window.location.assign("/login");
@@ -33,9 +38,9 @@ export const createHttp = (useAccessToken = false) => { // Si le pongo true, man
         }
       }
 
-      return Promise.reject(err)
+      return Promise.reject(err);
     }
-  )
+  );
 
   return http;
-}
+};
