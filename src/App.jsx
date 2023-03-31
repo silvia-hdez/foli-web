@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Login from './views/Login/Login'
 
 
 
@@ -7,7 +9,9 @@ function App() {
 
   return (
     <div className="App">
-     App
+      <Routes>
+        <Route path='login' element={<Login />}></Route>
+      </Routes>
     </div>
   )
 }
