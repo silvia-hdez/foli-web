@@ -4,7 +4,10 @@ import Login from './views/Login/Login'
 import AuthContext from './contexts/AuthContext'
 import Profile from './Profile/Profile'
 import PlantsList from './views/PlantsList/PlantsList'
-import Signin from './views/SignUp/SignUp'
+import SignUp from './views/SignUp/SignUp'
+import PlantDetail from './views/PlantDetail/PlantDetail'
+import PostsList from './views/PostsList/PostsList'
+
 
 
 
@@ -19,8 +22,14 @@ function App() {
           <Routes>
             <Route path="login" element={<Login />} />
             <Route path="profile" element={<Profile />} />
-            <Route path='sign-in' element={<Signin />} />
+            <Route path='sign-up' element={<SignUp />} />
+
             <Route path="plants" element={<PlantsList />} />
+            <Route path="plants/:id" element={<PlantDetail />} />
+
+            <Route path='/posts' element={<PostsList />}/>
+            
+            
           </Routes>
           )
         }

@@ -1,0 +1,9 @@
+
+import { createHttp } from './BaseService';
+
+const authenticatedHttp = createHttp(true);
+
+export const getAllPosts = () => authenticatedHttp.get('/posts')
+export const getPostDetail = (id) => authenticatedHttp.get(`/posts/:${id}`)
+
+export const getAllMyPosts = () => authenticatedHttp.get('/my-posts')

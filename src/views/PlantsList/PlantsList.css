@@ -1,0 +1,4 @@
+.all-plants {
+    display: flex;
+    flex-wrap: wrap;
+}

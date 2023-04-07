@@ -94,7 +94,7 @@ const Login = () => {
         </button>
       </form>
 
-      <Link to='/sign-in'>Registrarse</Link>
+      <Link to='/sign-up'>Registrarse</Link>
     </div>
   );
 };

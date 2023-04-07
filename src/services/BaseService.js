@@ -22,7 +22,7 @@ export const createHttp = (useAccessToken = false) => {
   );
 
   http.interceptors.response.use(
-    (response) => response,
+    (response) => response.data,
     (err) => {
       
       if (
