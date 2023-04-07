@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }) => {
       const navigateToProfile = () => {
         navigate("/profile");
       };
-      // Lo guaaardo
       setAccessToken(token);
       getCurrentUser(navigateToProfile);
     },

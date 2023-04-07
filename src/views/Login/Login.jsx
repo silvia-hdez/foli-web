@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
 import FormControl from "../../components/misc/FormControl/FormControl";
 import Input from "../../components/misc/Input/Input";
-import { loginSchema } from "./schemas/login.schema";
+import { loginSchema } from "../../schemas/login.schema";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { login as loginService } from "../../services/AuthService";
+import { Link } from "react-router-dom";
 
 const initialValues = {
   email: "",
@@ -23,15 +24,16 @@ const Login = () => {
     isSubmitting,
     handleSubmit,
     setSubmitting,
+    setFieldError
   } = useFormik({
     initialValues: initialValues,
     validateOnBlur: true,
     validateOnChange: false,
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      loginService({ email: values.email, password: values.password }) // llama a /login del back pasandole el email y la password
+      console.log(JSON.stringify(values))
+      loginService({ email: values.email, password: values.password }) 
         .then((response) => {
-          // Usar el login del contexto
           login(response.accessToken);
         })
         .catch((err) => {
@@ -91,6 +93,8 @@ const Login = () => {
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
+
+      <Link to='/sign-in'>Registrarse</Link>
     </div>
   );
 };
