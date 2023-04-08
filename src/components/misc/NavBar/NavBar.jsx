@@ -10,6 +10,14 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">  
+          <li className="nav-item">
+              <NavLink
+                className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
+                to="/login"
+              >
+                Login
+              </NavLink>
+              </li>
             <li className="nav-item">
               <NavLink
                 className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
@@ -17,15 +25,19 @@ const Navbar = () => {
               >
                 Plants
               </NavLink>
+              </li>
+              <li className="nav-item">
               <NavLink
                 className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
                 to="/posts"
               >
                 AllPosts
               </NavLink>
+              </li>
+              <li className="nav-item">
               <NavLink
                 className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
-                to="#"
+                to="/new"
               >
                 Create a Post
               </NavLink>

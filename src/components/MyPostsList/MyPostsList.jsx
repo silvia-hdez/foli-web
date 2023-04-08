@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/misc/NavBar/NavBar';
-import { getAllPosts } from '../../services/PostService';
-import PostCard from '../../components/PostCard/PostCard';
-import './PostsList.css'
+import { getAllMyPosts } from '../../services/PostService';
+import PostCard from '../PostCard/PostCard';
+import './MyPostsList.css'
 
-const PostsList = () => {
-
+const MyPostsList = () => {
+    
     const [posts, setPosts] = useState([null])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getAllPosts()
+        getAllMyPosts()
         .then((posts)=> {
             setLoading(false)
             setPosts(posts)
@@ -20,9 +19,8 @@ const PostsList = () => {
 
     return (
         <div>
-            <Navbar />
-            AllPosts
-            <div className='allPosts'>
+            All My Posts
+            <div className='MyPostsList'>
                 {loading
                     ? "Loading..."
                     : posts.map((post)=> {
@@ -33,4 +31,4 @@ const PostsList = () => {
     );
 };
 
-export default PostsList;
+export default MyPostsList;

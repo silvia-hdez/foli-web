@@ -6,7 +6,7 @@ const PlantCard = ({plant}) => {
     
     return (
        
-      <div className='plant-card'>
+      <div className='plantCard'>
             <img src={plant.image}/>
             <p>{plant.commonName}</p>
             <Link to={`/plants/${plant._id}`}>Details</Link>
