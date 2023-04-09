@@ -3,12 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./views/Login/Login";
 import AuthContext from "./contexts/AuthContext";
 import Profile from "./views/Profile/Profile";
-import PlantsList from "./views/PlantsList/PlantsList";
+import PlantsList from "./views/Plants/PlantsList/PlantsList";
 import SignUp from "./views/SignUp/SignUp";
-import PlantDetail from "./views/PlantDetail/PlantDetail";
-import PostsList from "./views/PostsList/PostsList";
-import PostDetail from "./views/PostDetail/PostDetail";
-import CreatePost from "./views/CreatePost/CreatePost";
+import PlantDetail from "./views/Plants/PlantDetail/PlantDetail";
+import PostsList from "./views/Posts/PostsList/PostsList";
+import PostDetail from "./views/Posts/PostDetail/PostDetail";
+import CreatePost from "./views/Posts/CreatePost/CreatePost";
 
 function App() {
   const { isAuthLoaded } = useContext(AuthContext);
@@ -30,6 +30,7 @@ function App() {
           <Route path="/posts/:id" element={<PostDetail />} />
 
           <Route path="/new" element={<CreatePost />}/>
+          <Route path="/edit-post/:id" element={<PostDetail />}/>
         </Routes>
       )}
     </div>

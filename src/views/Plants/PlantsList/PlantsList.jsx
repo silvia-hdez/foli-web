@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllPlants } from "../../services/PlantService";
-import Navbar from "../../components/misc/NavBar/NavBar";
-import PlantCard from "../../components/PlantCard/PlantCard";
+import { getAllPlants } from "../../../services/PlantService";
+import Navbar from "../../../components/misc/NavBar/NavBar";
+import PlantCard from "../../../components/PlantCard/PlantCard";
 import "./PlantsList.css";
 
 const PlantsList = () => {

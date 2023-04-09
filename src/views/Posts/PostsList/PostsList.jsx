@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/misc/NavBar/NavBar';
-import { getAllPosts } from '../../services/PostService';
-import PostCard from '../../components/PostCard/PostCard';
+import React, { useContext, useEffect, useState } from 'react';
+import Navbar from '../../../components/misc/NavBar/NavBar';
+import { getAllPosts } from '../../../services/PostService';
+import PostCard from '../../../components/PostCard/PostCard';
 import './PostsList.css'
 
 const PostsList = () => {
@@ -26,7 +26,7 @@ const PostsList = () => {
                 {loading
                     ? "Loading..."
                     : posts.map((post)=> {
-                        return <PostCard key={post._id} post={post}/>
+                        return <PostCard key={post._id} post={post} />
                     })}
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getPlantDetail } from '../../services/PlantService';
-import Navbar from '../../components/misc/NavBar/NavBar';
+import { getPlantDetail } from '../../../services/PlantService';
+import Navbar from '../../../components/misc/NavBar/NavBar';
 
 const PlantDetail = () => {
 
