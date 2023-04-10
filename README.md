@@ -9,6 +9,8 @@
 - ¿Hacer paginación? Si no lo hago, incorporpar un botón para que me lleve al inicio de la página.
 - Crear filtros en función de ciertas características
 - Crear un enlace a la lente de google para que puedas ver qué planta es.
+- Hacer Logout
+- Lógicas para hacer el guardado de las fichas de plantas
 
 ## NO ME SALE
 - ~~Acceder al detalle del Post~~

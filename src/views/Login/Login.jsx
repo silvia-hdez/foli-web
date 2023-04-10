@@ -31,7 +31,7 @@ const Login = () => {
     validateOnChange: false,
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values))
+      //console.log(JSON.stringify(values))
       loginService({ email: values.email, password: values.password }) 
         .then((response) => {
           login(response.accessToken);
