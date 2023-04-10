@@ -2,13 +2,14 @@ import { useContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./views/Login/Login";
 import AuthContext from "./contexts/AuthContext";
-import Profile from "./views/Profile/Profile";
+import Profile from "./views/Profile/Profile/Profile";
 import PlantsList from "./views/Plants/PlantsList/PlantsList";
 import SignUp from "./views/SignUp/SignUp";
 import PlantDetail from "./views/Plants/PlantDetail/PlantDetail";
 import PostsList from "./views/Posts/PostsList/PostsList";
 import PostDetail from "./views/Posts/PostDetail/PostDetail";
 import CreatePost from "./views/Posts/CreatePost/CreatePost";
+import ProfileEdit from "./views/Profile/ProfileEdit/ProfileEdit";
 
 function App() {
   const { isAuthLoaded } = useContext(AuthContext);
@@ -22,6 +23,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="*" element={<Profile />} />
           <Route path="sign-up" element={<SignUp />} />
+          <Route path="/edit-profile" element={<ProfileEdit />} />
 
           <Route path="plants" element={<PlantsList />} />
           <Route path="plants/:id" element={<PlantDetail />} />

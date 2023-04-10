@@ -17,5 +17,7 @@ export const signupSchema = Yup.object({
    userPhone: Yup
     .string("Phone err")
     .required("Required")
-    .min(9, "Length invalid")
+    .min(9, "Length invalid"),
+    image: Yup
+    .mixed("Image err"),
 });

@@ -10,7 +10,7 @@ const initialValues = {
   name: "",
   image: "",
   description: "",
-  state: 'Insta'  
+  state: "Insta",
 };
 
 const CreatePost = (post) => {
@@ -32,7 +32,20 @@ const CreatePost = (post) => {
     validationSchema: postSchema,
     onSubmit: (values) => {
       console.log("Values:", values);
-      createPost({name: values.name, image: values.image, description: values.description, state: values.state})
+
+      const formData = new FormData();
+
+      Object.keys(values).forEach((key) => {
+        if (key === "image") {
+          [...values["image"]].forEach((img, i) => {
+            formData.append(`img-${i}`, img);
+          });
+        } else {
+          formData.append(key, values[key]);
+        }
+      });
+
+      createPost(formData)
         .then((response) => {
           console.log(response);
         })
@@ -67,16 +80,16 @@ const CreatePost = (post) => {
 
         <FormControl
           text="Photos"
-          error={touched.images && errors.image}
-          htmlFor="images"
+          error={touched.image && errors.image}
+          htmlFor="image"
         >
           <input
-            id="images"
-            name="images"
+            id="image"
+            name="image"
             type="file"
             multiple
             onChange={(event) => {
-              setFieldValue("images", event.currentTarget.files[0]);
+              setFieldValue("image", event.currentTarget.files);
             }}
           />
         </FormControl>
