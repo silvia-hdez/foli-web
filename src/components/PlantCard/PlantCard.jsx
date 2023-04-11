@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./PlantCard.css";
 import { Link } from "react-router-dom";
+import { postSavePlant } from "../../services/SaveService";
 
 const PlantCard = ({ plant }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleBookmark = () => {
     setIsBookmarked(!isBookmarked);
+    postSavePlant(plant._id)
+      .then((response) => console.log(response))
+      .catch((err)=>console.log(err))
   };
 
   return (

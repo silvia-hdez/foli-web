@@ -1,6 +1,6 @@
-// import { createHttp } from './BaseService';
+import { createHttp } from './BaseService';
 
-// const authenticatedHttp = createHttp(true)
+const authenticatedHttp = createHttp(true)
 
 export const postSavePlant = (plantId) =>
   authenticatedHttp.post(`/plants/save/${plantId}`);
