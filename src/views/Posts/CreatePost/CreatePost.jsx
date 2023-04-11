@@ -43,7 +43,9 @@ const CreatePost = (post) => {
         } else {
           formData.append(key, values[key]);
         }
+        //[Object: null prototype]
       });
+
 
       createPost(formData)
         .then((response) => {
