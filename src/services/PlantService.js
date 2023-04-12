@@ -5,3 +5,5 @@ const authenticatedHttp = createHttp(true);
 
 export const getAllPlants = () => authenticatedHttp.get('/plants');
 export const getPlantDetail = (id) => authenticatedHttp.get(`/plants/${id}`)
+
+export const getMyPlantsSaved = () => authenticatedHttp.get('my-saves')
