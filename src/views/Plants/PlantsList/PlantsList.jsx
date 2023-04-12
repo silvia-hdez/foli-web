@@ -24,6 +24,7 @@ const PlantsList = () => {
   const listAllPlants = useCallback(() => {
     getAllPlants()
       .then((plants) => {
+        console.log('Usuario: ', currentUser)
         console.log('Saved plants: ',currentUser.saves)
         // [{ name: 'loquesea', id="12831823789123"}]
         // currentUser.saves = [{ user: "1938912839018230", plant: "12831823789123"}]

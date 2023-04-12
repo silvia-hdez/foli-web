@@ -7,13 +7,12 @@ import { editCurrentUser } from "../../../services/UserService";
 import FormControl from "../../../components/misc/FormControl/FormControl";
 import Input from "../../../components/misc/Input/Input";
 import Navbar from "../../../components/misc/NavBar/NavBar";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProfileEdit = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [userData, setUserData] = useState({});
-  const [isEditedProfile, isSetEditedProfile] = useState(false);
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
@@ -22,7 +21,7 @@ const ProfileEdit = () => {
         userName: currentUser.userName,
         userPhone: currentUser.userPhone,
         email: currentUser.email,
-        image: currentUser.image
+        // image: currentUser.image
       });
     }
   }, [currentUser]);
@@ -36,7 +35,6 @@ const ProfileEdit = () => {
       setUserData({ ...userData, [name]: files[0] });
     } else {
       setUserData({ ...userData, [name]: value });
-  
     }
   };
 
@@ -47,16 +45,14 @@ const ProfileEdit = () => {
 
     for (let data in userData) {
       formData.append(data, userData[data]);
-      
+      console.log("onSubmit: ", userData);
     }
 
-    editCurrentUser(currentUser.id, formData)
+    editCurrentUser(formData)
       .then((res) => {
-        
-        isSetEditedProfile(true)
-        setCurrentUser({ ...currentUser, ...userData });
-        console.log(userData)
-        //window.location.reload();
+        console.log("***** ", res);
+        setCurrentUser(res);
+        navigate("/profile");
       })
       .catch((err) => {
         err?.response?.data.message;
@@ -67,7 +63,7 @@ const ProfileEdit = () => {
     <div>
       <Navbar />
       <h1>Editar Perfil</h1>
-     
+
       <div className="user-data-container">
         <form onSubmit={handleOnSubmit}>
           <div>
@@ -80,9 +76,7 @@ const ProfileEdit = () => {
               name="fullName"
               id="fullName"
               onChange={handleOnChange}
-              
             ></input>
-            
           </div>
 
           <div>
@@ -95,52 +89,42 @@ const ProfileEdit = () => {
               name="userName"
               id="userName"
               onChange={handleOnChange}
-              
             ></input>
-            
           </div>
-      
+
           <div>
-          <label htmlFor="image" className="form-label">
-            Image
-          </label>
-          <input
-            type="file"
-            name="image"
-            id="image"
-            onChange={handleOnChange}
-            className="form-control"
-          ></input>
-        </div>
+            <label htmlFor="image" className="form-label">
+              Image
+            </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleOnChange}
+              className="form-control"
+            ></input>
+          </div>
           <div>
-          <label htmlFor="userPhone" className="form-label">
-            Phone number
-          </label>
-          <input
-            type="text"
-            defaultValue={userData.userPhone}
-            name="userPhone"
-            id="userPhone"
-            onChange={handleOnChange}
-            className="form-control"
-          ></input>
-        </div>
+            <label htmlFor="userPhone" className="form-label">
+              Phone number
+            </label>
+            <input
+              type="text"
+              defaultValue={userData.userPhone}
+              name="userPhone"
+              id="userPhone"
+              onChange={handleOnChange}
+              className="form-control"
+            ></input>
+          </div>
 
-
-
-
-          <button
-          className="btn btn-primary"
-          type="submit"
-          >
-         Editar Perfil
-        </button>
+          <button className="btn btn-primary" type="submit">
+            Editar Perfil
+          </button>
         </form>
-        {isEditedProfile && <Navigate to="/profile" />}
       </div>
     </div>
-  )
+  );
 };
-
 
 export default ProfileEdit;
