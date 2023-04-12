@@ -21,7 +21,7 @@ const ProfileEdit = () => {
         userName: currentUser.userName,
         userPhone: currentUser.userPhone,
         email: currentUser.email,
-        // image: currentUser.image
+        image: currentUser.image
       });
     }
   }, [currentUser]);
