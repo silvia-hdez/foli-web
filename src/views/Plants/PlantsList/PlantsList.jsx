@@ -17,6 +17,7 @@ const PlantsList = () => {
   const [loading, setLoading] = useState(true);
   const [savedPlants, setSavedPlants] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [sortByLetter, setSortedByLetter] = useState(false)
 
   const { currentUser } = useContext(AuthContext);
 
@@ -48,6 +49,14 @@ const PlantsList = () => {
     listAllPlants();
   }, [listAllPlants]);
 
+  const handleSortByLetter = () => {
+    if (sortByLetter) {
+      setSortedByLetter([...plants].sort((a, b) => a.commonName - b.commonName))
+    } else {
+      setSortedByLetter([...plants].sort((a, b) => b.commonName - a.commonName))
+    }
+    setSortedByLetter(!sortByLetter)
+  }
   const handleBookmark = (plant) => {
     setIsBookmarked(!isBookmarked);
     const isPlantSaved = savedPlants.some(
@@ -81,6 +90,7 @@ const PlantsList = () => {
   return (
     <div className="row gy-4 gx-4">
       <Navbar />
+      <button onClick={handleSortByLetter}>{sortByLetter ?  "Order by lower letter" : "Order by higher letter"}</button>
       <div className="allPlants">
         {loading
           ? "Loading...."

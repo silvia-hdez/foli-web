@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import { useFormik } from "formik";
@@ -10,144 +10,137 @@ import Navbar from "../../../components/misc/NavBar/NavBar";
 import { Navigate } from "react-router-dom";
 
 const ProfileEdit = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const [userData, setUserData] = useState({});
+  const [isEditedProfile, isSetEditedProfile] = useState(false);
+  
 
-  const initialValues = {
-    fullName: currentUser.fullName,
-    userName: currentUser.userName,
-    userPhone: currentUser.userPhone,
-    email: currentUser.email,
-    image: "",
+  useEffect(() => {
+    if (currentUser) {
+      setUserData({
+        fullName: currentUser.fullName,
+        userName: currentUser.userName,
+        userPhone: currentUser.userPhone,
+        email: currentUser.email,
+        image: currentUser.image
+      });
+    }
+  }, [currentUser]);
+
+  //console.log('useEffect: ', currentUser)
+
+  const handleOnChange = (e) => {
+    const { name, value, type, files } = e.target;
+
+    if (type === "file") {
+      setUserData({ ...userData, [name]: files[0] });
+    } else {
+      setUserData({ ...userData, [name]: value });
+  
+    }
   };
 
-  const [editedProfile, setEditedProfile] = useState(false);
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    isSubmitting,
-    handleSubmit,
-    setSubmitting,
-    setFieldError,
-    setFieldValue
-  } = useFormik({
-    initialValues: initialValues,
-    validateOnBlur: true,
-    validateOnChange: false,
-    validationSchema: signupSchema,
-    onSubmit: (values) => {
-      editCurrentUser(currentUser.id, values)
-        .then((response) => {
-          console.log(JSON.stringify(response));
-          setEditedProfile(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  });
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    for (let data in userData) {
+      formData.append(data, userData[data]);
+      
+    }
+
+    editCurrentUser(currentUser.id, formData)
+      .then((res) => {
+        
+        isSetEditedProfile(true)
+        setCurrentUser({ ...currentUser, ...userData });
+        console.log(userData)
+        //window.location.reload();
+      })
+      .catch((err) => {
+        err?.response?.data.message;
+      });
+  };
 
   return (
     <div>
       <Navbar />
       <h1>Editar Perfil</h1>
-      <form onSubmit={handleSubmit}>
-        <FormControl
-          text="Nombre Completo"
-          error={touched.fullName && errors.fullName}
-          htmlFor="fullName"
-        >
-          <Input
-            id="fullName"
-            name="fullName"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.fullName}
-            error={touched.fullName && errors.fullName}
-            placeholder={initialValues.fullName}
-          />
-        </FormControl>
+     
+      <div className="user-data-container">
+        <form onSubmit={handleOnSubmit}>
+          <div>
+            <label htmlFor="fullName" className="form-label">
+              Nombre completo
+            </label>
+            <input
+              type="text"
+              defaultValue={userData.fullName}
+              name="fullName"
+              id="fullName"
+              onChange={handleOnChange}
+              
+            ></input>
+            
+          </div>
 
-        <FormControl
-          text="Nombre de usuario"
-          error={touched.userName && errors.userName}
-          htmlFor="userName"
-        >
-          <Input
-            id="userName"
-            name="userName"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.userName}
-            error={touched.userName && errors.userName}
-            placeholder={initialValues.userName}
-          />
-        </FormControl>
-
-        <FormControl
-          text="Teléfono"
-          error={touched.userPhone && errors.userPhone}
-          htmlFor="userPhone"
-        >
-          <Input
-            id="userPhone"
-            name="userPhone"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.userPhone}
-            error={touched.userPhone && errors.userPhone}
-            placeholder={initialValues.userPhone}
-          />
-        </FormControl>
-
-        <FormControl
-          text="Email"
-          error={touched.email && errors.email}
-          htmlFor="email"
-        >
-          <Input
-            id="email"
-            name="email"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.email}
-            error={touched.email && errors.email}
-            placeholder={currentUser.email}
-            disabled
-          />
-        </FormControl>
-
-        <FormControl
-          text="Image"
-          error={touched.image && errors.image}
-          htmlFor="image"
-        >
-          <Input
-            id="image"
-            name="image"
+          <div>
+            <label htmlFor="userName" className="form-label">
+              Nombre Usuario
+            </label>
+            <input
+              type="text"
+              defaultValue={userData.userName}
+              name="userName"
+              id="userName"
+              onChange={handleOnChange}
+              
+            ></input>
+            
+          </div>
+      
+          <div>
+          <label htmlFor="image" className="form-label">
+            Image
+          </label>
+          <input
             type="file"
-            onBlur={handleBlur}
-            value={values.image}
-            error={touched.image && errors.image}
-            onChange={(event) => {
-              setFieldValue("image", event.currentTarget.file);
-            }}
-          />
-        </FormControl>
+            name="image"
+            id="image"
+            onChange={handleOnChange}
+            className="form-control"
+          ></input>
+        </div>
+          <div>
+          <label htmlFor="userPhone" className="form-label">
+            Phone number
+          </label>
+          <input
+            type="text"
+            defaultValue={userData.userPhone}
+            name="userPhone"
+            id="userPhone"
+            onChange={handleOnChange}
+            className="form-control"
+          ></input>
+        </div>
 
-        <button
+
+
+
+          <button
           className="btn btn-primary"
           type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : "Submit"}
+          >
+         Editar Perfil
         </button>
-      </form>
-      {editedProfile && <Navigate to="/profile" />}
+        </form>
+        {isEditedProfile && <Navigate to="/profile" />}
+      </div>
     </div>
-  );
+  )
 };
+
 
 export default ProfileEdit;
