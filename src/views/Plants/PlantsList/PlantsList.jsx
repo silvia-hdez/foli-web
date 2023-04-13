@@ -9,13 +9,18 @@ import {
   postSavePlant,
 } from "../../../services/SaveService";
 import AuthContext from "../../../contexts/AuthContext";
-import { getCurrentUser } from "../../../services/UserService";
 
 const PlantsList = ({all}) => {
   const [initialize, setInitialize] = useState(false)
   const [plants, setPlants] = useState(null);
   const [loading, setLoading] = useState(true);
   const [savedPlants, setSavedPlants] = useState([]);
+  const [growthRate, setGrowthRate] = useState({
+    "moderate": true,
+    "high": true,
+    "low": true,
+  })
+  const  [plantsCopy, setPlantsCopy] = useState([]);
 
 
   const { currentUser } = useContext(AuthContext);
@@ -32,6 +37,7 @@ const PlantsList = ({all}) => {
           })
           setLoading(false);
           setPlants(plants);
+          setPlantsCopy(plants.map(a => {return {...a}}))
           setInitialize(true)
           
         } else {
@@ -44,11 +50,9 @@ const PlantsList = ({all}) => {
             );
             return { ...plant, saved: isPlantSaved };
           });
-          if (!all) {
-            // filter quitando todas menos las mias
-          }
           setLoading(false);
           setPlants(plants);
+          setPlantsCopy(plants.map(a => {return {...a}}))
           setInitialize(true)
         })
         .catch((err) => console.error(err));
@@ -56,7 +60,7 @@ const PlantsList = ({all}) => {
       })
       .catch((err) => console.error(err));
     }
-  }, [plants]);
+  }, [plants, growthRate]);
 
 
   const handleBookmark = (plant) => {
@@ -74,6 +78,8 @@ const PlantsList = ({all}) => {
             return p;
           })
         );
+        setPlantsCopy(plantsCopy.map(x => x._id === plant._id ? {...x, saved: false} : x))
+
         if(!all) {window.location.reload()}
       })
       .catch((err) => console.log(err))
@@ -92,17 +98,34 @@ const PlantsList = ({all}) => {
             return p;
           })
         );
+        setPlantsCopy(plantsCopy.map(x => x._id === plant._id ? {...x, saved: true} : x))
+
       })
         .catch((err) => console.log(err))
     }
 
   }
   
-
+  const handleCheckBox = (e) => {
+    const growthRateName = e.target.id
+    const checked = e.target.checked
+    growthRate[growthRateName] = checked
+    setGrowthRate( Object.assign({}, growthRate))
+    //setPlantsCopy(plants.map(a => {return {...a}}))
+    const filteredPlants = plantsCopy.filter((plant) => growthRate[plant["growthRate"].toLowerCase()] === true )
+    setPlants(filteredPlants)
+    
+  }
 
   return (
     <div className="row gy-4 gx-4">
       { all && <Navbar />}
+      { all && 
+        <div>
+          <label>Moderate</label><input id='moderate' checked={growthRate['moderate']} type="checkbox" onChange={(e) => handleCheckBox(e)}/>
+          <label>High</label><input id='high' checked={growthRate['high']} type="checkbox" onChange={(e) => handleCheckBox(e)}/>
+          <label>Low</label><input id='low' checked={growthRate['low']} type="checkbox" onChange={(e) => handleCheckBox(e)}/>
+        </div>}
 
       <div className="allPlants">
         {loading
