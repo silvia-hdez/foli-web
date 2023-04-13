@@ -13,3 +13,4 @@ export const createPost = (post) => {
 };
 
 
+export const editPost = (postId) => authenticatedHttp.post(`/my-posts/${postId}/edit`)

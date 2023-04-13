@@ -25,7 +25,7 @@ function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="/edit-profile" element={<ProfileEdit />} />
 
-          <Route path="plants" element={<PlantsList />} />
+          <Route path="plants" element={<PlantsList all={true}/>} />
           <Route path="plants/:id" element={<PlantDetail />} />
 
           <Route path="/posts" element={<PostsList />} />

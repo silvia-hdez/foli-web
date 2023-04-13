@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSavePlants } from '../../services/SaveService';
 import PlantCard from '../PlantCard/PlantCard';
-import './MyPlantsList.css'
 
 const MyPlantsList = () => {
     const [plants, setPlants] = useState([null])
@@ -10,6 +9,7 @@ const MyPlantsList = () => {
     useEffect(() => {
         getSavePlants()
             .then((plants) => {
+                console.log(plants)
                 setLoading(false)
                 setPlants(plants)
             })

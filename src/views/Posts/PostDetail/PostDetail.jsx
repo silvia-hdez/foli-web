@@ -54,12 +54,12 @@ const PostDetail = () => {
             </div>
           </div>
           <p>Nombre de la planta: {post.name}</p>
-          <p>Estado: {post.state}</p>
+
           <button onClick={handleEditClick}>Editar</button>
         </div>
       )}
 
-      
+
     </div>
   );
 };

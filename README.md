@@ -1,7 +1,6 @@
 # foli-web
 
-## Preguntas clase
-- Al hacer el signup crea los registros pero no me da los errores.
+
 
 ## TODO
 - En la vista de plantas, incorporar un buscador.
@@ -10,11 +9,12 @@
 - Crear filtros en función de ciertas características
 - Crear un enlace a la lente de google para que puedas ver qué planta es.
 - Hacer Logout
-- Lógicas para hacer el guardado de las fichas de plantas
+- Manipulación del DOM para que cuando quite un bookmark desde mi perfil, desaparezca sin recargar la página
+- ~~Lógicas para hacer el guardado de las fichas de plantas~~
 
 ## NO ME SALE
 - ~~Acceder al detalle del Post~~
-- En crear un post, cuando le doy al botón no hace nada
+- ~~En crear un post, cuando le doy al botón no hace nada~~
 - El el 'PlantCard' no quiero que aparezca User: cuando estoy dentro de mi perfil
 - No se cómo enfrentarme a un editar perfil usuario
 

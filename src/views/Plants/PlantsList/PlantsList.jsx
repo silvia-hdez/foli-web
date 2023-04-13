@@ -11,9 +11,8 @@ import {
 import AuthContext from "../../../contexts/AuthContext";
 import { getCurrentUser } from "../../../services/UserService";
 
-const PlantsList = () => {
+const PlantsList = ({all}) => {
   const [initialize, setInitialize] = useState(false)
-  const [counter, setCounter] = useState(0)
   const [plants, setPlants] = useState(null);
   const [loading, setLoading] = useState(true);
   const [savedPlants, setSavedPlants] = useState([]);
@@ -22,12 +21,20 @@ const PlantsList = () => {
   const { currentUser } = useContext(AuthContext);
   
   useEffect(() => {
-    console.log('hola')
     if (!initialize) {
+      console.log('retrieve all', all)
       getSavePlants(currentUser._id)
       .then((savedPlants) => {
         setSavedPlants(savedPlants);
-
+        if (!all) {
+          const plants = savedPlants.map((savedPlant) => {
+            return { ...savedPlant.plant, saved: true };
+          })
+          setLoading(false);
+          setPlants(plants);
+          setInitialize(true)
+          
+        } else {
         getAllPlants()
         .then((allPlants) => {
           console.log("Saved plants: ", currentUser.saves);
@@ -37,16 +44,19 @@ const PlantsList = () => {
             );
             return { ...plant, saved: isPlantSaved };
           });
+          if (!all) {
+            // filter quitando todas menos las mias
+          }
           setLoading(false);
           setPlants(plants);
           setInitialize(true)
         })
         .catch((err) => console.error(err));
+      }
       })
       .catch((err) => console.error(err));
     }
-    setPlants(plants)
-  }, [counter, plants]);
+  }, [plants]);
 
 
   const handleBookmark = (plant) => {
@@ -64,15 +74,15 @@ const PlantsList = () => {
             return p;
           })
         );
+        if(!all) {window.location.reload()}
       })
       .catch((err) => console.log(err))
     } else {
       postSavePlant(plant._id)
       .then((newSavedPlant) => {
         newSavedPlant["plant"] = plant
-        const a = savedPlants.concat([newSavedPlant])
-        console.log(a)
-        setSavedPlants(a);
+        savedPlants.push(newSavedPlant)
+        setSavedPlants(savedPlants);
 
         setPlants(
           plants.map((p) => {
@@ -86,14 +96,13 @@ const PlantsList = () => {
         .catch((err) => console.log(err))
     }
 
-
   }
   
 
 
   return (
     <div className="row gy-4 gx-4">
-      <Navbar />
+      { all && <Navbar />}
 
       <div className="allPlants">
         {loading

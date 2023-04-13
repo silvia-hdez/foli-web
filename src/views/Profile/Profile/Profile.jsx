@@ -5,11 +5,14 @@ import { Link, Route, Routes } from "react-router-dom";
 import MyPostsList from "../../../components/MyPostsList/MyPostsList";
 import "./Profile.css";
 import MyPlantsList from "../../../components/MyPlantsList/MyPlantsList";
+import PlantsList from "../../Plants/PlantsList/PlantsList";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showMyPlants, setShowMyPlants] = useState(false);
   const [showMyPosts, setShowMyPosts] = useState(true)
+
+  
 
   console.log(currentUser);
   return (
@@ -35,7 +38,7 @@ const Profile = () => {
         {showMyPlants && (
           <>
             <Routes>
-              <Route path="/profile" element={<MyPlantsList />} />
+              <Route path="/profile" element={<PlantsList />} />
             </Routes>
           </>
         )}
