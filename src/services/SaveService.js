@@ -7,4 +7,4 @@ export const postSavePlant = (plantId) =>
 export const getSavePlants = () => authenticatedHttp.get("/save-plants");
 
 export const deleteSavePlant = (saveId) =>
-  authenticatedHttp.post(`/saves/${saveId}/delete`);
+  authenticatedHttp.delete(`/saves/${saveId}`);

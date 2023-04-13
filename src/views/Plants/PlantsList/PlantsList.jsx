@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getAllPlants } from "../../../services/PlantService";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import PlantCard from "../../../components/PlantCard/PlantCard";
@@ -13,90 +12,94 @@ import AuthContext from "../../../contexts/AuthContext";
 import { getCurrentUser } from "../../../services/UserService";
 
 const PlantsList = () => {
-  const [plants, setPlants] = useState([]);
+  const [initialize, setInitialize] = useState(false)
+  const [counter, setCounter] = useState(0)
+  const [plants, setPlants] = useState(null);
   const [loading, setLoading] = useState(true);
   const [savedPlants, setSavedPlants] = useState([]);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [sortByLetter, setSortedByLetter] = useState(false)
+
 
   const { currentUser } = useContext(AuthContext);
+  
+  useEffect(() => {
+    console.log('hola')
+    if (!initialize) {
+      getSavePlants(currentUser._id)
+      .then((savedPlants) => {
+        setSavedPlants(savedPlants);
 
-  const listAllPlants = useCallback(() => {
-    getAllPlants()
-      .then((plants) => {
-        console.log('Usuario: ', currentUser)
-        console.log('Saved plants: ',currentUser.saves)
-        // [{ name: 'loquesea', id="12831823789123"}]
-        // currentUser.saves = [{ user: "1938912839018230", plant: "12831823789123"}]
-        // plants.map(plant => {
-        //   if (plant.id coiciden con algun un save.plant){
-        //     return {...plant, saved: true}
-        //   } else return plant
-        // })
-      plants.map((plant) => {
-          // return (
-          //   if(plant.id === currentUser.saves) {
-
-          //   }
-          // )
-      })
-        setLoading(false);
-        setPlants(plants);
+        getAllPlants()
+        .then((allPlants) => {
+          console.log("Saved plants: ", currentUser.saves);
+          const plants = allPlants.map((plant) => {
+            const isPlantSaved = savedPlants.some(
+              (savedPlant) => savedPlant.plant._id === plant._id
+            );
+            return { ...plant, saved: isPlantSaved };
+          });
+          setLoading(false);
+          setPlants(plants);
+          setInitialize(true)
+        })
+        .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    listAllPlants();
-  }, [listAllPlants]);
-
-  const handleSortByLetter = () => {
-    if (sortByLetter) {
-      setSortedByLetter([...plants].sort((a, b) => a.commonName - b.commonName))
-    } else {
-      setSortedByLetter([...plants].sort((a, b) => b.commonName - a.commonName))
     }
-    setSortedByLetter(!sortByLetter)
-  }
+    setPlants(plants)
+  }, [counter, plants]);
+
+
   const handleBookmark = (plant) => {
-    setIsBookmarked(!isBookmarked);
-    const isPlantSaved = savedPlants.some(
-      (savedPlant) => savedPlant.plant._id === plant._id
-    );
-
-    if (isPlantSaved) {
-      const savedPlant = savedPlants.find(
-        (savedPlant) => savedPlant.plant._id === plant._id
-      );
-      deleteSavePlant(savedPlant._id)
-        .then((response) => {
-          console.log(response.data);
-          setSavedPlants(
-            savedPlants.filter(
-              (savedPlant) => savedPlant.plant._id !== plant._id
-            )
-          );
-        })
-        .catch((err) => console.log(err));
-    }
-    postSavePlant(plant._id)
-      .then((save) => {
-        console.log(save);
-        setSavedPlants([...savedPlants, save]);
+    const plantSavedList = savedPlants.filter((x) => x.plant._id == plant._id)
+  
+    if(plantSavedList.length > 0 ) {
+      deleteSavePlant(plantSavedList[0]._id)
+      .then(() => {
+        setSavedPlants(savedPlants.filter((savedPlant) => savedPlant.plant._id !== plant._id));
+        setPlants(
+          plants.map((p) => {
+            if (p._id === plant._id) {
+              return { ...p, saved: false };
+            }
+            return p;
+          })
+        );
       })
+      .catch((err) => console.log(err))
+    } else {
+      postSavePlant(plant._id)
+      .then((newSavedPlant) => {
+        newSavedPlant["plant"] = plant
+        const a = savedPlants.concat([newSavedPlant])
+        console.log(a)
+        setSavedPlants(a);
 
-      .catch((err) => console.log(err));
-  };
+        setPlants(
+          plants.map((p) => {
+            if (p._id === plant._id) {
+              return { ...p, saved: true };
+            }
+            return p;
+          })
+        );
+      })
+        .catch((err) => console.log(err))
+    }
+
+
+  }
+  
+
 
   return (
     <div className="row gy-4 gx-4">
       <Navbar />
-      <button onClick={handleSortByLetter}>{sortByLetter ?  "Order by lower letter" : "Order by higher letter"}</button>
+
       <div className="allPlants">
         {loading
           ? "Loading...."
           : plants.map((plant) => {
-              return <PlantCard key={plant._id} plant={plant} />;
+              return <PlantCard key={plant._id} plant={plant} clickHandler={() => handleBookmark(plant)} isSaved={plant.saved}/>;
             })}
       </div>
     </div>

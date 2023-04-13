@@ -8,6 +8,8 @@ import MyPlantsList from "../../../components/MyPlantsList/MyPlantsList";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
+  const [showMyPlants, setShowMyPlants] = useState(false);
+  const [showMyPosts, setShowMyPosts] = useState(true)
 
   console.log(currentUser);
   return (
@@ -17,15 +19,26 @@ const Profile = () => {
         <h1>Profile of {currentUser.userName}</h1>
         <img className="ProfileImg" src={currentUser.image} />
         <Link to="/edit-profile">Editar Perfil</Link>
-        <h2>My posts</h2>
-        <Routes>
+
+        <button onClick={() => setShowMyPosts(!showMyPosts)}> Mis Posts</button>
+        {showMyPosts && (
+          <>
+          <Routes>
           <Route path="/profile" element={<MyPostsList />} />
         </Routes>
+        </>
+        )}
 
-        <h2>Mis fichas guardadas</h2>
-        <Routes>
-          <Route path="/profile" element={<MyPlantsList />} />
-        </Routes>
+    
+
+        <button onClick={() => setShowMyPlants(!showMyPlants)}> Mis fichas guardadas</button>
+        {showMyPlants && (
+          <>
+            <Routes>
+              <Route path="/profile" element={<MyPlantsList />} />
+            </Routes>
+          </>
+        )}
 
         <h2>Mis posts guardados</h2>
       </div>

@@ -58,6 +58,8 @@ const PostDetail = () => {
           <button onClick={handleEditClick}>Editar</button>
         </div>
       )}
+
+      
     </div>
   );
 };

@@ -3,20 +3,18 @@ import "./PlantCard.css";
 import { Link } from "react-router-dom";
 
 
-const PlantCard = ({ plant }) => {
-  const [isBookmarked, setIsBookmarked] = useState(plant.saved);
+const PlantCard = ({ plant, clickHandler, isSaved }) => {
+ 
 
-  const handleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-  };
   return (
     <div className="plantCard">
+
       <img src={plant.image} />
       <p>{plant.commonName}</p>
       <Link to={`/plants/${plant._id}`}>Details</Link>
 
-      <button onClick={handleBookmark}>
-        {isBookmarked ? (
+      <button onClick={clickHandler}  id={plant._id}>
+        {isSaved ? (
           <i
             className="bi bi-bookmark-fill"
             style={{ fontSize: "20px", color: "rgb(109, 101, 101)" }}

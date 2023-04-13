@@ -11,3 +11,5 @@ export const createPost = (post) => {
   console.log(post);
   return authenticatedHttp.post("/new-post", post);
 };
+
+
