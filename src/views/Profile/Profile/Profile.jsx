@@ -2,10 +2,9 @@ import { useContext, useState } from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { Link, Route, Routes } from "react-router-dom";
-import MyPostsList from "../../../components/MyPostsList/MyPostsList";
 import "./Profile.css";
-import MyPlantsList from "../../../components/MyPlantsList/MyPlantsList";
 import PlantsList from "../../Plants/PlantsList/PlantsList";
+import PostsList from "../../Posts/PostsList/PostsList";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,7 +26,7 @@ const Profile = () => {
         {showMyPosts && (
           <>
           <Routes>
-          <Route path="/profile" element={<MyPostsList />} />
+          <Route path="/profile" element={<PostsList />} />
         </Routes>
         </>
         )}

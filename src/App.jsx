@@ -28,7 +28,7 @@ function App() {
           <Route path="plants" element={<PlantsList all={true}/>} />
           <Route path="plants/:id" element={<PlantDetail />} />
 
-          <Route path="/posts" element={<PostsList />} />
+          <Route path="/posts" element={<PostsList all={true}/>} />
           <Route path="/posts/:id" element={<PostDetail />} />
 
           <Route path="/new" element={<CreatePost />}/>

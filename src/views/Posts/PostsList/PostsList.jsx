@@ -1,27 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../../../components/misc/NavBar/NavBar';
-import { getAllPosts } from '../../../services/PostService';
+import { getAllMyPosts, getAllPosts } from '../../../services/PostService';
 import PostCard from '../../../components/PostCard/PostCard';
 import './PostsList.css'
 
-const PostsList = () => {
+const PostsList = ({all}) => {
 
     const [posts, setPosts] = useState([null])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getAllPosts()
-        .then((posts)=> {
-            setLoading(false)
-            setPosts(posts)
-        })
-        .catch((err) => console.log(err))
+
+        if(all) {
+            getAllPosts()
+            .then((posts)=> {
+    
+                setLoading(false)
+                setPosts(posts)
+            })
+            .catch((err) => console.log(err))
+        } else {
+            getAllMyPosts()
+            .then((posts)=> {
+    
+                setLoading(false)
+                setPosts(posts)
+            })
+            .catch((err) => console.log(err))
+        }
+  
     }, [])
 
     return (
         <div>
-            <Navbar />
-            AllPosts
+            {all && <Navbar />}
             <div className='allPosts'>
                 {loading
                     ? "Loading..."

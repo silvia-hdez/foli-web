@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useFormik } from "formik";
 import { createPost } from "../../../services/PostService";
 import { postSchema } from "../../../schemas/post.schema";
 import FormControl from "../../../components/misc/FormControl/FormControl";
 import Input from "../../../components/misc/Input/Input";
+import { Navigate } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -14,7 +15,7 @@ const initialValues = {
 };
 
 const CreatePost = (post) => {
-  // const { currentUser } = useContext(AuthContext);
+
   const {
     values,
     errors,
@@ -55,7 +56,9 @@ const CreatePost = (post) => {
           console.log(err);
         });
 
+        
       setSubmitting(false);
+
     },
   });
 
@@ -121,6 +124,7 @@ const CreatePost = (post) => {
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
+
     </div>
   );
 };
