@@ -15,10 +15,10 @@ const PlantsList = ({ all }) => {
   const [plants, setPlants] = useState(null);
   const [loading, setLoading] = useState(true);
   const [savedPlants, setSavedPlants] = useState([]);
-  const [growthRate, setGrowthRate] = useState({
-    moderate: true,
-    high: true,
-    low: true,
+  const [watering, setWatering] = useState({
+    average: true,
+    minimum: true,
+    frequent: true,
   });
   const [plantsCopy, setPlantsCopy] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
@@ -67,7 +67,7 @@ const PlantsList = ({ all }) => {
         })
         .catch((err) => console.error(err));
     }
-  }, [plants, growthRate]);
+  }, [plants, watering]);
 
   const handleBookmark = (plant) => {
     const plantSavedList = savedPlants.filter((x) => x.plant._id == plant._id);
@@ -125,13 +125,13 @@ const PlantsList = ({ all }) => {
   };
 
   const handleCheckBox = (e) => {
-    const growthRateName = e.target.id;
+    const wateringName = e.target.id;
     const checked = e.target.checked;
-    growthRate[growthRateName] = checked;
-    setGrowthRate(Object.assign({}, growthRate));
+    watering[wateringName] = checked;
+    setWatering(Object.assign({}, watering));
     //setPlantsCopy(plants.map(a => {return {...a}}))
     const filteredPlants = plantsCopy.filter(
-      (plant) => growthRate[plant["growthRate"].toLowerCase()] === true
+      (plant) => watering[plant["watering"].toLowerCase()] === true
     );
     setPlants(filteredPlants);
   };
@@ -155,24 +155,24 @@ const PlantsList = ({ all }) => {
       {all && <Navbar />}
       {all && (
         <div>
-          <label>Moderate</label>
+          <label>Average</label>
           <input
-            id="moderate"
-            checked={growthRate["moderate"]}
+            id="average"
+            checked={watering["average"]}
             type="checkbox"
             onChange={(e) => handleCheckBox(e)}
           />
-          <label>High</label>
+          <label>Frequent</label>
           <input
-            id="high"
-            checked={growthRate["high"]}
+            id="frequent"
+            checked={watering["frequent"]}
             type="checkbox"
             onChange={(e) => handleCheckBox(e)}
           />
-          <label>Low</label>
+          <label>Minimum</label>
           <input
-            id="low"
-            checked={growthRate["low"]}
+            id="minimum"
+            checked={watering["minimum"]}
             type="checkbox"
             onChange={(e) => handleCheckBox(e)}
           />

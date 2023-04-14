@@ -28,7 +28,7 @@ const PostDetail = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/${post._id}/edit`, { state: { post } });
+    navigate(`/posts/${post._id}/edit`, { state: { post } });
   };
 
 console.log(post)

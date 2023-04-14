@@ -31,6 +31,11 @@ const PostsList = ({all}) => {
   
     }, [])
 
+
+    posts.sort((a, b) => {
+        return new Date(b.updatedAt) - new Date(a.updatedAt);
+      });
+
     return (
         <div>
             {all && <Navbar />}

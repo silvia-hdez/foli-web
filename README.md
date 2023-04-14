@@ -6,7 +6,7 @@
 ## TODO
 - En la vista de plantas, incorporar un buscador.
 - ~~Ordenar las plantas por orden alfabético.~~
-- ¿Hacer paginación? Si no lo hago, incorporpar un botón para que me lleve al inicio de la página.
+- ~~¿Hacer paginación? Si no lo hago, incorporpar un botón para que me lleve al inicio de la página. => No lo voy a hacer~~
 - Crear filtros en función de ciertas características
 - Crear un enlace a la lente de google para que puedas ver qué planta es.
 - Hacer Logout
@@ -20,6 +20,10 @@
 - Quiero que la primera letra del commonName de cada planta esté en mayúscula
 - En el navBar, tengo que hacer en vez del login, poner un logOut porque el login se hace directamente cuando se inicia la sesión
 - Meter que en cada ficha de planta, aparezcan imágenes de post de otros ususarios con esas plantas
+- Que las plantas del listado me vengan directamente ordenadas por orden alfabético.
+Hacer un sort antes en el código para que el array ya esté ordenado. Mirar como en posts
+
+- **En el back, hay que hacer que la primera letra de cada planta sea en mayúscula. ¿Cambiar el json?**
 
 ## NO ME SALE
 - ~~Acceder al detalle del Post~~
@@ -37,9 +41,7 @@
 Si no está la planta, que deje seleccionar un 'sin categoría'
 - En la zona de comentarios la gente puede ponerlos aunque no sea suyo
 
-## Modificaciones para ir haciendo en CSS
-- Hacer la barra del navegador
-- hacer el perfil de usuario
+
 
 ## Cosas de CSS de incorporar aunque no funcionen:
 - Followers y Following

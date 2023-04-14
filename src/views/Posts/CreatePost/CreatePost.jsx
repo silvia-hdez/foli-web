@@ -5,7 +5,8 @@ import { createPost } from "../../../services/PostService";
 import { postSchema } from "../../../schemas/post.schema";
 import FormControl from "../../../components/misc/FormControl/FormControl";
 import Input from "../../../components/misc/Input/Input";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const initialValues = {
   name: "",
@@ -15,6 +16,7 @@ const initialValues = {
 };
 
 const CreatePost = (post) => {
+  const navigate = useNavigate()
 
   const {
     values,
@@ -51,6 +53,7 @@ const CreatePost = (post) => {
       createPost(formData)
         .then((response) => {
           console.log(response);
+          navigate("/profile")
         })
         .catch((err) => {
           console.log(err);
