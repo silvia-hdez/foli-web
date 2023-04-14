@@ -6,7 +6,6 @@ import './PostCard.css'
 
 const PostCard = ({ post }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log('post: ', currentUser)
   return (
     <div className="postCard">
       <img src={post.image[0]} />

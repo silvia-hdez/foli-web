@@ -6,6 +6,7 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { login as loginService } from "../../services/AuthService";
 import { Link } from "react-router-dom";
+import './Login.css'
 
 const initialValues = {
   email: "",
@@ -48,16 +49,19 @@ const Login = () => {
   });
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="Login"> 
+     
+      <div className="BoxLogin">
+      
+      <h1>Inicia Sesión</h1>
 
       <form onSubmit={handleSubmit}>
-        <FormControl
+        <FormControl className="FormControl"
           text="Email"
           error={touched.email && errors.email}
           htmlFor="email"
         >
-          <Input
+          <Input className="Input"
             id="email"
             name="email"
             onChange={handleChange}
@@ -68,7 +72,7 @@ const Login = () => {
           />
         </FormControl>
 
-        <FormControl
+        <FormControl className="FormControl"
           text="Password"
           error={touched.password && errors.password}
           htmlFor="password"
@@ -93,8 +97,12 @@ const Login = () => {
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
-
-      <Link to='/sign-up'>Registrarse</Link>
+      <div className="LinkRegistro">
+        <p>¿No tienes una cuenta?</p>
+        <Link className="LinkLogin" to='/sign-up'>Regístrate</Link>
+      </div>
+      
+      </div>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import PostsList from "./views/Posts/PostsList/PostsList";
 import PostDetail from "./views/Posts/PostDetail/PostDetail";
 import CreatePost from "./views/Posts/CreatePost/CreatePost";
 import ProfileEdit from "./views/Profile/ProfileEdit/ProfileEdit";
+import EditPost from "./views/Posts/EditPost/EditPost";
 
 function App() {
   const { isAuthLoaded } = useContext(AuthContext);
@@ -32,7 +33,7 @@ function App() {
           <Route path="/posts/:id" element={<PostDetail />} />
 
           <Route path="/new" element={<CreatePost />}/>
-          <Route path="/edit-post/:id" element={<PostDetail />}/>
+         <Route path="/:id/edit" element={<EditPost />}/>
         </Routes>
       )}
     </div>

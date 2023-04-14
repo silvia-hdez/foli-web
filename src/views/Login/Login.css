@@ -1,0 +1,54 @@
+body {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.Login {
+position: absolute;
+width: 100%;
+height:100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: aquamarine;
+}
+
+.BoxLogin {
+    border: 2px solid rgb(19, 107, 72);
+    max-width: 500px;
+    width: 90%;
+    padding: 5%;
+
+}
+
+
+
+
+.FormControl {
+    margin: 30px 0 10px 0;
+    
+}
+
+.BoxLogin h1 {
+    text-align: center;
+    font-family: 'Prata', serif;
+}
+
+.BoxLogin button {
+    margin-top: 30px;
+    background-color: rgb(13, 67, 49);
+    border: 1px solid rgb(13, 67, 49);
+}
+
+.LinkRegistro {
+    display: flex;
+
+}
+
+.LinkRegistro p {
+font-size: 12px;
+}
+
+.LinkLogin {
+    font-size: 12px;
+}

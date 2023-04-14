@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { signupSchema } from '../../schemas/signup.schema';
 import FormControl from '../../components/misc/FormControl/FormControl';
 import Input from '../../components/misc/Input/Input';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 
 
@@ -53,7 +53,11 @@ const SignUp = () => {
     
 
     return (
-        <div>
+        <div className="Login">
+
+        <div className="BoxLogin">
+
+        
             <h1>Registro Usuario</h1>
 
             <form onSubmit={handleSubmit}>
@@ -103,6 +107,11 @@ const SignUp = () => {
 
             </form>
             {signedUp && <Navigate to="/login" />}
+            <div className="LinkRegistro">
+        <p>¿Ya tienes una cuenta?</p>
+        <Link className="LinkLogin" to='/login'>Inicia Sesión</Link>
+      </div>
+      </div>
         </div>
     );
 };

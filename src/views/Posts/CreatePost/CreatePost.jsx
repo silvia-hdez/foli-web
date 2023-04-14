@@ -122,6 +122,7 @@ const CreatePost = (post) => {
           disabled={isSubmitting}
         >
           {isSubmitting ? "Submitting..." : "Submit"}
+          
         </button>
       </form>
 

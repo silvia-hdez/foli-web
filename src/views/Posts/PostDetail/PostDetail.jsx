@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { getPostDetail } from "../../../services/PostService";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./PostDetail.css";
+import AuthContext from "../../../contexts/AuthContext";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const { id } = useParams();
+  const {currentUser} = useContext(AuthContext)
   const navigate = useNavigate()
+ 
 
   useEffect(() => {
     getPostDetail(id)
@@ -24,9 +27,12 @@ const PostDetail = () => {
     setSelectedImageIndex(index);
   };
 
-  const handleEditClick = () => {
-    navigate(`/edit-post/${id}`)
-  }
+  const handleEdit = () => {
+    navigate(`/${post._id}/edit`, { state: { post } });
+  };
+
+console.log(post)
+
 
   if (!post) {
     return <p> ... fetching post</p>;
@@ -48,14 +54,29 @@ const PostDetail = () => {
               ))}
             </div>
             <div className="ComparativeImages">
+            <div className="ImageOne">
             <img src={post.image[0]}/>
-              <img src={post.image[selectedImageIndex]} />  
+            <p>{post.date}</p>
+            </div>
+             <div className="ImageTwo">
+             <img src={post.image[selectedImageIndex]} /> 
+             <p>{post.date}</p>
+            </div>
+            
+             
             
             </div>
           </div>
           <p>Nombre de la planta: {post.name}</p>
-
-          <button onClick={handleEditClick}>Editar</button>
+          <p>Descripción {post.description}</p>
+         
+        
+           {(currentUser.id === post.user) && (
+            <button className="btn btn-primary" onClick={handleEdit}>
+              Editar
+            </button>
+            )}   
+          
         </div>
       )}
 

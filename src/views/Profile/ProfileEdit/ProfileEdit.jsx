@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import { useFormik } from "formik";
-import { signupSchema } from "../../../schemas/signup.schema";
 import { editCurrentUser } from "../../../services/UserService";
-import FormControl from "../../../components/misc/FormControl/FormControl";
-import Input from "../../../components/misc/Input/Input";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 
