@@ -6,6 +6,7 @@ import { postSchema } from "../../../schemas/post.schema";
 import FormControl from "../../../components/misc/FormControl/FormControl";
 import Input from "../../../components/misc/Input/Input";
 import { useNavigate } from "react-router-dom";
+import './CreatePost.css'
 
 
 const initialValues = {
@@ -66,7 +67,7 @@ const CreatePost = (post) => {
   });
 
   return (
-    <div>
+    <div className="CreatePost">
       <Navbar />
       New Post
       <form onSubmit={handleSubmit} encType="multipart/form-data">

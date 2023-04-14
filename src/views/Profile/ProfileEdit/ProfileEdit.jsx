@@ -4,6 +4,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import { editCurrentUser } from "../../../services/UserService";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import './ProfileEdit.css'
 
 const ProfileEdit = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -56,7 +57,7 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div>
+    <div className="EditProfile">
       <Navbar />
       <h1>Editar Perfil</h1>
 
@@ -64,7 +65,7 @@ const ProfileEdit = () => {
         <form onSubmit={handleOnSubmit}>
           <div>
             <label htmlFor="fullName" className="form-label">
-              Nombre completo
+              Nombre
             </label>
             <input
               type="text"
@@ -119,6 +120,9 @@ const ProfileEdit = () => {
           </button>
         </form>
       </div>
+      <button className="btn btn-primary" type="submit">
+            Cerrar Sesión
+          </button>
     </div>
   );
 };

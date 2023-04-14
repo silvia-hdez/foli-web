@@ -9,6 +9,7 @@ import {
   postSavePlant,
 } from "../../../services/SaveService";
 import AuthContext from "../../../contexts/AuthContext";
+import './PlantsList.css'
 
 const PlantsList = ({ all }) => {
   const [initialize, setInitialize] = useState(false);
@@ -151,8 +152,8 @@ const PlantsList = ({ all }) => {
   };
 
   return (
-    <div className="row gy-4 gx-4">
-      {all && <Navbar />}
+    <div className="PlantsList">
+      <div></div>
       {all && (
         <div>
           <label>Average</label>
@@ -177,10 +178,13 @@ const PlantsList = ({ all }) => {
             onChange={(e) => handleCheckBox(e)}
           />
         </div>
+        
       )}
+
       <button style={{width:'170px'}} onClick={() => handleSort("name")}>
         {(sortOrder === 'asc') ? 'Ordenar nombre ↑' : 'Ordenar nombre ↓'}
       </button>
+
       <div className="allPlants">
         {loading
           ? "Loading...."
@@ -195,6 +199,7 @@ const PlantsList = ({ all }) => {
               );
             })}
       </div>
+      {all && <Navbar />}
     </div>
   );
 };

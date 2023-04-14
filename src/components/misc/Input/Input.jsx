@@ -17,7 +17,7 @@ const Input = ({
       )
     }
     return (
-      <input
+      <input style={{fontSize:'10px'}}
         type={type}
         min={min}
         max={max}

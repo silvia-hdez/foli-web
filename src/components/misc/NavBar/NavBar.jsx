@@ -1,49 +1,39 @@
 import { Link, NavLink } from 'react-router-dom';
+import './NavBar.css'
+
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/profile">InstaPlant</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">  
-          <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
-                to="/login"
-              >
-                Login
+    <nav className="NavBar">
+      <div>
+        <ul >  
+          <li >
+              <NavLink style={{textDecoration:'none', color:'white'}}  to="/plants">
+              <i className="bi bi-flower1"></i>
               </NavLink>
               </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
-                to="/plants"
-              >
-                Plants
+          <li >
+              <NavLink style={{textDecoration:'none', color:'white'}}  to="/posts">
+                <i className="bi bi-binoculars-fill"></i>
               </NavLink>
               </li>
-              <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
-                to="/posts"
-              >
-                AllPosts
+            <li >
+              <NavLink style={{textDecoration:'none', color:'white'}} to="/new">
+              <i className="bi bi-patch-plus"></i>
               </NavLink>
               </li>
-              <li className="nav-item">
-              <NavLink
-                className={({ isActive }) => `nav-link ${isActive ? 'active': ''}`}
-                to="/new"
-              >
-                Create a Post
+              <li >
+              <NavLink style={{textDecoration:'none', color:'white'}}  to="#">
+              <i className="bi bi-pin-map-fill"></i>
+              </NavLink>
+              </li>
+              <li >
+              <NavLink style={{textDecoration:'none', color:'white'}}  to="/profile">
+              <i className="bi bi-person-circle"></i>
               </NavLink>
             </li>
           </ul>
-        </div>
+       
       </div>
     </nav>
   )

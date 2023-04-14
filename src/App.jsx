@@ -11,6 +11,7 @@ import PostDetail from "./views/Posts/PostDetail/PostDetail";
 import CreatePost from "./views/Posts/CreatePost/CreatePost";
 import ProfileEdit from "./views/Profile/ProfileEdit/ProfileEdit";
 import EditPost from "./views/Posts/EditPost/EditPost";
+import './App.css'
 
 function App() {
   const { isAuthLoaded } = useContext(AuthContext);

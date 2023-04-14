@@ -37,7 +37,7 @@ const PostsList = ({all}) => {
       });
 
     return (
-        <div>
+        <div className='PostList'>
             {all && <Navbar />}
             <div className='allPosts'>
                 {loading
