@@ -6,9 +6,11 @@ import './PostCard.css'
 
 const PostCard = ({ post }) => {
   const { currentUser } = useContext(AuthContext);
+  console.log('Post-----:', post)
   return (
     <div className="postCard">
-      <img src={post.image[0]} />
+    
+      <img src={post.image[0].url} />
       <h3>{post.name}</h3>
 
       {(currentUser && post.user)  && post.user.id !== currentUser.id ? (

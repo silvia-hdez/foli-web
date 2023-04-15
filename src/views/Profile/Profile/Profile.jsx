@@ -6,6 +6,7 @@ import "./Profile.css";
 import PlantsList from "../../Plants/PlantsList/PlantsList";
 import PostsList from "../../Posts/PostsList/PostsList";
 import logo from '../../../assets/img/Logo.png'
+import { logout } from "../../../stores/AccesTokenStore";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -13,11 +14,12 @@ const Profile = () => {
   const [showMyPosts, setShowMyPosts] = useState(true)
   const [showMyLikes, setShowMyLikes] = useState(false)
 
-  
+
 
   console.log(currentUser);
   return (
     <div className="Profile">
+    <Navbar />
     <img src={logo} />
      
       <div className="ProfileData">
@@ -26,9 +28,9 @@ const Profile = () => {
           <p>Seguidores</p>
         </div>
 
-          <Link to="/edit-profile"> 
-            <img className="ProfileImg" src={currentUser.image} />
-          </Link>
+         
+        <img className="ProfileImg" src={currentUser.image} />
+         
        
         <div>
           <p>500</p>
@@ -36,7 +38,11 @@ const Profile = () => {
         </div>  
       </div>
 
-      <p>{currentUser.userName}</p>
+      <div className="ProfileData">
+        <p> <Link to="/edit-profile"> Editar </Link></p>
+        <button onClick={logout}> Cerrar </button>
+      </div>
+      
 
       <div className="ButtonsProfile">
           <button onClick={() => setShowMyPosts(!showMyPosts)}> <i className="bi bi-images"></i></button>
@@ -74,7 +80,7 @@ const Profile = () => {
 
       </div>
 
-      <Navbar />
+      
       
     </div>
   );

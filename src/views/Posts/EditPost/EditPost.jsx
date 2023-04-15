@@ -6,9 +6,10 @@ import { editPost } from "../../../services/PostService";
 const EditPost = () => {
   const location = useLocation();
   const post = location.state.post;
-  const [postData, setPostData] = useState({ });
-  const [images, setImages] = useState(post.image)
+  const [postData, setPostData] = useState({});
+  const [images, setImages] = useState(post.image);
   const navigate = useNavigate();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     setPostData({
@@ -21,7 +22,7 @@ const EditPost = () => {
     const { name, value, type, files } = e.target;
 
     if (type === "file") {
-        setImages([...images, files[0]])
+      setImages([...images, files[0]]);
     } else {
       setPostData({ ...postData, [name]: value });
     }
@@ -29,31 +30,53 @@ const EditPost = () => {
 
   const handleImageRemove = (index) => {
     const newImages = images.filter((_, i) => i !== index);
-    setImages(newImages)
+
+    setImages(newImages);
   };
 
-  const handleAddImage = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.name = "image";
-    input.id = "image";
-    input.className = "form-control";
-    input.addEventListener("change", handleOnChange);
-    input.click();
+  // const handleAddImage = () => {
+  //   const input = document.createElement("input");
+  //   input.type = "file";
+  //   input.name = "image";
+  //   input.id = "image";
+  //   input.className = "form-control";
+  //   input.addEventListener("change", handleOnChange);
+  //   input.click();
+  // };
+
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
+    // for (let data in postData) {
+    //     if (data === "image") {
+    //       for (let i = 0; i < postData.image.length; i++) {
+    //         formData.append("image", postData.image[i].url);
+    //       }
+    //     } else {
+    //       formData.append(data, postData[data]);
+    //     }}
     for (let data in postData) {
-        if (data === "image") {
-          for (let i = 0; i < postData.image.length; i++) {
-            formData.append("image", postData.image[i]);
-          }
-        } else {
-          formData.append(data, postData[data]);
-        }}
+      if (data !== "image") {
+        formData.append(data, postData[data]);
+      }
+    }
+
+    const oldImages = [];
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      if (image.date) {
+        oldImages.push(image);
+      } else {
+        formData.append("newImage", image);
+      }
+
+    }
+    formData.append("image", JSON.stringify(oldImages));
 
     editPost({ postId: post._id, post: formData })
       .then((res) => {
@@ -75,9 +98,6 @@ const EditPost = () => {
       <div>
         <form onSubmit={handleOnSubmit}>
           <div>
-            <label htmlFor="image" className="form-label">
-              Añadir imagen
-            </label>
             <input
               type="file"
               name="image"
@@ -85,23 +105,31 @@ const EditPost = () => {
               onChange={handleOnChange}
               className="form-control"
             />
+
             <div className="Images">
               <div className="CarouselImages">
-                {images && images.map((image, index) => (
-                  <div key={index}>
-                    <img src={(image)} />
-                    <button
-                      type="button"
-                      onClick={() => handleImageRemove(index)}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                ))}
+                {images &&
+                  images.map((image, index) => (
+                    <div key={index}>
+                      <img
+                        src={image.url}
+                        onClick={() => handleImageClick(index)}
+                        className={
+                          selectedImageIndex === index ? "selected" : ""
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleImageRemove(index)}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  ))}
               </div>
               <div className="ComparativeImages">
                 <div className="ImageOne">
-                  <img src={post.image[0]} alt="imagen-0" />
+                  <img src={post.image[selectedImageIndex].url} />
                   <p>{post.createdAt}</p>
                 </div>
               </div>

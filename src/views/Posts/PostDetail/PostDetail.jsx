@@ -38,8 +38,15 @@ console.log(post)
     return <p> ... fetching post</p>;
   }
   return (
-    <div>
+    <div className="PostDetail">
       <Navbar />
+
+      {(currentUser.id === post.user) && (
+            <button className="btn btn-primary" onClick={handleEdit}>
+              Editar
+            </button>
+            )}   
+
       {loading ? (
         "Loading..."
       ) : (
@@ -47,7 +54,7 @@ console.log(post)
           <div className="Images">
             <div className="CarouselImages">
              {post.image.map((image, index) => (
-                <img key={index} src={image}
+                <img key={index} src={image.url}
                   onClick={() => handleImageClick(index)}
                   className={selectedImageIndex === index ? "selected" : ""}
                 />
@@ -55,11 +62,11 @@ console.log(post)
             </div>
             <div className="ComparativeImages">
             <div className="ImageOne">
-            <img src={post.image[0]}/>
+            <img src={post.image[0].url}/>
             <p>{post.date}</p>
             </div>
              <div className="ImageTwo">
-             <img src={post.image[selectedImageIndex]} /> 
+             <img src={post.image[selectedImageIndex].url} /> 
              <p>{post.date}</p>
             </div>
             
@@ -71,11 +78,7 @@ console.log(post)
           <p>Descripción {post.description}</p>
          
         
-           {(currentUser.id === post.user) && (
-            <button className="btn btn-primary" onClick={handleEdit}>
-              Editar
-            </button>
-            )}   
+       
           
         </div>
       )}
