@@ -19,6 +19,7 @@ const initialValues = {
 const CreatePost = (post) => {
   const navigate = useNavigate()
 
+
   const {
     values,
     errors,
@@ -52,16 +53,16 @@ const CreatePost = (post) => {
 
 
       createPost(formData)
-        .then((response) => {
-          console.log(response);
-          navigate("/profile")
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then((response) => {
+     
+        navigate("/profile")
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-        
-      setSubmitting(false);
+      
+    setSubmitting(false);
 
     },
   });
@@ -125,7 +126,9 @@ const CreatePost = (post) => {
           type="submit"
           disabled={isSubmitting}
         >
+
           {isSubmitting ? "Submitting..." : "Submit"}
+
           
         </button>
       </form>

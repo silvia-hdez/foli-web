@@ -1,9 +1,10 @@
 .allPosts {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .PostList {
-    width: 100%;
+    width: 350px;
     max-width: 1000px;
 }

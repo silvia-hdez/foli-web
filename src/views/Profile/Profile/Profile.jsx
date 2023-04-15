@@ -62,7 +62,7 @@ const Profile = () => {
         {showMyPosts && (
           <>
             <Routes>
-              <Route path="/profile" element={<PostsList />} />
+              <Route path="/profile" element={<PostsList all={false}/>} />
             </Routes>
           </>
         )}

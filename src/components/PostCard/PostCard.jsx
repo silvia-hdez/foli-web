@@ -4,20 +4,31 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import './PostCard.css'
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, clickHandler, viewType }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log('Post-----:', post)
+
+  let postCardClass = "postCard";
+  if (viewType === "all") {
+    postCardClass += " allPosts";
+  } else if (viewType === "mine") {
+    postCardClass += " myPost";
+  }
+
   return (
-    <div className="postCard">
+    <div className={postCardClass}>
     
-      <img src={post.image[0].url} />
-      <h3>{post.name}</h3>
+    <Link to={`/posts/${post._id}`}><img src={post.image[0].url} /></Link>
+      {viewType === 'all' && <h3>{post.name}</h3>}
 
       {(currentUser && post.user)  && post.user.id !== currentUser.id ? (
         <p>user: {post.user.userName}</p>
       ):''}
 
-      <Link to={`/posts/${post._id}`}>Details</Link>
+      {/* {viewType === 'mine' && (
+        <button onClick={clickHandler}>
+           <i className="bi bi-x-lg"></i> 
+        </button>)} */}
+      
     </div>
   );
 };

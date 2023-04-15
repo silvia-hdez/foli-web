@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../../../components/misc/NavBar/NavBar';
-import { getAllMyPosts, getAllPosts } from '../../../services/PostService';
+import { deletePost, getAllMyPosts, getAllPosts } from '../../../services/PostService';
 import PostCard from '../../../components/PostCard/PostCard';
 import './PostsList.css'
 
@@ -32,9 +32,21 @@ const PostsList = ({all}) => {
     }, [])
 
 
+    const handleDelete = (postId) => {
+        deletePost(postId)
+        .then(() => {
+            const newArr = posts.filter((post) => post._id !== postId )
+            setPosts(newArr)
+        })
+        .catch((err) => console.log(err))
+    }
+
+
     posts.sort((a, b) => {
         return new Date(b.updatedAt) - new Date(a.updatedAt);
       });
+
+      
 
     return (
         <div className='PostList'>
@@ -43,7 +55,10 @@ const PostsList = ({all}) => {
                 {loading
                     ? "Loading..."
                     : posts.map((post)=> {
-                        return <PostCard key={post._id} post={post} />
+                        return <PostCard key={post._id} post={post} 
+                        clickHandler={()=>handleDelete(post)}
+                        viewType={all ? 'all' : 'mine'}
+                        />
                     })}
             </div>
         </div>

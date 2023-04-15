@@ -65,7 +65,7 @@ const PostDetail = () => {
             <div className="ComparativeImages">
             <div className="ImageOne">
             <img src={post.image[0].url}/>
-            <p>{post.image[0].date}</p>
+            <p>{beautifyDate(post.image[0].date)}</p>
             </div>
              <div className="ImageTwo">
              <img src={post.image[selectedImageIndex].url} /> 
