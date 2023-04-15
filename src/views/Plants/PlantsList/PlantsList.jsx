@@ -138,9 +138,10 @@ const PlantsList = ({ all }) => {
   };
 
   const handleSort = () => {
+
     const sortedPlants = plantsCopy.sort((a, b) => {
       
-      if (a.commonName < b.commonName) {
+      if (a.commonName.toLowerCase() < b.commonName.toLowerCase()) {
         return sortOrder === "asc" ? -1 : 1;
       } else if (a.commonName > b.commonName) {
         return sortOrder === "asc" ? 1 : -1;
@@ -155,6 +156,7 @@ const PlantsList = ({ all }) => {
     <div className="PlantsList">
       <div></div>
       {all && (
+        <div>
         <div>
           <label>Average</label>
           <input
@@ -178,12 +180,14 @@ const PlantsList = ({ all }) => {
             onChange={(e) => handleCheckBox(e)}
           />
         </div>
-        
-      )}
 
-      <button style={{width:'170px'}} onClick={() => handleSort("name")}>
+        <button style={{width:'170px'}} onClick={() => handleSort("name")}>
         {(sortOrder === 'asc') ? 'Ordenar nombre ↑' : 'Ordenar nombre ↓'}
       </button>
+        </div>
+      )}
+
+ 
 
       <div className="allPlants">
         {loading

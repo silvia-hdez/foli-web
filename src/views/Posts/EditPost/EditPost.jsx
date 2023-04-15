@@ -11,6 +11,14 @@ const EditPost = () => {
   const navigate = useNavigate();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  //New funciont cambiar fecha
+  //copiar arr imag
+  //select por el index en ese array la que quiero cambiar
+  //ese objeto.date ---> event.targe.value
+  //array imag modificado --> setiImages con nueva copia
+
+  //al input la función nueva
+
   useEffect(() => {
     setPostData({
       name: post.name,
@@ -19,7 +27,7 @@ const EditPost = () => {
   }, [post]);
 
   const handleOnChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value, type, files, images } = e.target;
 
     if (type === "file") {
       setImages([...images, files[0]]);
@@ -34,16 +42,6 @@ const EditPost = () => {
     setImages(newImages);
   };
 
-  // const handleAddImage = () => {
-  //   const input = document.createElement("input");
-  //   input.type = "file";
-  //   input.name = "image";
-  //   input.id = "image";
-  //   input.className = "form-control";
-  //   input.addEventListener("change", handleOnChange);
-  //   input.click();
-  // };
-
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
   };
@@ -52,14 +50,7 @@ const EditPost = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    // for (let data in postData) {
-    //     if (data === "image") {
-    //       for (let i = 0; i < postData.image.length; i++) {
-    //         formData.append("image", postData.image[i].url);
-    //       }
-    //     } else {
-    //       formData.append(data, postData[data]);
-    //     }}
+
     for (let data in postData) {
       if (data !== "image") {
         formData.append(data, postData[data]);
@@ -74,13 +65,13 @@ const EditPost = () => {
       } else {
         formData.append("newImage", image);
       }
-
     }
+
     formData.append("image", JSON.stringify(oldImages));
 
     editPost({ postId: post._id, post: formData })
       .then((res) => {
-        console.log("***** ", res);
+        console.log("editado: ", res);
         setPostData(res.data);
         navigate(`/posts/${post._id}`);
       })
@@ -88,8 +79,6 @@ const EditPost = () => {
         err?.response?.data.message;
       });
   };
-
-  console.log(postData);
 
   return (
     <div>
@@ -127,10 +116,17 @@ const EditPost = () => {
                     </div>
                   ))}
               </div>
+
               <div className="ComparativeImages">
                 <div className="ImageOne">
                   <img src={post.image[selectedImageIndex].url} />
-                  <p>{post.createdAt}</p>
+                  <input
+                    type="string"
+                    defaultValue={post.image[selectedImageIndex].date}
+                    name="date"
+                    id="date"
+                    onChange={handleOnChange}
+                  ></input>
                 </div>
               </div>
             </div>

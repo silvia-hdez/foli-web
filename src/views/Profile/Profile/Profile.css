@@ -15,13 +15,14 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    border: 3px solid #9FB578;
 
 }
 
 .ProfileData {
     /* background-color: grey; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     margin-top: 10px;
     width: 100%;
@@ -31,6 +32,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 120px;
    
 }
 
@@ -67,6 +69,10 @@
 }
 .ButtonsProfile > button > i {
     font-size: 24px;
-    color: #2C4A11
+    color: #2C4A11;
+
 }
 
+.MyPosts {
+    background-color: grey;
+}

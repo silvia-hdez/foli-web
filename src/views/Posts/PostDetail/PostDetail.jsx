@@ -4,6 +4,7 @@ import { getPostDetail } from "../../../services/PostService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./PostDetail.css";
 import AuthContext from "../../../contexts/AuthContext";
+import { beautifyDate } from "../../../utils/dateHelpers";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
@@ -31,7 +32,8 @@ const PostDetail = () => {
     navigate(`/posts/${post._id}/edit`, { state: { post } });
   };
 
-console.log(post)
+
+
 
 
   if (!post) {
@@ -63,11 +65,11 @@ console.log(post)
             <div className="ComparativeImages">
             <div className="ImageOne">
             <img src={post.image[0].url}/>
-            <p>{post.date}</p>
+            <p>{post.image[0].date}</p>
             </div>
              <div className="ImageTwo">
              <img src={post.image[selectedImageIndex].url} /> 
-             <p>{post.date}</p>
+             <p>{beautifyDate(post.image[selectedImageIndex].date)}</p>
             </div>
             
              
