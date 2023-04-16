@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { deletePost, getPostDetail } from "../../../services/PostService";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./PostDetail.css";
 import AuthContext from "../../../contexts/AuthContext";
 import { beautifyDate } from "../../../utils/dateHelpers";
@@ -32,11 +32,12 @@ const PostDetail = () => {
       })
       .catch((err) => console.log(err));
 
-    // getComments()
-    //   .then((comments) => {
-    //     setCommentsList(comments);
-    //   })
-    //   .catch((err) => console.log(err));
+      // getComments()
+      //   .then((comments) => {
+      //     setCommentsList(comments);
+      //   })
+      //   .catch((err) => console.log(err));
+      
   }, []);
 
   const handleImageClick = (index) => {
@@ -118,6 +119,14 @@ const PostDetail = () => {
         </div>
       )}
 
+      <div>
+      <Link to={`/profile/${post.user.id}`}>
+        <img src={post.user.image} style={{width:'30px'}}/>
+        <p>User: {post.user.userName}</p>
+      </Link>
+      
+      </div>
+
       {loading ? (
         "Loading..."
       ) : (
@@ -148,11 +157,11 @@ const PostDetail = () => {
           </div>
 
           <div>
-            <p>Nombre de la planta: {post.name}</p>
+            {/* <p>Nombre de la planta: {post.name}</p>
             <p>Descripción</p>
             <div className="Description">
               <p> {post.description} </p>
-            </div>
+            </div> */}
 
             {/* <p>Comentarios</p>
             {commentsList.map((comment) => {
@@ -185,6 +194,15 @@ const PostDetail = () => {
               <label htmlFor="comments" className="form-label">
                 Commentarios
               </label>
+              <div>
+              {commentsList.map((comment) => {
+                return (
+                  <div key={comment._id}>
+                    <p>{comment.content}</p>
+                  </div>
+                  )
+                })}
+              </div>
               <input
                 type="textarea"
                 placeholder="Write your comment here..."

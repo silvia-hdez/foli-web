@@ -35,6 +35,7 @@ function App() {
 
           <Route path="/new" element={<CreatePost />}/>
          <Route path="/posts/:idPost/edit" element={<EditPost />}/>
+         <Route path='/profile/:userId' element={<Profile />} />
         </Routes>
       )}
     </div>
