@@ -23,7 +23,8 @@
 - Que las plantas del listado me vengan directamente ordenadas por orden alfabético.
 Hacer un sort antes en el código para que el array ya esté ordenado. Mirar como en posts
 
-- **En el back, hay que hacer que la primera letra de cada planta sea en mayúscula. ¿Cambiar el json?**
+- **Agregar comentarios**
+- **Buscar el search que hice en el lab de 'Ironnutrition' para listado plantas**
 
 ## NO ME SALE
 - ~~Acceder al detalle del Post~~

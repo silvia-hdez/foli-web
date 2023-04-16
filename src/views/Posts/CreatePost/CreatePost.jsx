@@ -54,12 +54,13 @@ const CreatePost = (post) => {
 
       createPost(formData)
       .then((response) => {
-     
+        console.log('response: ',response)
         navigate("/profile")
       })
       .catch((err) => {
         console.log(err);
       });
+      
 
       
     setSubmitting(false);

@@ -38,19 +38,19 @@ const Profile = () => {
 
       <div className="ProfileData">
         <p>
-          {" "}
           <Link to="/edit-profile"> Editar </Link>
         </p>
+        <p>{currentUser.userName}</p>
         <button onClick={logout}> Cerrar </button>
       </div>
 
       <div className="ButtonsProfile">
         <button onClick={() => setShowMyPosts(!showMyPosts)}>
-          {" "}
+
           <i className="bi bi-images"></i>
         </button>
         <button onClick={() => setShowMyPlants(!showMyPlants)}>
-          {" "}
+
           <i className="bi bi-flower1"></i>
         </button>
         <button onClick={() => setShowMyLikes(!showMyLikes)}>

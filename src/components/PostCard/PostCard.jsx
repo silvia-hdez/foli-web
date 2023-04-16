@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import './PostCard.css'
 
-const PostCard = ({ post, clickHandler, viewType }) => {
+const PostCard = ({ post, viewType }) => {
   const { currentUser } = useContext(AuthContext);
 
   let postCardClass = "postCard";
@@ -23,11 +23,6 @@ const PostCard = ({ post, clickHandler, viewType }) => {
       {(currentUser && post.user)  && post.user.id !== currentUser.id ? (
         <p>user: {post.user.userName}</p>
       ):''}
-
-      {/* {viewType === 'mine' && (
-        <button onClick={clickHandler}>
-           <i className="bi bi-x-lg"></i> 
-        </button>)} */}
       
     </div>
   );

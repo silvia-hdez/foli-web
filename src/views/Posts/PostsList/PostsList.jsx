@@ -32,15 +32,7 @@ const PostsList = ({all}) => {
     }, [])
 
 
-    const handleDelete = (postId) => {
-        deletePost(postId)
-        .then(() => {
-            const newArr = posts.filter((post) => post._id !== postId )
-            setPosts(newArr)
-        })
-        .catch((err) => console.log(err))
-    }
-
+    
 
     posts.sort((a, b) => {
         return new Date(b.updatedAt) - new Date(a.updatedAt);
@@ -56,7 +48,6 @@ const PostsList = ({all}) => {
                     ? "Loading..."
                     : posts.map((post)=> {
                         return <PostCard key={post._id} post={post} 
-                        clickHandler={()=>handleDelete(post)}
                         viewType={all ? 'all' : 'mine'}
                         />
                     })}
