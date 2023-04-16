@@ -7,7 +7,7 @@ export const getPostDetail = (_id) => authenticatedHttp.get(`/posts/${_id}`);
 
 export const getAllMyPosts = () => authenticatedHttp.get("/my-posts");
 
-export const createPost = (post) => {authenticatedHttp.post("/new-post", post)};
+export const createPost = (post) => authenticatedHttp.post("/new-post", post);
 
 export const editPost = ({postId, post}) => authenticatedHttp.patch(`/posts/${postId}`, post)
 
