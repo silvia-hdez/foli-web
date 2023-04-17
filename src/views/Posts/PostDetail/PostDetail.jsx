@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../../components/misc/NavBar/NavBar";
-import { deletePost, getPostDetail, editPost } from "../../../services/PostService";
+import {
+  deletePost,
+  getPostDetail,
+  editPost,
+} from "../../../services/PostService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./PostDetail.css";
 import AuthContext from "../../../contexts/AuthContext";
@@ -17,26 +21,25 @@ const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [commentsList, setCommentsList] = useState([]);
+  const [comment, setComment] = useState("");
+  const [editingComment, setEditingComment] = useState(null);
   const { postId } = useParams();
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [commentsList, setCommentsList] = useState([]);
-  const [comment, setComment] = useState('');
 
   useEffect(() => {
     if (!post) {
       getPostDetail(postId)
         .then((p) => {
           setLoading(false);
-          
+
           setPost(p);
-          console.log('p.comments',p)
-            setCommentsList(p.comments);        
+          console.log("p.comments", p);
+          setCommentsList(p.comments);
         })
         .catch((err) => console.log(err));
-
     }
-
   }, [commentsList]);
 
   const handleImageClick = (index) => {
@@ -65,50 +68,54 @@ const PostDetail = () => {
     postComment(newComment)
       .then((comment) => {
         setComment("");
-        commentsList.push(comment)
-        setCommentsList(commentsList); 
+        commentsList.push(comment);
+        setCommentsList(commentsList);
 
         const editedPost = {
           ...post,
           comments: commentsList,
-        }
+        };
 
-        const {image, ...editedPostToDb} = editedPost
-        console.log('POST TO EDIT: ', {postId, post:editedPostToDb})
-        editPost({postId, post:editedPostToDb})
-        
-         .then(() => setPost(editedPost))
-         .catch((err) => console.log(err))
-
+        const { image, ...editedPostToDb } = editedPost;
+        console.log("POST TO EDIT: ", { postId, post: editedPostToDb });
+        editPost({ postId, post: editedPostToDb })
+          .then(() => setPost(editedPost))
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
 
-  // const handleDeleteComment = (commentId) => {
-  //   deleteComment(commentId)
-  //     .then(() => {
-  //       const updatedComments = comments.filter(
-  //         (comment) => comment._id !== commentId
-  //       );
-  //       setComments(updatedComments);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleDeleteComment = (commentId) => {
+    console.log(commentId);
+    deleteComment(commentId)
+      .then(() => {
+        const updatedComments = commentsList.filter(
+          (comment) => comment._id !== commentId
+        );
+        setCommentsList(updatedComments);
+      })
+      .catch((err) => console.log(err));
+  };
 
-  // const handleEditComment = (commentId, newContent) => {
-  //   editComment(commentId, newContent)
-  //     .then((updatedComment) => {
-  //       const updatedComments = comments.map((comment) => {
-  //         if (comment._id === updatedComment._id) {
-  //           return updatedComment;
-  //         } else {
-  //           return comment;
-  //         }
-  //       });
-  //       setComments(updatedComments);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleEditComment = ({ commentId, content }) => {
+    editComment({ commentId, content })
+      .then((updatedComment) => {
+        const updatedComments = commentsList.map((comment) => {
+          if (comment._id === updatedComment._id) {
+            return updatedComment;
+          } else {
+            return comment;
+          }
+        });
+        setCommentsList(updatedComments);
+        setEditingComment(null);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleEditButtonClick = (commentId, content) => {
+    setEditingComment({ id: commentId, content });
+  };
 
   if (!post) {
     return <p> ... fetching post</p>;
@@ -129,11 +136,10 @@ const PostDetail = () => {
       )}
 
       <div>
-      <Link to={`/profile/${post.user.id}`}>
-        <img src={post.user.image} style={{width:'30px'}}/>
-        <p>User: {post.user.userName}</p>
-      </Link>
-      
+        <Link to={`/profile/${post.user.id}`}>
+          <img src={post.user.image} style={{ width: "30px" }} />
+          <p>User: {post.user.userName}</p>
+        </Link>
       </div>
 
       {loading ? (
@@ -172,45 +178,77 @@ const PostDetail = () => {
               <p> {post.description} </p>
             </div> */}
 
-            {/* <p>Comentarios</p>
-            {commentsList.map((comment) => {
-              return (
-                <div key={comment._id}>
-                  <p>{comment.content}</p>
-                  {currentUser.id === comment.user && (
-                    <div>
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => handleDeleteComment(comment._id)}
-                      >
-                        Eliminar
-                      </button>
-                      <button
-                        className="btn btn-primary"
-                        onClick={() =>
-                          handleEditComment(comment._id, comment.content)
-                        }
-                      >
-                        Editar
-                      </button>
-                    </div>
-                  )}
-                </div>
-              );
-            })} */}
-
             <div>
               <label htmlFor="comments" className="form-label">
                 Commentarios
               </label>
               <div>
-              {commentsList && commentsList.map((comment) => {
-                return (
-                  <div key={comment._id}>
-                    <p>{comment.content}</p>
-                  </div>
-                  )
-                })}
+                {commentsList &&
+                  commentsList.map((comment) => {
+                    const { _id, user, content } = comment;
+                    const isEditing =
+                      editingComment && editingComment.id === _id;
+                    const text = isEditing ? editingComment.content : content;
+
+                    return (
+                      <div key={comment._id}>
+                        <p>{text}</p>
+                        {currentUser.id === comment.user && (
+                          <div>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => handleDeleteComment(comment._id)}
+                            >
+                              <i className="bi bi-x-lg"></i>
+                            </button>
+
+                            {/* <button
+                        className="btn btn-primary"
+                        onClick={() =>
+                          handleEditComment(comment._id, comment.content)
+                        }
+                      >
+                        <i className="bi bi-pencil"></i>
+                      </button> */}
+
+                            {!isEditing && (
+                              <button
+                                onClick={() =>
+                                  handleEditButtonClick(_id, content)
+                                }
+                              >
+                                <i className="bi bi-pencil"></i>
+                              </button>
+                            )}
+                            {isEditing && (
+                              <>
+                                <input
+                                  type="text"
+                                  value={editingComment.content}
+                                  onChange={(e) =>
+                                    setEditingComment({
+                                      id: editingComment.id,
+                                      content: e.target.value,
+                                    })
+                                  }
+                                />
+                                <button
+                                  onClick={() =>
+                                    handleEditComment({
+                                      commentId: editingComment.id,
+                                      content: editingComment.content,
+                                    })
+                                  }
+                                >
+                                  <i className="bi bi-check-lg"></i>
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
               </div>
               <input
                 type="textarea"
