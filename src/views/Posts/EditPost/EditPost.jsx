@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/misc/NavBar/NavBar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { editPost } from "../../../services/PostService";
 import { beautifyDate } from "../../../utils/dateHelpers";
 
@@ -11,6 +11,7 @@ const EditPost = () => {
   const [images, setImages] = useState(post.image);
   const navigate = useNavigate();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
 
   //New funciont cambiar fecha
   //copiar arr imag

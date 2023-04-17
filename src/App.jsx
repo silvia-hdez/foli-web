@@ -23,7 +23,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="login" element={<Login />} />
-          <Route path="*" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="/edit-profile" element={<ProfileEdit />} />
 
@@ -31,10 +31,10 @@ function App() {
           <Route path="plants/:id" element={<PlantDetail />} />
 
           <Route path="/posts" element={<PostsList all={true}/>} />
-          <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/posts/:postId" element={<PostDetail />} />
 
           <Route path="/new" element={<CreatePost />}/>
-         <Route path="/posts/:idPost/edit" element={<EditPost />}/>
+         <Route path="/posts/:postId/edit" element={<EditPost />}/>
          <Route path='/profile/:userId' element={<Profile />} />
         </Routes>
       )}

@@ -4,7 +4,7 @@ const authenticatedHttp = createHttp(true);
 
 export const postComment = (comment) => authenticatedHttp.post('/new-comment', comment)
 
-export const getComments = () => authenticatedHttp.get('/comments')
+export const getComments = (postId) => authenticatedHttp.get('/comments', postId)
 
 export const deleteComment = (commentId) => authenticatedHttp.delete(`/${commentId}`)
 

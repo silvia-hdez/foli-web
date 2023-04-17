@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../../components/misc/NavBar/NavBar";
-import { deletePost, getPostDetail } from "../../../services/PostService";
+import { deletePost, getPostDetail, editPost } from "../../../services/PostService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./PostDetail.css";
 import AuthContext from "../../../contexts/AuthContext";
@@ -11,34 +11,33 @@ import {
   getComments,
   postComment,
 } from "../../../services/CommentService";
+import EditPost from "../EditPost/EditPost";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const { id } = useParams();
+  const { postId } = useParams();
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [commentsList, setCommentsList] = useState([]);
   const [comment, setComment] = useState('');
 
-  console.log(post);
-
   useEffect(() => {
-    getPostDetail(id)
-      .then((post) => {
-        setLoading(false);
-        setPost(post);
-      })
-      .catch((err) => console.log(err));
+    if (!post) {
+      getPostDetail(postId)
+        .then((p) => {
+          setLoading(false);
+          
+          setPost(p);
+          console.log('p.comments',p)
+            setCommentsList(p.comments);        
+        })
+        .catch((err) => console.log(err));
 
-      // getComments()
-      //   .then((comments) => {
-      //     setCommentsList(comments);
-      //   })
-      //   .catch((err) => console.log(err));
-      
-  }, []);
+    }
+
+  }, [commentsList]);
 
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
@@ -61,16 +60,26 @@ const PostDetail = () => {
     const newComment = {
       content: comment,
       user: currentUser,
-      post: post._id,
+      postId: post._id,
     };
     postComment(newComment)
       .then((comment) => {
         setComment("");
-        setCommentsList([...commentsList, comment]);
-        setPost((post) => ({
+        commentsList.push(comment)
+        setCommentsList(commentsList); 
+
+        const editedPost = {
           ...post,
           comments: [...post.comments, comment],
-        }));
+        }
+
+        const {image, ...editedPostToDb} = editedPost
+        console.log('POST TO EDIT: ', {postId, post:editedPostToDb})
+        //editPost({postId, post:editedPostToDb})
+        
+        // .then(() => setPost(editedPost))
+        // .catch((err) => console.log(err))
+
       })
       .catch((err) => console.log(err));
   };
@@ -108,7 +117,7 @@ const PostDetail = () => {
     <div className="PostDetail">
       <Navbar />
 
-      {currentUser.id === post.user && (
+      {currentUser.id === post.user.id && (
         <div>
           <button className="btn btn-primary" onClick={handleEdit}>
             Editar
@@ -195,7 +204,7 @@ const PostDetail = () => {
                 Commentarios
               </label>
               <div>
-              {commentsList.map((comment) => {
+              {commentsList && commentsList.map((comment) => {
                 return (
                   <div key={comment._id}>
                     <p>{comment.content}</p>

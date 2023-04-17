@@ -7,33 +7,61 @@ import PlantsList from "../../Plants/PlantsList/PlantsList";
 import PostsList from "../../Posts/PostsList/PostsList";
 import logo from "../../../assets/img/Logo.png";
 import { logout } from "../../../stores/AccesTokenStore";
-import { getOtherUser } from "../../../services/UserService";
+import { followUser, getOtherUser, unFollowUser } from "../../../services/UserService";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showMyPlants, setShowMyPlants] = useState(false);
   const [showMyPosts, setShowMyPosts] = useState(true);
   const [showMyLikes, setShowMyLikes] = useState(false);
-  const {userId} = useParams()
-  const [user, setUser] = useState(null)
+  const { userId } = useParams();
+  const [user, setUser] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false)
+ // const [copyCurrentUser, setCopyCurrentUser] = useState(currentUser)
+
 
   useEffect(() => {
-    getOtherUser(userId)
-      .then((user) => {
-        setUser(user)
+    if (userId && !user) {
+      getOtherUser(userId)
+      .then((u) => {
+        setUser(u)
+      
       })
       .catch((err) => console.log(err))
-  }, [userId])
+    }
+  }, [user])
 
-// const followers = user.followers.length
-// const following = user.following.length
+
+  const handleFollowUser = () => {
+    if(user.followers.includes(currentUser.id)) {
+      unFollowUser(userId)
+      .then((response) => {
+        setUser(response.data); 
+        
+      })
+
+      .catch((error) => console.log(error));
+    } else { 
+      followUser(userId)
+        .then((response) => {
+          setUser(response.data)
+          console.log('user', user)
+          console.log('current', currentUser)
+        })
+
+        .catch((error) => console.log(error));
+    }
+    }
+
   return (
     <div className="Profile">
       <Navbar />
       <img src={logo} />
-
       <div className="ProfileData">
         <div>
+      
+
+        {/* {!currentUser ? {followers} : {followersCurrent}} */}
           {/* <p>{followers}</p> */}
           <p>Seguidores</p>
         </div>
@@ -46,24 +74,28 @@ const Profile = () => {
         </div>
       </div>
 
+    <button onClick={handleFollowUser}>{user && user.followers.includes(currentUser.id) ? 'Unfollow' : 'Follow'}</button>
+
       {currentUser && (
         <div className="ProfileData">
-        <p>
-          <Link to="/edit-profile"> Editar </Link>
-        </p>
-        <p>{currentUser.userName}</p>
-        <button onClick={logout}> Cerrar </button>
-      </div>
+          <p>
+            <Link to="/edit-profile"> Editar </Link>
+          </p>
+
+          
+          {(userId && user)? (<p>{user.userName}</p>) :
+          (<p>{currentUser.userName}</p>) }
+
+
+          <button onClick={logout}> Cerrar </button>
+        </div>
       )}
-      
 
       <div className="ButtonsProfile">
         <button onClick={() => setShowMyPosts(!showMyPosts)}>
-
           <i className="bi bi-images"></i>
         </button>
         <button onClick={() => setShowMyPlants(!showMyPlants)}>
-
           <i className="bi bi-flower1"></i>
         </button>
         <button onClick={() => setShowMyLikes(!showMyLikes)}>
@@ -71,32 +103,10 @@ const Profile = () => {
         </button>
       </div>
 
-      <div className="MyPosts">
-        {showMyPosts && (
-          <>
-            <Routes>
-              <Route path="/profile" element={<PostsList all={false}/>} />
-            </Routes>
-          </>
-        )}
-      </div>
       <div>
-        {showMyPlants && (
-          <>
-            <Routes>
-              <Route path="/profile" element={<PlantsList />} />
-            </Routes>
-          </>
-        )}
-      </div>
-      <div>
-        {showMyLikes && (
-          <>
-            <Routes>
-              <Route path="/profile" element={<PostsList />} />
-            </Routes>
-          </>
-        )}
+        {showMyPosts && <PostsList all={false} />}
+        {showMyPosts && <PlantsList />}
+        {showMyPosts && <PostsList />}
       </div>
     </div>
   );
