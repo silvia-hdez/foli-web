@@ -70,15 +70,15 @@ const PostDetail = () => {
 
         const editedPost = {
           ...post,
-          comments: [...post.comments, comment],
+          comments: commentsList,
         }
 
         const {image, ...editedPostToDb} = editedPost
         console.log('POST TO EDIT: ', {postId, post:editedPostToDb})
-        //editPost({postId, post:editedPostToDb})
+        editPost({postId, post:editedPostToDb})
         
-        // .then(() => setPost(editedPost))
-        // .catch((err) => console.log(err))
+         .then(() => setPost(editedPost))
+         .catch((err) => console.log(err))
 
       })
       .catch((err) => console.log(err));
