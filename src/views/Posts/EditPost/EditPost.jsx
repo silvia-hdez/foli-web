@@ -80,9 +80,9 @@ const EditPost = () => {
       const image = images[i];
       const modifyImage = imagesCopy[i];
       if (modifyImage && modifyImage.date) {
-        oldImages.push(modifyImage);
+        oldImages.unshift(modifyImage);
       } else if (!modifyImage && image.date) {
-        oldImages.push(image);
+        oldImages.unshift(image);
       } else if (!modifyImage && !image.date) {
         formData.append("newImage", image);
       }
