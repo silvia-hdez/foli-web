@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../../../components/misc/NavBar/NavBar';
 import { deletePost, getAllMyPosts, getAllPosts } from '../../../services/PostService';
-import PostCard from '../../../components/PostCard/PostCard';
+import PostCard from '../../../components/PostCard/PostCard ';
 import './PostsList.css'
 
 const PostsList = ({all}) => {

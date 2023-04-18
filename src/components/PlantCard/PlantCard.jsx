@@ -8,7 +8,7 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
       <Link to={`/plants/${plant._id}`}>
         <div className="plantCard">
           <img src={plant.image} />
-          <div style={{backgroundColor:'red', width:'150px', padding:'8px'}}>
+          <div style={{backgroundColor:'lightgrey', width:'150px', padding:'8px'}}>
             <div className="TitlePlantCard">
               <p>{plant.commonName}</p>
 

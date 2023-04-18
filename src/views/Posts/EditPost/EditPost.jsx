@@ -3,7 +3,7 @@ import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { editPost } from "../../../services/PostService";
 import { beautifyDate } from "../../../utils/dateHelpers";
-import './EditPost.css'
+import "./EditPost.css";
 
 const EditPost = () => {
   const location = useLocation();
@@ -11,9 +11,8 @@ const EditPost = () => {
   const [postData, setPostData] = useState({});
   const [images, setImages] = useState(post.image);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [imagesCopy, setImagesCopy] = useState([])
+  const [imagesCopy, setImagesCopy] = useState([]);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     setPostData({
@@ -23,7 +22,7 @@ const EditPost = () => {
   }, [post]);
 
   const handleOnChange = (e) => {
-    const { name, value, type, files} = e.target;
+    const { name, value, type, files } = e.target;
 
     if (type === "file") {
       setImages([...images, files[0]]);
@@ -36,13 +35,12 @@ const EditPost = () => {
     const newImages = images.filter((_, i) => i !== index);
 
     setImages(newImages);
-    setImagesCopy([])
-    setSelectedImageIndex(0)
+    setImagesCopy([]);
+    setSelectedImageIndex(0);
   };
 
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
-
   };
 
   const handleChangeData = (e) => {
@@ -53,7 +51,7 @@ const EditPost = () => {
       date: newDate,
     };
     setImagesCopy(newImages);
-  }
+  };
 
   const handleSaveDate = () => {
     const newImages = [...images];
@@ -102,17 +100,15 @@ const EditPost = () => {
 
   return (
     <div className="EditPost">
-     <>
-    <Navbar />
-    </>
-     <h3>Instaplant</h3>
-      
+      <>
+        <Navbar />
+      </>
+      <h3>Instaplant</h3>
       Editar Post
       <>
         <form onSubmit={handleOnSubmit}>
           <div className="ImagesEdit">
             <div className="LeftSideImages">
-              
               <div className="MultipleImages">
                 {images &&
                   images.map((image, index) => (
@@ -140,27 +136,22 @@ const EditPost = () => {
                 onChange={handleOnChange}
                 className="form-control"
               />
-
             </div>
-
             <div className="RightSideImages">
-                <div className="ImageOne">
-                  <img src={post.image[selectedImageIndex].url} />
-                  <input
-                    type="date"
-                    defaultValue={beautifyDate(post.image[selectedImageIndex].date)}
-                    name="date"
-                    id="date"
-                    onChange={handleChangeData}
-                  ></input>
-                  <button onClick={handleSaveDate}>Guardar fecha</button>
-                </div>
+              <div className="ImageOne">
+                <img src={post.image[selectedImageIndex].url} />
+                <input
+                  type="date"
+                  value={beautifyDate(post.image[selectedImageIndex].date)}
+                  name="date"
+                  id="date"
+                  onChange={handleChangeData}
+                ></input>
+                <button onClick={handleSaveDate}>Guardar fecha</button>
               </div>
+            </div>
           </div>
-         
-           
-       
-
+          {beautifyDate(post.image[selectedImageIndex].date)}
           <div>
             <label htmlFor="name" className="form-label">
               Nombre de la planta
@@ -191,8 +182,7 @@ const EditPost = () => {
             Aplicar Cambios
           </button>
         </form>
-       
-</>
+      </>
     </div>
   );
 };
