@@ -11,16 +11,9 @@ const EditPost = () => {
   const [postData, setPostData] = useState({});
   const [images, setImages] = useState(post.image);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [imagesCopy, setImagesCopy] = useState([])
   const navigate = useNavigate();
   
-
-  //New funciont cambiar fecha
-  //copiar arr imag
-  //select por el index en ese array la que quiero cambiar
-  //ese objeto.date ---> event.targe.value
-  //array imag modificado --> setiImages con nueva copia
-
-  //al input la función nueva
 
   useEffect(() => {
     setPostData({
@@ -30,7 +23,7 @@ const EditPost = () => {
   }, [post]);
 
   const handleOnChange = (e) => {
-    const { name, value, type, files, images } = e.target;
+    const { name, value, type, files} = e.target;
 
     if (type === "file") {
       setImages([...images, files[0]]);
@@ -43,10 +36,32 @@ const EditPost = () => {
     const newImages = images.filter((_, i) => i !== index);
 
     setImages(newImages);
+    setImagesCopy([])
+    setSelectedImageIndex(0)
   };
 
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
+
+  };
+
+  const handleChangeData = (e) => {
+    const newDate = e.target.value;
+    const newImages = [...images];
+    newImages[selectedImageIndex] = {
+      ...newImages[selectedImageIndex],
+      date: newDate,
+    };
+    setImagesCopy(newImages);
+  }
+
+  const handleSaveDate = () => {
+    const newImages = [...images];
+    newImages[selectedImageIndex] = {
+      ...newImages[selectedImageIndex],
+      date: document.getElementById("date").value,
+    };
+    setImages(newImages);
   };
 
   const handleOnSubmit = (e) => {
@@ -63,9 +78,12 @@ const EditPost = () => {
     const oldImages = [];
     for (let i = 0; i < images.length; i++) {
       const image = images[i];
-      if (image.date) {
+      const modifyImage = imagesCopy[i];
+      if (modifyImage && modifyImage.date) {
+        oldImages.push(modifyImage);
+      } else if (!modifyImage && image.date) {
         oldImages.push(image);
-      } else {
+      } else if (!modifyImage && !image.date) {
         formData.append("newImage", image);
       }
     }
@@ -74,7 +92,6 @@ const EditPost = () => {
 
     editPost({ postId: post._id, post: formData })
       .then((res) => {
-        console.log("editado: ", res);
         setPostData(res.data);
         navigate(`/posts/${post._id}`);
       })
@@ -130,12 +147,13 @@ const EditPost = () => {
                 <div className="ImageOne">
                   <img src={post.image[selectedImageIndex].url} />
                   <input
-                    type="string"
+                    type="date"
                     defaultValue={beautifyDate(post.image[selectedImageIndex].date)}
                     name="date"
                     id="date"
-                    onChange={handleOnChange}
+                    onChange={handleChangeData}
                   ></input>
+                  <button onClick={handleSaveDate}>Guardar fecha</button>
                 </div>
               </div>
           </div>

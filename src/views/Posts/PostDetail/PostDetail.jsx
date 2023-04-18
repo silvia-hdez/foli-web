@@ -15,7 +15,7 @@ import {
   getComments,
   postComment,
 } from "../../../services/CommentService";
-import EditPost from "../EditPost/EditPost";
+
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
@@ -118,6 +118,9 @@ const PostDetail = () => {
     setEditingComment({ id: commentId, content });
   };
 
+
+
+
   if (!post) {
     return <p> ... fetching post</p>;
   }
@@ -174,11 +177,11 @@ const PostDetail = () => {
           </div>
 
           <div>
-            {/* <p>Nombre de la planta: {post.name}</p>
+            <p>Nombre de la planta: {post.name}</p>
             <p>Descripción</p>
             <div className="Description">
               <p> {post.description} </p>
-            </div> */}
+            </div>
 
             <div>
               <label htmlFor="comments" className="form-label">
