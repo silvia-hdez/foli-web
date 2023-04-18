@@ -18,7 +18,8 @@ const PlantDetail = () => {
     return <p> ... fetching plant</p>;
   }
   return (
-    <div>
+    <div className="PlantDetail">
+     <h3>Instaplant</h3>
       <Navbar />
       <div>
         <img src={plant.image} />

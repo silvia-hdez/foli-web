@@ -3,14 +3,15 @@ import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { editPost } from "../../../services/PostService";
 import { beautifyDate } from "../../../utils/dateHelpers";
+import './EditPost.css'
 
 const EditPost = () => {
   const location = useLocation();
   const post = location.state.post;
   const [postData, setPostData] = useState({});
   const [images, setImages] = useState(post.image);
-  const navigate = useNavigate();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const navigate = useNavigate();
   
 
   //New funciont cambiar fecha
@@ -83,22 +84,19 @@ const EditPost = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <div className="EditPost">
+     <>
+    <Navbar />
+    </>
+     <h3>Instaplant</h3>
+      
       Editar Post
-      <div>
+      <>
         <form onSubmit={handleOnSubmit}>
-          <div>
-            <input
-              type="file"
-              name="image"
-              id="image"
-              onChange={handleOnChange}
-              className="form-control"
-            />
-
-            <div className="Images">
-              <div className="CarouselImages">
+          <div className="ImagesEdit">
+            <div className="LeftSideImages">
+              
+              <div className="MultipleImages">
                 {images &&
                   images.map((image, index) => (
                     <div key={index}>
@@ -113,13 +111,22 @@ const EditPost = () => {
                         type="button"
                         onClick={() => handleImageRemove(index)}
                       >
-                        Eliminar
+                        <i className="bi bi-x"></i>
                       </button>
                     </div>
                   ))}
               </div>
+              <input
+                type="file"
+                name="image"
+                id="image"
+                onChange={handleOnChange}
+                className="form-control"
+              />
 
-              <div className="ComparativeImages">
+            </div>
+
+            <div className="RightSideImages">
                 <div className="ImageOne">
                   <img src={post.image[selectedImageIndex].url} />
                   <input
@@ -131,8 +138,10 @@ const EditPost = () => {
                   ></input>
                 </div>
               </div>
-            </div>
           </div>
+         
+           
+       
 
           <div>
             <label htmlFor="name" className="form-label">
@@ -164,7 +173,8 @@ const EditPost = () => {
             Aplicar Cambios
           </button>
         </form>
-      </div>
+       
+</>
     </div>
   );
 };

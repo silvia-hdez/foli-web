@@ -28,7 +28,7 @@ const PlantsList = ({ all }) => {
 
   useEffect(() => {
     if (!initialize) {
-      //console.log('retrieve all', all)
+  
       getSavePlants(currentUser._id)
         .then((savedPlants) => {
           setSavedPlants(savedPlants);
@@ -154,9 +154,11 @@ const PlantsList = ({ all }) => {
 
   return (
     <div className="PlantsList">
+     
       <div></div>
       {all && (
         <div>
+        <h3>Instaplant</h3>
         <div>
           <label>Average</label>
           <input

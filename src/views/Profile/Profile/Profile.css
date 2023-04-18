@@ -3,7 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
     max-width: 1000px;
+    /* height: 745px; */
+}
+
+p {
+    margin: 0;
 }
 
 .Profile > img {
@@ -20,12 +26,12 @@
 }
 
 .ProfileData {
-    /* background-color: grey; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 10px;
     width: 100%;
+    border: 1px solid blue;
 }
 
 .ProfileData > div {
@@ -54,8 +60,8 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    /* background-color: green; */
     width: 100%;
+   
 }
 
 .ButtonsProfile > button {
@@ -78,4 +84,23 @@
     height: 350px;
     overflow-y: scroll;
     width: 100%;
+}
+
+.BlockProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    height: 70%;
+    
+}
+
+.Publications {
+    border: 1px solid green
+}
+
+.Publications > div {
+    border: 1px solid violet;
+    height: 250px
 }

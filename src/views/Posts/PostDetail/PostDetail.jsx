@@ -42,6 +42,7 @@ const PostDetail = () => {
     }
   }, [commentsList]);
 
+
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
   };
@@ -122,6 +123,7 @@ const PostDetail = () => {
   }
   return (
     <div className="PostDetail">
+      <h3>Instaplant</h3>
       <Navbar />
 
       {currentUser.id === post.user.id && (
@@ -182,7 +184,7 @@ const PostDetail = () => {
               <label htmlFor="comments" className="form-label">
                 Commentarios
               </label>
-              <div>
+              <div className="Comments">
                 {commentsList &&
                   commentsList.map((comment) => {
                     const { _id, user, content } = comment;
@@ -192,8 +194,37 @@ const PostDetail = () => {
 
                     return (
                       <div key={comment._id}>
-                        <p>{text}</p>
-                        {currentUser.id === comment.user && (
+                        {/* {currentUser ? 
+                       
+                          ( <>
+                              <img style={{width:'20px'}} src={currentUser.image}/>
+                              <p>{currentUser.userName}</p>
+                            </>
+                          ) 
+                          : 
+                          ( <>
+                              <img src={user.image}/>
+                              <p>{user.userName}</p>
+                            </>
+                          )
+                          } */}
+
+                        {(currentUser.id === comment.user ) ? (
+                          <>
+                            <img style={{width:'20px'}} src={currentUser.image}/>
+                            <p>{currentUser.userName}</p>
+                          </>
+                        ) : (
+                          <>
+                            <img style={{width:'20px'}} src={user.image}/>
+                            <p>{user.userName}</p>
+                          </>
+                        )}
+
+                        <p style={{ border: "1px solid blue", width: "300px" }}>
+                          {text}
+                        </p>
+                        {currentUser.id === comment.user.id && (
                           <div>
                             <button
                               className="btn btn-primary"
@@ -201,15 +232,6 @@ const PostDetail = () => {
                             >
                               <i className="bi bi-x-lg"></i>
                             </button>
-
-                            {/* <button
-                        className="btn btn-primary"
-                        onClick={() =>
-                          handleEditComment(comment._id, comment.content)
-                        }
-                      >
-                        <i className="bi bi-pencil"></i>
-                      </button> */}
 
                             {!isEditing && (
                               <button
@@ -258,10 +280,10 @@ const PostDetail = () => {
                 value={comment}
                 onChange={(event) => setComment(event.target.value)}
               ></input>
+              <button className="btn btn-primary" onClick={handleSubmitComment}>
+                New Comment
+              </button>
             </div>
-            <button className="btn btn-primary" onClick={handleSubmitComment}>
-              New Comment
-            </button>
           </div>
         </div>
       )}

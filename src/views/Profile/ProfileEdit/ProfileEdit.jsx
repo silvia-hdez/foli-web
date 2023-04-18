@@ -58,6 +58,7 @@ const ProfileEdit = () => {
 
   return (
     <div className="EditProfile">
+     <h3>Instaplant</h3>
       <Navbar />
       <h1>Editar Perfil</h1>
 

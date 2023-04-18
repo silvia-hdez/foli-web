@@ -42,7 +42,13 @@ const PostsList = ({all}) => {
 
     return (
         <div className='PostList'>
-            {all && <Navbar />}
+        
+            {all && (
+                <>
+                <Navbar />
+                <h3>Instaplant</h3>
+                </>
+                )}
             <div className='allPosts'>
                 {loading
                     ? "Loading..."

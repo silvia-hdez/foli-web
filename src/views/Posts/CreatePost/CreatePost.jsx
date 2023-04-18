@@ -70,6 +70,7 @@ const CreatePost = (post) => {
 
   return (
     <div className="CreatePost">
+     <h3>Instaplant</h3>
       <Navbar />
       New Post
       <form onSubmit={handleSubmit} encType="multipart/form-data">
