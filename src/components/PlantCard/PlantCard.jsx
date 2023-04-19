@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 const PlantCard = ({ plant, clickHandler, isSaved }) => {
   return (
     <>
-      <Link to={`/plants/${plant._id}`}>
+      
         <div className="plantCard">
+        <Link to={`/plants/${plant._id}`}>
           <img src={plant.image} />
           <div style={{backgroundColor:'lightgrey', width:'150px', padding:'8px'}}>
             <div className="TitlePlantCard">
@@ -27,8 +28,9 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
               </button>
             </div>
           </div>
+          </Link>
         </div>
-      </Link>
+      
     </>
   );
 };
