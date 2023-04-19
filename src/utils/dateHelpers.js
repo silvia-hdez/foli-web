@@ -7,8 +7,6 @@ export const beautifyDate = (date) => {
       : newDate.getMonth() + 1;
   const day = newDate.getDate();
 
-  console.log("month: ", month);
-
   //return '2011-09-11';
   return `${fullYear}-${month}-${day}`;
 };

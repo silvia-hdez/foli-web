@@ -7,6 +7,7 @@ import FormControl from "../../../components/misc/FormControl/FormControl";
 import Input from "../../../components/misc/Input/Input";
 import { useNavigate } from "react-router-dom";
 import './CreatePost.css'
+import Header from "../../../components/misc/Header/Header";
 
 
 const initialValues = {
@@ -70,7 +71,7 @@ const CreatePost = (post) => {
 
   return (
     <div className="CreatePost">
-     <h3>Instaplant</h3>
+     <Header/>
       <Navbar />
       New Post
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -106,7 +107,7 @@ const CreatePost = (post) => {
           />
         </FormControl>
 
-        <FormControl
+        {/* <FormControl
           text="Descripción"
           error={touched.description && errors.description}
           htmlFor="description"
@@ -121,7 +122,8 @@ const CreatePost = (post) => {
             placeholder="Descripción"
             type="textarea"
           />
-        </FormControl>
+          
+        </FormControl> */}
 
         <button
           className="btn btn-primary"

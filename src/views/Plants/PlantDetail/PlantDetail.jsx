@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPlantDetail } from "../../../services/PlantService";
 import Navbar from "../../../components/misc/NavBar/NavBar";
+import Header from "../../../components/misc/Header/Header";
 
 const PlantDetail = () => {
   const [plant, setPlant] = useState(null);
@@ -19,7 +20,7 @@ const PlantDetail = () => {
   }
   return (
     <div className="PlantDetail">
-     <h3>Instaplant</h3>
+     <Header />
       <Navbar />
       <div>
         <img src={plant.image} />

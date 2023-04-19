@@ -3,6 +3,7 @@ import Navbar from '../../../components/misc/NavBar/NavBar';
 import { deletePost, getAllMyPosts, getAllPosts } from '../../../services/PostService';
 import PostCard from '../../../components/PostCard/PostCard ';
 import './PostsList.css'
+import Header from '../../../components/misc/Header/Header';
 
 const PostsList = ({all}) => {
 
@@ -46,7 +47,7 @@ const PostsList = ({all}) => {
             {all && (
                 <>
                 <Navbar />
-                <h3>Instaplant</h3>
+                <Header />
                 </>
                 )}
             <div className='allPosts'>

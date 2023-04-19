@@ -21,6 +21,7 @@ const Profile = () => {
   const { userId } = useParams();
   const { currentUser } = useContext(AuthContext);
 
+
   useEffect(() => {
     if (userId && !user) {
       getOtherUser(userId)

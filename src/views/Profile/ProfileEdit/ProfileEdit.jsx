@@ -5,6 +5,7 @@ import { editCurrentUser } from "../../../services/UserService";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import './ProfileEdit.css'
+import Header from "../../../components/misc/Header/Header";
 
 const ProfileEdit = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -58,7 +59,7 @@ const ProfileEdit = () => {
 
   return (
     <div className="EditProfile">
-     <h3>Instaplant</h3>
+     <Header />
       <Navbar />
       <h1>Editar Perfil</h1>
 

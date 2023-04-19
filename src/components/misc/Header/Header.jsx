@@ -1,13 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import './Header.css'
+
 
 const Header = () => {
+
+    const goBack = () => {
+        window.history.back();
+      };
+      const goForward = () => {
+        window.history.forward();
+      };
  
     return (
         <div className='Header'>
-             <h3>Instaplant</h3>
 
-             <input type="button" onclick="history.back()" name="volver atrás" value="volver atrás"></input>
+             <h3>Instaplant</h3>
+          <div>
+             <input type="button" value="⇦" onClick={goBack}/>
+             <input type="button" value="⇨" onClick={goForward}/>
+          </div>
+
         </div>
     );
 };

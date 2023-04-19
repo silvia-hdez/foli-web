@@ -10,6 +10,7 @@ import {
 } from "../../../services/SaveService";
 import AuthContext from "../../../contexts/AuthContext";
 import './PlantsList.css'
+import Header from "../../../components/misc/Header/Header";
 
 const PlantsList = ({ all }) => {
   const [initialize, setInitialize] = useState(false);
@@ -155,10 +156,10 @@ const PlantsList = ({ all }) => {
   return (
     <div className="PlantsList">
      
-      <div></div>
+      
       {all && (
         <div>
-        <h3>Instaplant</h3>
+        <Header />
         <div>
           <label>Average</label>
           <input

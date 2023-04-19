@@ -1,28 +1,36 @@
-
-.Images {
-    display: flex;
-}
-
-.CarouselImages {
-    display: flex;
-    flex-direction: column;
-}
-
-.CarouselImages img {
-    width: 50px;
-    height: 50px;
-}
-
-.ComparativeImages img {
-    width: 150px;
-    height: 150px;
-}
-
 .PostDetail {
     width: 100%;
     max-width: 1000px;
-    height: 600px;
+    border: 1px solid red;
+    /* background-color: lightblue; */
 }
+
+.HeaderPost {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+.UserPost {
+    display: flex;
+}
+
+
+.ImagesEditDetail {
+    display: flex;
+    border: 1px solid blue;
+    background-color: lightblue;
+    align-items: center;
+    padding: 8px;
+}
+
+.MultipleImages > img {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    margin-left: 0;
+}
+
+
 
 .Description {
     width: 80%;
@@ -33,7 +41,14 @@
 
 .Comments {
     width: 100%;
-    height:100px;
-    background-color: grey;
+    height:260px;
+    background-color: lightpink;
     overflow-y: scroll;
+    padding: 8px;
+   
+}
+
+.CommentBox {
+    width: 100%;
+    border: 1px solid green;
 }

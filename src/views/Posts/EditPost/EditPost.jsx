@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { editPost } from "../../../services/PostService";
 import { beautifyDate } from "../../../utils/dateHelpers";
 import "./EditPost.css";
+import Header from "../../../components/misc/Header/Header";
 
 const EditPost = () => {
   const location = useLocation();
@@ -103,7 +104,7 @@ const EditPost = () => {
       <>
         <Navbar />
       </>
-      <h3>Instaplant</h3>
+      <Header />
       Editar Post
       <>
         <form onSubmit={handleOnSubmit}>

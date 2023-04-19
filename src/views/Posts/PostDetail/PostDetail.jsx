@@ -15,7 +15,7 @@ import {
   getComments,
   postComment,
 } from "../../../services/CommentService";
-
+import Header from "../../../components/misc/Header/Header";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
@@ -42,7 +42,6 @@ const PostDetail = () => {
     }
   }, [commentsList]);
 
-
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
   };
@@ -52,7 +51,8 @@ const PostDetail = () => {
   };
 
   const handleDeletePost = () => {
-    deletePost(post._id)
+    console.log(postId);
+    deletePost(postId)
       .then(() => {
         navigate("/profile");
       })
@@ -99,7 +99,7 @@ const PostDetail = () => {
   };
 
   const handleEditComment = ({ commentId, content }) => {
-    editComment({ commentId, content })
+    editCommentcurrentUserPostDetail({ commentId, content })
       .then((updatedComment) => {
         const updatedComments = commentsList.map((comment) => {
           if (comment._id === updatedComment._id) {
@@ -118,76 +118,96 @@ const PostDetail = () => {
     setEditingComment({ id: commentId, content });
   };
 
-
-
-
   if (!post) {
     return <p> ... fetching post</p>;
   }
   return (
+    <>
+    <Header />
+    <Navbar />
     <div className="PostDetail">
-      <h3>Instaplant</h3>
-      <Navbar />
+      
+      
 
-      {currentUser.id === post.user.id && (
-        <div>
-          <button className="btn btn-primary" onClick={handleEdit}>
-            Editar
-          </button>
-          <button className="btn btn-primary" onClick={handleDeletePost}>
-            Eliminar
-          </button>
-        </div>
-      )}
-
-      <div>
+      <div className="HeaderPost">
         <Link to={`/profile/${post.user.id}`}>
-          <img src={post.user.image} style={{ width: "30px" }} />
-          <p>User: {post.user.userName}</p>
+          <div className="UserPost">
+            <img src={post.user.image} style={{ width: "30px" }} />
+            <p>User: {post.user.userName}</p>
+          </div>
         </Link>
+
+        {currentUser.id === post.user.id && (
+          <div className="btn-group dropleft" role="group">
+            <button
+              className="btn btn-secondary dropdown-toggle 
+            dropdown-toggle-split btn-lg p-0 bg-white border border-white text-secondary"
+              type="button"
+              id="dropdownMenu2"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span className="sr-only">...</span>
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button
+                className="dropdown-item"
+                type="button"
+                onClick={handleEdit}
+              >
+                Editar
+              </button>
+              <button
+                className="dropdown-item"
+                type="button"
+                onClick={handleDeletePost}
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {loading ? (
         "Loading..."
       ) : (
-        <div className="PostDetail">
-          <div className="Images">
-            <div className="CarouselImages">
-              {post.image.map((image, index) => (
-                <img
-                  key={index}
-                  src={image.url}
-                  onClick={() => handleImageClick(index)}
-                  className={selectedImageIndex === index ? "selected" : ""}
-                />
-              ))}
+        <div>
+          <div className="ImagesEditDetail">
+            <div className="LeftSideImages">
+            <p> {post.name} </p>
+              <div className="MultipleImages">
+                {post.image.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image.url}
+                    onClick={() => handleImageClick(index)}
+                    className={selectedImageIndex === index ? "selected" : ""}
+                  />
+                ))}
+              </div>
             </div>
-
-            <div className="ComparativeImages">
+            <div className="RightSideImages">
               <div className="ImageOne">
                 <img src={post.image[0].url} />
                 <p>{beautifyDate(post.image[0].date)}</p>
               </div>
 
-              <div className="ImageTwo">
+              <div className="ImageOne">
                 <img src={post.image[selectedImageIndex].url} />
                 <p>{beautifyDate(post.image[selectedImageIndex].date)}</p>
               </div>
             </div>
           </div>
 
-          <div>
-            <p>Nombre de la planta: {post.name}</p>
-            <p>Descripción</p>
-            <div className="Description">
-              <p> {post.description} </p>
-            </div>
+         
 
+        
+          <div className="Comments">
             <div>
-              <label htmlFor="comments" className="form-label">
-                Commentarios
-              </label>
-              <div className="Comments">
+            <a href="#" id="btn-toggle" class="btn-toggle">Comentarios</a>
+
                 {commentsList &&
                   commentsList.map((comment) => {
                     const { _id, user, content } = comment;
@@ -196,30 +216,18 @@ const PostDetail = () => {
                     const text = isEditing ? editingComment.content : content;
 
                     return (
-                      <div key={comment._id}>
-                        {/* {currentUser ? 
-                       
-                          ( <>
-                              <img style={{width:'20px'}} src={currentUser.image}/>
-                              <p>{currentUser.userName}</p>
-                            </>
-                          ) 
-                          : 
-                          ( <>
-                              <img src={user.image}/>
-                              <p>{user.userName}</p>
-                            </>
-                          )
-                          } */}
-
-                        {(currentUser.id === comment.user ) ? (
+                      <div key={comment._id} className="CommentBox">
+                        {currentUser.id === comment.user ? (
                           <>
-                            <img style={{width:'20px'}} src={currentUser.image}/>
+                            <img
+                              style={{ width: "20px" }}
+                              src={currentUser.image}
+                            />
                             <p>{currentUser.userName}</p>
                           </>
                         ) : (
                           <>
-                            <img style={{width:'20px'}} src={user.image}/>
+                            <img style={{ width: "20px" }} src={user.image} />
                             <p>{user.userName}</p>
                           </>
                         )}
@@ -288,9 +296,10 @@ const PostDetail = () => {
               </button>
             </div>
           </div>
-        </div>
+    
       )}
     </div>
+    </>
   );
 };
 
