@@ -23,7 +23,7 @@ const PostDetail = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [commentsList, setCommentsList] = useState([]);
   const [comment, setComment] = useState("");
-  const [editingComment, setEditingComment] = useState(null);
+  const [editingComment, setEditingComment] = useState({ commentId: null, content: '' });
   const { postId } = useParams();
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -82,6 +82,7 @@ const PostDetail = () => {
         editPost({ postId, post: editedPostToDb })
           .then(() => setPost(editedPost))
           .catch((err) => console.log(err));
+         // window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -99,7 +100,7 @@ const PostDetail = () => {
   };
 
   const handleEditComment = ({ commentId, content }) => {
-    editCommentcurrentUserPostDetail({ commentId, content })
+    editComment({ commentId, content })
       .then((updatedComment) => {
         const updatedComments = commentsList.map((comment) => {
           if (comment._id === updatedComment._id) {
@@ -206,7 +207,9 @@ const PostDetail = () => {
         
           <div className="Comments">
             <div>
-            <a href="#" id="btn-toggle" class="btn-toggle">Comentarios</a>
+              <label htmlFor="comments" className="form-label">
+                Commentarios
+              </label>
 
                 {commentsList &&
                   commentsList.map((comment) => {
@@ -219,22 +222,38 @@ const PostDetail = () => {
                       <div key={comment._id} className="CommentBox">
                         {currentUser.id === comment.user ? (
                           <>
-                            <img
-                              style={{ width: "20px" }}
+                            <img className="ImgComment"
+                             
                               src={currentUser.image}
                             />
-                            <p>{currentUser.userName}</p>
+                            
+                            <div className="TextBox">
+                              
+                              <p>{currentUser.userName}</p>
+                              <div className="TextComment">
+                              <p>
+                                {text}
+                              </p>
+                              </div>
+                            </div>
                           </>
                         ) : (
                           <>
-                            <img style={{ width: "20px" }} src={user.image} />
-                            <p>{user.userName}</p>
+                            <img className="ImgComment" src={user.image} />
+
+                             <div className="TextBox">
+                              <p>{user.userName}</p>
+                              <div className="TextComment">
+                              <p>
+                                {text}
+                              </p>
+                              </div>
+                              
+                              </div>
                           </>
                         )}
 
-                        <p style={{ border: "1px solid blue", width: "300px" }}>
-                          {text}
-                        </p>
+                       
                         {currentUser.id === comment.user.id && (
                           <div>
                             <button
@@ -283,6 +302,10 @@ const PostDetail = () => {
                     );
                   })}
               </div>
+             
+             
+             
+             
               <input
                 type="textarea"
                 placeholder="Write your comment here..."

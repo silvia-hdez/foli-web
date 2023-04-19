@@ -14,7 +14,7 @@
 .ImagesEdit {
     display: flex;
     border: 1px solid blue;
-    height: 350px;
+
 }
 
 .LeftSideImages {
@@ -27,12 +27,17 @@
     /* border: 1px solid green; */
 }
 
+.InputEditPost {
+    width: 100%;
+    border: 1px solid grey;
+}z
+
 .MultipleImages {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     margin: 5px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 305px;
     width: 100%;
     margin-bottom: 80px;
@@ -66,7 +71,7 @@
 
 .RightSideImages {
     
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 65%;
     display: flex;
     flex-direction: column;

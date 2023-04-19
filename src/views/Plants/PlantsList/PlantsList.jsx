@@ -156,41 +156,43 @@ const PlantsList = ({ all }) => {
   return (
     <div className="PlantsList">
      
-      
       {all && (
-        <div>
+        <>
         <Header />
-        <div>
-          <label>Average</label>
-          <input
-            id="average"
-            checked={watering["average"]}
-            type="checkbox"
-            onChange={(e) => handleCheckBox(e)}
-          />
-          <label>Frequent</label>
-          <input
-            id="frequent"
-            checked={watering["frequent"]}
-            type="checkbox"
-            onChange={(e) => handleCheckBox(e)}
-          />
-          <label>Minimum</label>
-          <input
-            id="minimum"
-            checked={watering["minimum"]}
-            type="checkbox"
-            onChange={(e) => handleCheckBox(e)}
-          />
-        </div>
+        <div className="PlantsFilter">
+          <div style={{display:'flex'}}>
+            <p>Riego: </p>
+            <div>
+              <label>Average</label>
+              <input
+                id="average"
+                checked={watering["average"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Frequent</label>
+              <input
+                id="frequent"
+                checked={watering["frequent"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Minimum</label>
+              <input
+                id="minimum"
+                checked={watering["minimum"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+            </div>
+          </div>
 
-        <button style={{width:'170px'}} onClick={() => handleSort("name")}>
-        {(sortOrder === 'asc') ? 'Ordenar nombre ↑' : 'Ordenar nombre ↓'}
-      </button>
+          <button style={{width:'170px'}} onClick={() => handleSort("name")}>
+            {(sortOrder === 'asc') ? 'Ordenar abc ↑' : 'Ordenar abc ↓'}
+          </button>
         </div>
+        </>
       )}
-
- 
 
       <div className="allPlants">
         {loading

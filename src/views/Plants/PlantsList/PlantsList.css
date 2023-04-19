@@ -1,9 +1,24 @@
-.allPlants {
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .PlantsList {
     width: 100%;
     max-width: 1000px;
+    background-color: lightblue;
 }
+
+
+.PlantsFilter {
+    display: flex;
+    border: 1px solid green;
+    height: 60px;
+}
+
+
+.allPlants {
+    height: 735px;
+    border: 1px solid red;
+    background-color: aquamarine;
+}
+
+
+
+

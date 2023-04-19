@@ -110,11 +110,20 @@ const EditPost = () => {
         <form onSubmit={handleOnSubmit}>
           <div className="ImagesEdit">
             <div className="LeftSideImages">
+                <div>
+                <input className="InputEditPost"
+                  type="text"
+                  defaultValue={postData.name}
+                  name="name"
+                  id="name"
+                  onChange={handleOnChange}
+                ></input>
+              </div>
               <div className="MultipleImages">
                 {images &&
                   images.map((image, index) => (
                     <div key={index}>
-                      <img
+                      <img style={{width:'50px', height:'50px'}}
                         src={image.url}
                         onClick={() => handleImageClick(index)}
                         className={
@@ -151,32 +160,6 @@ const EditPost = () => {
                 <button onClick={handleSaveDate}>Guardar fecha</button>
               </div>
             </div>
-          </div>
-          {beautifyDate(post.image[selectedImageIndex].date)}
-          <div>
-            <label htmlFor="name" className="form-label">
-              Nombre de la planta
-            </label>
-            <input
-              type="text"
-              defaultValue={postData.name}
-              name="name"
-              id="name"
-              onChange={handleOnChange}
-            ></input>
-          </div>
-
-          <div>
-            <label htmlFor="description" className="form-label">
-              Descripción
-            </label>
-            <input
-              type="textarea"
-              defaultValue={postData.description}
-              name="description"
-              id="description"
-              onChange={handleOnChange}
-            ></input>
           </div>
 
           <button className="btn btn-primary" type="submit">

@@ -1,7 +1,7 @@
 .PostDetail {
     width: 100%;
     max-width: 1000px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* background-color: lightblue; */
 }
 
@@ -17,8 +17,8 @@
 
 .ImagesEditDetail {
     display: flex;
-    border: 1px solid blue;
-    background-color: lightblue;
+    /* border: 1px solid blue;
+    background-color: lightblue; */
     align-items: center;
     padding: 8px;
 }
@@ -30,19 +30,10 @@
     margin-left: 0;
 }
 
-
-
-.Description {
-    width: 80%;
-    height: 40px;
-    overflow-y: scroll;
-    border: 1px solid black
-}
-
 .Comments {
     width: 100%;
     height:260px;
-    background-color: lightpink;
+    /* background-color: lightpink; */
     overflow-y: scroll;
     padding: 8px;
    
@@ -50,5 +41,31 @@
 
 .CommentBox {
     width: 100%;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    display: flex;
 }
+
+.ButtonsComments {
+    display: flex;
+    flex-direction: column;
+}
+
+.ImgComment {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.TextBox {
+    margin-left: 5px;
+    /* border: 1px solid black; */
+    width: 100%;
+}
+
+.TextComment {
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    overflow-y: scroll;
+
+}
+
