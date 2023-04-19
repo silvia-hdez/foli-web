@@ -4,7 +4,8 @@
     height: 160px;
     border: 1px solid red;
     margin: 10px;
-    display: flex;
+   display: flex;
+    position: relative;
 }
 
 .plantCard img {
@@ -21,3 +22,11 @@
     background-color: transparent;
     border: none;
 }
+
+.ButtonBookmark{
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
