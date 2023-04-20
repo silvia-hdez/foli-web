@@ -21,7 +21,6 @@ const Profile = () => {
   const { userId } = useParams();
   const { currentUser } = useContext(AuthContext);
 
-
   useEffect(() => {
     if (userId && !user) {
       getOtherUser(userId)
@@ -67,11 +66,10 @@ const Profile = () => {
 
             <img className="ProfileImg" src={user.image} />
 
-            <div >
+            <div>
               <p>{user.following.length}</p>
               <p>Siguiendo</p>
-            </div>  
-
+            </div>
           </div>
 
           <div className="ProfileData">
@@ -87,11 +85,16 @@ const Profile = () => {
           <>Publicaciones</>
 
           <div className="Publications">
-                <div>
-                <PostsList />
-                </div>
-                <p>Tengo que aplicar una lógica a getAllMyPosts para que me traiga los del usuario del perfil. Meter el userId en sus parámetros y luego ternaria en PostList de 'all? 'all' : mine ? 'mine' : 'user' y configurlo en PlantCard</p>
-                <p>Estas card son las del currenUser</p>
+            <div>
+              <PostsList />
+            </div>
+            <p>
+              Tengo que aplicar una lógica a getAllMyPosts para que me traiga
+              los del usuario del perfil. Meter el userId en sus parámetros y
+              luego ternaria en PostList de 'all? 'all' : mine ? 'mine' : 'user'
+              y configurlo en PlantCard
+            </p>
+            <p>Estas card son las del currenUser</p>
           </div>
         </div>
       ) : (
@@ -104,11 +107,10 @@ const Profile = () => {
 
             <img className="ProfileImg" src={currentUser.image} />
 
-            <div >
+            <div>
               <p>{currentUser.following.length}</p>
               <p>Siguiendo</p>
-            </div>  
-
+            </div>
           </div>
 
           <div className="ProfileData">
@@ -120,29 +122,58 @@ const Profile = () => {
           </div>
 
           <div className="ButtonsProfile">
-            <button onClick={() => setShowMyPosts(!showMyPosts)}>
+            <button
+              onClick={() => {
+                setShowMyPosts(true);
+                setShowMyPlants(false);
+                setShowMyLikes(false);
+              }}
+            >
               <i className="bi bi-images"></i>
             </button>
-            <button onClick={() => setShowMyPlants(!showMyPlants)}>
+
+            <button
+              onClick={() => {
+                setShowMyPosts(false);
+                setShowMyPlants(true);
+                setShowMyLikes(false);
+              }}
+            >
               <i className="bi bi-flower1"></i>
             </button>
-            <button onClick={() => setShowMyLikes(!showMyLikes)}>
+
+            <button
+              onClick={() => {
+                setShowMyPosts(false);
+                setShowMyPlants(false);
+                setShowMyLikes(true);
+              }}
+            >
               <i className="bi bi-signpost-split"></i>
             </button>
           </div>
 
           <div>
-            {showMyPosts && <PostsList all={false} />}
-            {showMyPosts && <PlantsList />}
-            {showMyPosts && <PostsList />}
+            {showMyPosts ? (
+              <div>
+                <PostsList all={false} />
+              </div>
+            ) : null}
+
+            {showMyPlants ? (
+              <div>
+                <PlantsList />
+              </div>
+            ) : null}
+
+            {showMyLikes && !showMyPosts && !showMyPlants ? (
+              <div>
+                <PostsList />
+              </div>
+            ) : null}
           </div>
-
         </div>
-
-
       )}
-
-
     </div>
   );
 };

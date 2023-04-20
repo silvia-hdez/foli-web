@@ -2,10 +2,11 @@
 .plantCard {
     width: 90%;
     height: 160px;
-    border: 1px solid red;
+    border: 1px solid #9FB578;
     margin: 10px;
    display: flex;
     position: relative;
+    border-radius: 10px;
 }
 
 .plantCard img {

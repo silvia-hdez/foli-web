@@ -54,6 +54,7 @@ const PostDetail = () => {
     console.log(postId);
     deletePost(postId)
       .then(() => {
+        
         navigate("/profile");
       })
       .catch((err) => console.log(err));

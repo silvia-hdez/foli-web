@@ -24,7 +24,7 @@ const Navbar = () => {
               </li>
               <li >
               <NavLink style={{textDecoration:'none', color:'white'}}  to="#">
-              <i className="bi bi-pin-map-fill"></i>
+              <i class="bi bi-envelope"></i>
               </NavLink>
               </li>
               <li >

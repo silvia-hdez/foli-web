@@ -160,9 +160,9 @@ const PlantsList = ({ all }) => {
         <>
         <Header />
         <div className="PlantsFilter">
-          <div style={{display:'flex'}}>
+          <div style={{display:'flex', flexDirection:'column', width:'100px'}}>
             <p>Riego: </p>
-            <div>
+            
               <label>Average</label>
               <input
                 id="average"
@@ -184,10 +184,10 @@ const PlantsList = ({ all }) => {
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-            </div>
+            
           </div>
 
-          <button style={{width:'170px'}} onClick={() => handleSort("name")}>
+          <button style={{width:'170px', position:'absolute', right:'0px'}} onClick={() => handleSort("name")}>
             {(sortOrder === 'asc') ? 'Ordenar abc ↑' : 'Ordenar abc ↓'}
           </button>
         </div>
