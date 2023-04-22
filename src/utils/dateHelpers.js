@@ -1,12 +1,3 @@
 export const beautifyDate = (date) => {
-  const newDate = new Date(date);
-  const fullYear = newDate.getFullYear();
-  const month =
-    newDate.getMonth() <= 10
-      ? `0${newDate.getMonth() + 1}`
-      : newDate.getMonth() + 1;
-  const day = newDate.getDate();
-
-  //return '2011-09-11';
-  return `${fullYear}-${month}-${day}`;
+  return date.slice(0, 10)
 };

@@ -20,7 +20,7 @@ const EditPost = () => {
       name: post.name,
       description: post.description,
     });
-  }, [post]);
+  }, [post, images]);
 
   const handleOnChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -44,14 +44,15 @@ const EditPost = () => {
     setSelectedImageIndex(index);
   };
 
-  const handleChangeData = (e) => {
+  const handleChangeDate = (e) => {
     const newDate = e.target.value;
     const newImages = [...images];
     newImages[selectedImageIndex] = {
       ...newImages[selectedImageIndex],
-      date: newDate,
+      date: new Date(newDate).toISOString(),
     };
-    setImagesCopy(newImages);
+    console.log(newImages)
+    setImages(newImages);
   };
 
   const handleSaveDate = () => {
@@ -147,19 +148,20 @@ const EditPost = () => {
                 className="form-control"
               />
             </div>
-            <div className="RightSideImages">
-              <div className="ImageOne">
-                <img src={post.image[selectedImageIndex].url} />
-                <input
-                  type="date"
-                  value={beautifyDate(post.image[selectedImageIndex].date)}
-                  name="date"
-                  id="date"
-                  onChange={handleChangeData}
-                ></input>
-                <button onClick={handleSaveDate}>Guardar fecha</button>
+              <div className="RightSideImages">
+                <div className="ImageOne">
+                  <img src={post.image[selectedImageIndex].url} />
+                  <input
+                    type="date"
+                    value={beautifyDate(images[selectedImageIndex].date)}
+                    //value="2022-01-01"
+                    name="date"
+                    id="date"
+                    onChange={handleChangeDate}
+                  ></input>
+                  <button onClick={handleSaveDate}>Guardar fecha</button>
+                </div>
               </div>
-            </div>
           </div>
 
           <button className="btn btn-primary" type="submit">
