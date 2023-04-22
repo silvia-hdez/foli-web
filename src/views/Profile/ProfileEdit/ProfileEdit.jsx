@@ -6,6 +6,7 @@ import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import './ProfileEdit.css'
 import Header from "../../../components/misc/Header/Header";
+import { logout } from "../../../stores/AccesTokenStore";
 
 const ProfileEdit = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -122,9 +123,7 @@ const ProfileEdit = () => {
           </button>
         </form>
       </div>
-      <button className="btn btn-primary" type="submit">
-            Cerrar Sesión
-          </button>
+   <button onClick={logout}> Cerrar </button>
     </div>
   );
 };

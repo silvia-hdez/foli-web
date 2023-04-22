@@ -6,7 +6,7 @@ import "./Profile.css";
 import PlantsList from "../../Plants/PlantsList/PlantsList";
 import PostsList from "../../Posts/PostsList/PostsList";
 import logo from "../../../assets/img/Logo.png";
-import { logout } from "../../../stores/AccesTokenStore";
+
 import {
   followUser,
   getOtherUser,
@@ -121,8 +121,9 @@ const Profile = () => {
               <p>Seguidores</p>
             </div>
 
+            <Link to="/edit-profile">
             <img className="ProfileImg" src={currentUser.image} />
-
+            </Link>
             <div>
               <p>{currentUser.following.length}</p>
               <p>Siguiendo</p>
@@ -130,11 +131,9 @@ const Profile = () => {
           </div>
 
           <div className="ProfileData">
-            <p>
-              <Link to="/edit-profile"> Editar </Link>{" "}
-            </p>
+     
             <p>{currentUser.userName}</p>
-            <button onClick={logout}> Cerrar </button>
+
           </div>
 
           <div className="ButtonsProfile">
@@ -165,7 +164,7 @@ const Profile = () => {
                 setShowMyLikes(true);
               }}
             >
-              <i className="bi bi-signpost-split"></i>
+              <i className="bi bi-bookmarks"></i>
             </button>
           </div>
 
