@@ -6,16 +6,6 @@ import drop from '../../assets/img/droplet.svg'
 
 const PlantCard = ({ plant, clickHandler, isSaved }) => {
 
-  // let waterIcon = ''
-  // if(plant.watering === 'average'){
-  //   waterIcon = {dropFill}
-  // } else if (plant.watering === 'frequent') {
-  //   waterIcon = '<i class="bi bi-droplet-fill"></i><i class="bi bi-droplet-fill"></i><i class="bi bi-droplet-fill"></i>'
-  // } else {
-  //   waterIcon = '<i class="bi bi-droplet"></i><i class="bi bi-droplet"></i><i class="bi bi-droplet"></i>'
-  // }
-
-
   return (
     <>
       

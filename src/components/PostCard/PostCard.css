@@ -1,19 +1,20 @@
 .postCard {
     border: 1px solid blue;
+    position: relative
   
 }
 
-.all {
-    width: 200px;
-    height: 300px;
-    margin: 10px;
+.allPostCard {
+    width: 90%;
+    height:400px;
+    margin-bottom: 16px;
 }
+
+
 
 .postCard img {
     width: 100%;
-    height: 100%;
-
-
+    height: 300px;
 }
 
 .postCard p {
@@ -23,9 +24,41 @@
 /* SI estoy en mi vista de perfil */
 
 .myPost {
-    width: 100px;
-    height:100px;
+
+}
+
+
+.PostResume {
+    display: flex;
+}
+
+.UserPostCard {
+    position: absolute;
     
-    margin: 5px;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.UserPostCard > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px soli #9FB578;
+}
+
+.UserPostCard > p {
+    background-color: white;
+    border: 1px solid #9FB578;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 2px 4px 2px 4px;
+}
+
+.UserPostCard > h4 {
+    /* position: absolute; */
+    bottom: 0;
 }
 

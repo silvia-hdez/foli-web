@@ -5,8 +5,17 @@
     height: 50px;
     /* border: 1px solid blue; */
     width: 100%;
-    padding: 8px;
+    padding: 8px 20px 8px 20px;
     max-width: 1000px;
+}
+
+h3 {
+    font-family: 'Clicker Script', cursive;
+    font-size: 30px;
+}
+
+.Header > input {
+    font-size: 30px;
 }
 
 

@@ -12,24 +12,35 @@ import {
   getOtherUser,
   unFollowUser,
 } from "../../../services/UserService";
+import Header from "../../../components/misc/Header/Header";
+import { getAllMyPosts } from "../../../services/PostService";
+import MyPostCard from "../../../components/MyPostCard/MyPostCard";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [showMyPlants, setShowMyPlants] = useState(false);
   const [showMyPosts, setShowMyPosts] = useState(true);
   const [showMyLikes, setShowMyLikes] = useState(false);
+  const [myPosts, setMyPosts] = useState([]);
   const { userId } = useParams();
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    if (userId && !user) {
-      getOtherUser(userId)
-        .then((u) => {
-          setUser(u);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [user]);
+
+    getAllMyPosts()
+      .then((posts) => {
+        setMyPosts(posts);
+      })
+      .catch((error) => console.log(error));
+      console.log('myposts', myPosts)
+
+      // console.log("user", userId);
+      // console.log("current", currentUser);
+      
+  }, []);
+  
+
+ 
 
   const handleFollowUser = () => {
     if (user.followers.includes(currentUser.id)) {
@@ -54,8 +65,9 @@ const Profile = () => {
   return (
     <div className="Profile">
       <Navbar />
-      <img src={logo} />
-
+      {/* <img src={logo} /> */}
+      <Header />
+      {/* Perfil de otro usuario */}
       {userId && user ? (
         <div className="BlockProfile">
           <div className="ProfileData">
@@ -99,6 +111,7 @@ const Profile = () => {
         </div>
       ) : (
         <div className="BlockProfile">
+          {/* Mi perfil */}
           <div className="ProfileData">
             <div>
               <p>{currentUser.followers.length}</p>
@@ -155,8 +168,10 @@ const Profile = () => {
 
           <div>
             {showMyPosts ? (
-              <div>
-                <PostsList all={false} />
+              <div className="ShowMyPosts">
+                {myPosts.map((post) => {
+                  return <MyPostCard key={post._id} post={post} />;
+                })}
               </div>
             ) : null}
 
