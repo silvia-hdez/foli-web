@@ -108,4 +108,13 @@ p {
 .ShowMyPosts {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.ShowMyPostsSaved {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px;
 }

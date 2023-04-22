@@ -5,11 +5,11 @@ import PlantCard from "../../../components/PlantCard/PlantCard";
 import "./PlantsList.css";
 import {
   deleteSavePlant,
-  getSavePlants,
+  getSavedPlants,
   postSavePlant,
 } from "../../../services/SaveService";
 import AuthContext from "../../../contexts/AuthContext";
-import './PlantsList.css'
+import "./PlantsList.css";
 import Header from "../../../components/misc/Header/Header";
 
 const PlantsList = ({ all }) => {
@@ -22,17 +22,33 @@ const PlantsList = ({ all }) => {
     minimum: true,
     frequent: true,
   });
+  const [growthRate, setGrowthRate] = useState({
+    low: true,
+    moderate: true,
+    high: true,
+  });
+  const [maintenance, setMaintenance] = useState({
+    low: true,
+    moderate: true,
+    high: true,
+  });
+  const [sunlight, setSunlight] = useState({
+    full: true,
+    partial: true,
+    filtered: true,
+  });
   const [plantsCopy, setPlantsCopy] = useState([]);
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
+    // Only initialize once.
     if (!initialize) {
-  
-      getSavePlants(currentUser._id)
+      getSavedPlants(currentUser._id)
         .then((savedPlants) => {
           setSavedPlants(savedPlants);
+
           if (!all) {
             const plants = savedPlants.map((savedPlant) => {
               return { ...savedPlant.plant, saved: true };
@@ -74,7 +90,7 @@ const PlantsList = ({ all }) => {
   const handleBookmark = (plant) => {
     const plantSavedList = savedPlants.filter((x) => x.plant._id == plant._id);
 
-    if (plantSavedList.length > 0) {
+    if (plantSavedList.length > 0) {  // The plant is currently saved.
       deleteSavePlant(plantSavedList[0]._id)
         .then(() => {
           setSavedPlants(
@@ -126,22 +142,49 @@ const PlantsList = ({ all }) => {
     }
   };
 
+  function getSunlightValue(x) {
+    let sunlightValue = ''
+    x = x.join().toLowerCase()
+    if (x.includes('filter')) {
+      sunlightValue = 'filtered'
+    } else if (x.includes('partial')) {
+      sunlightValue = 'partial'
+    } else {
+      sunlightValue = 'full'
+    }
+    return sunlightValue
+  }
+
   const handleCheckBox = (e) => {
-    const wateringName = e.target.id;
+    const [filterName, filterValue] = e.target.id.split("-");
     const checked = e.target.checked;
-    watering[wateringName] = checked;
-    setWatering(Object.assign({}, watering));
-    //setPlantsCopy(plants.map(a => {return {...a}}))
+
+    if (filterName === "watering") {
+      watering[filterValue] = checked;
+      setWatering(Object.assign({}, watering));
+    } else if (filterName === "growthRate") {
+      growthRate[filterValue] = checked;
+      setGrowthRate(Object.assign({}, growthRate));
+    } else if (filterName === "maintenance") {
+      maintenance[filterValue] = checked;
+      setMaintenance(Object.assign({}, maintenance));
+    } else if (filterName === "sunlight") {
+      sunlight[filterValue] = checked;
+      setSunlight(Object.assign({}, sunlight));
+    }
+
     const filteredPlants = plantsCopy.filter(
-      (plant) => watering[plant["watering"].toLowerCase()] === true
+      (plant) =>
+        plant["watering"] && watering[plant["watering"].toLowerCase()] === true &&
+        plant["growthRate"] && growthRate[plant["growthRate"].toLowerCase()] === true &&
+        plant["maintenance"] && maintenance[plant["maintenance"].toLowerCase()] === true &&
+        plant["sunlight"] && sunlight[getSunlightValue(plant["sunlight"])] === true
     );
     setPlants(filteredPlants);
   };
 
   const handleSort = () => {
-
     const sortedPlants = plantsCopy.sort((a, b) => {
-      
       if (a.commonName.toLowerCase() < b.commonName.toLowerCase()) {
         return sortOrder === "asc" ? -1 : 1;
       } else if (a.commonName > b.commonName) {
@@ -155,42 +198,146 @@ const PlantsList = ({ all }) => {
 
   return (
     <div className="PlantsList">
-     
       {all && (
         <>
-        <Header />
-        <div className="PlantsFilter">
-          <div style={{display:'flex', flexDirection:'column', width:'100px'}}>
-            <p>Riego: </p>
-            
+          <Header />
+          <div className="PlantsFilter">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100px",
+              }}
+            >
+              <p>Riego: </p>
+
               <label>Average</label>
               <input
-                id="average"
+                id="watering-average"
                 checked={watering["average"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label>Frequent</label>
               <input
-                id="frequent"
+                id="watering-frequent"
                 checked={watering["frequent"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label>Minimum</label>
               <input
-                id="minimum"
+                id="watering-minimum"
                 checked={watering["minimum"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-            
-          </div>
+            </div>
 
-          <button style={{width:'170px', position:'absolute', right:'0px'}} onClick={() => handleSort("name")}>
-            {(sortOrder === 'asc') ? 'Ordenar abc ↑' : 'Ordenar abc ↓'}
-          </button>
-        </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100px",
+              }}
+            >
+              <p>Crecimiento: </p>
+
+              <label>Bajo</label>
+              <input
+                id="growthRate-low"
+                checked={growthRate["low"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Medio</label>
+              <input
+                id="growthRate-moderate"
+                checked={growthRate["moderate"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Alto</label>
+              <input
+                id="growthRate-high"
+                checked={growthRate["high"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100px",
+              }}
+            >
+              <p>Mantenimiento: </p>
+
+              <label>Bajo</label>
+              <input
+                id="maintenance-low"
+                checked={maintenance["low"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Medio</label>
+              <input
+                id="maintenance-moderate"
+                checked={maintenance["moderate"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Alto</label>
+              <input
+                id="maintenance-high"
+                checked={maintenance["high"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+            </div>
+
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100px",
+              }}
+            >
+              <p>Luz: </p>
+
+              <label>Total</label>
+              <input
+                id="sunlight-full"
+                checked={sunlight["full"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Parcial</label>
+              <input
+                id="sunlight-partial"
+                checked={sunlight["partial"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+              <label>Filtrada</label>
+              <input
+                id="sunlight-filtered"
+                checked={sunlight["filtered"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
+            </div>
+
+            <button
+              style={{ width: "170px", position: "absolute", right: "0px" }}
+              onClick={() => handleSort("name")}
+            >
+              {sortOrder === "asc" ? "Ordenar abc ↑" : "Ordenar abc ↓"}
+            </button>
+          </div>
         </>
       )}
 

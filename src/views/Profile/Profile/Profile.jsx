@@ -26,6 +26,13 @@ const Profile = () => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
+    if (userId && !user) {
+      getOtherUser(userId)
+        .then((u) => {
+          setUser(u);
+        })
+        .catch((err) => console.log(err));
+    }
 
     getAllMyPosts()
       .then((posts) => {
@@ -34,10 +41,10 @@ const Profile = () => {
       .catch((error) => console.log(error));
       console.log('myposts', myPosts)
 
-      // console.log("user", userId);
-      // console.log("current", currentUser);
+      console.log("user", userId);
+      console.log("current", currentUser);
       
-  }, []);
+  }, [user, currentUser]);
   
 
  
@@ -182,7 +189,7 @@ const Profile = () => {
             ) : null}
 
             {showMyLikes && !showMyPosts && !showMyPlants ? (
-              <div>
+              <div className="ShowMyPostsSaved">
                 <PostsList />
               </div>
             ) : null}
