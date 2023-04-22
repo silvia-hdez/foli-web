@@ -14,7 +14,7 @@ import EditPost from "./views/Posts/EditPost/EditPost";
 import './App.css'
 
 function App() {
-  const { isAuthLoaded } = useContext(AuthContext);
+  const { isAuthLoaded, currentUser } = useContext(AuthContext);
 
   return (
     <div className="App">
@@ -22,7 +22,14 @@ function App() {
         <p>Loading...</p>
       ) : (
         <Routes>
+        
           <Route path="login" element={<Login />} />
+            {currentUser && (
+              <Route path="/" element={<Profile />} />
+          )}
+            {!currentUser && (
+              <Route path="/" element={<Login />} />
+          )}
           <Route path="/profile" element={<Profile />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="/edit-profile" element={<ProfileEdit />} />
