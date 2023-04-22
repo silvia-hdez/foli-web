@@ -13,7 +13,7 @@ import {
   unFollowUser,
 } from "../../../services/UserService";
 import Header from "../../../components/misc/Header/Header";
-import { getAllMyPosts } from "../../../services/PostService";
+import { getAllMyPosts, getAllPosts } from "../../../services/PostService";
 import MyPostCard from "../../../components/MyPostCard/MyPostCard";
 
 const Profile = () => {
@@ -33,8 +33,8 @@ const Profile = () => {
         })
         .catch((err) => console.log(err));
     }
-
-    getAllMyPosts()
+    else if (!userId) {
+      getAllMyPosts()
       .then((posts) => {
         setMyPosts(posts);
       })
@@ -43,11 +43,10 @@ const Profile = () => {
 
       console.log("user", userId);
       console.log("current", currentUser);
+    }
       
   }, [user, currentUser]);
   
-
- 
 
   const handleFollowUser = () => {
     if (user.followers.includes(currentUser.id)) {
@@ -104,16 +103,13 @@ const Profile = () => {
           <>Publicaciones</>
 
           <div className="Publications">
-            <div>
-              <PostsList />
-            </div>
-            <p>
-              Tengo que aplicar una lógica a getAllMyPosts para que me traiga
-              los del usuario del perfil. Meter el userId en sus parámetros y
-              luego ternaria en PostList de 'all? 'all' : mine ? 'mine' : 'user'
-              y configurlo en PlantCard
-            </p>
-            <p>Estas card son las del currenUser</p>
+            {user ? (
+              <div className="ShowMyPosts">
+                {user.posts.map((post) => {
+                  return <MyPostCard key={post._id} post={post} />;
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
       ) : (
