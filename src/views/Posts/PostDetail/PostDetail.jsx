@@ -107,17 +107,17 @@ const PostDetail = () => {
       <Navbar />
       <div className="PostDetail">
         <div className="HeaderPost">
-          <Link to={`/profile/${post.user.id}`} style={{textDecoration:'none'}}>
+          <Link to={`/profile${post.user.id !== currentUser.id ? '/' + post.user.id : '' }`} style={{textDecoration:'none'}}>
             <div className="UserPost">
               <img src={post.user.image}/>
-              <p>User: {post.user.userName}</p>
+              <p>{post.user.userName}</p>
             </div>
           </Link>
-
+          <p> {post.name} </p>
           {currentUser.id === post.user.id && (
             <div className="btn-group dropleft" role="group">
               <button
-                className="btn btn-secondary dropdown-toggle 
+                className="btn btn-secondary 
             dropdown-toggle-split btn-lg p-0 bg-white border border-white text-secondary"
                 type="button"
                 id="dropdownMenu2"
@@ -125,7 +125,7 @@ const PostDetail = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span className="sr-only">...</span>
+                <span className="sr-only" style={{fontWeight:'bold', fontSize:'50px'}}>...</span>
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <button
@@ -153,7 +153,7 @@ const PostDetail = () => {
           <div>
             <div className="ImagesEditDetail">
               <div className="LeftSideImages">
-                <p> {post.name} </p>
+                
                 <div className="MultipleImages">
                   {post.image.map((image, index) => (
                     <img

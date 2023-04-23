@@ -43,3 +43,6 @@
     display: flex;
 }
 
+.IconsPlantCard > i {
+    color: #27AE60;
+}

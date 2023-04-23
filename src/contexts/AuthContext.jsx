@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const getCurrentUser = useCallback((callback) => {
     getCurrentUserService().then((user) => {
+      console.log('AQUI', user)
       setCurrentUser(user);
       setIsAuthLoaded(true);
       callback && callback();

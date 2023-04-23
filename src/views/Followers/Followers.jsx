@@ -5,20 +5,21 @@ import { getFollowers } from '../../services/UserService';
 import AuthContext from '../../contexts/AuthContext';
 import FollowCard from '../../components/FollowCard/FollowCard';
 import Navbar from '../../components/misc/NavBar/NavBar';
+import { useParams } from 'react-router-dom';
 
 const Followers = () => {
     
     const [followers, setFollowers]= useState([])
-    const {currentUser} = useContext(AuthContext)
+    const { userId } = useParams()
 
     useEffect(() => {
-        getFollowers(currentUser.id)
-            .then((followers) => {
-                setFollowers(followers);
-                
+        getFollowers(userId)
+            .then((f) => {
+                console.log(f)
+                setFollowers(f);
             })
             .catch((err) => console.log(err));
-    }, [currentUser.id]);
+    }, []);
 
     return (
         <div className='Follows'>

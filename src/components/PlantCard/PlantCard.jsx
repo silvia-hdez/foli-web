@@ -44,25 +44,26 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
 
         {plant.watering === "Frequent" && (
           <div className="IconsPlantCard">
-            <img src={dropFill} alt="Drop fill icon" />
-            <img src={dropFill} alt="Drop fill icon" />
-            <img src={dropFill} alt="Drop fill icon" />
+          <i class="bi bi-droplet-fill"></i>
+          <i class="bi bi-droplet-fill"></i>
+          <i class="bi bi-droplet-fill"></i>
           </div>
         )}
 
         {plant.watering === "Average" && (
           <div className="IconsPlantCard">
-            <img src={dropFill} alt="Drop fill icon" />
-            <img src={dropFill} alt="Drop fill icon" />
-            <img src={drop} alt="Drop fill icon" />
+          <i class="bi bi-droplet-fill"></i>
+          <i class="bi bi-droplet-fill"></i>
+          <i class="bi bi-droplet"></i>
           </div>
         )}
 
         {plant.watering === "Minimum" && (
           <div className="IconsPlantCard">
-            <img src={dropFill} alt="Drop fill icon" />
-            <img src={drop} alt="Drop fill icon" />
-            <img src={drop} alt="Drop fill icon" />
+          <i class="bi bi-droplet-fill"></i>
+            <i class="bi bi-droplet"></i>
+            <i class="bi bi-droplet"></i>
+            
           </div>
         )}
 

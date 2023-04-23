@@ -15,6 +15,10 @@ import {
 import Header from "../../../components/misc/Header/Header";
 import { getAllMyPosts, getAllPosts } from "../../../services/PostService";
 import MyPostCard from "../../../components/MyPostCard/MyPostCard";
+import PlantCard from "../../../components/PlantCard/PlantCard";
+import { getSavePosts, getSavedPlants } from "../../../services/SaveService";
+import MyPlantCard from "../../../components/MyPlantCard/MyPlantCard";
+import MyPostSaved from "../../../components/MyPostSaved/MyPostSaved";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -23,6 +27,8 @@ const Profile = () => {
   const [showMyLikes, setShowMyLikes] = useState(false);
   const [activeButton, setActiveButton] = useState("posts");
   const [myPosts, setMyPosts] = useState([]);
+  const [savedPlants, setSavedPlants] = useState([]);
+  const [savedPosts, setSavedPosts] = useState([]);
   const { userId } = useParams();
   const { currentUser } = useContext(AuthContext);
 
@@ -34,9 +40,16 @@ const Profile = () => {
         })
         .catch((err) => console.log(err));
     } else if (!userId) {
+      console.log(currentUser)
       getAllMyPosts()
         .then((posts) => {
           setMyPosts(posts);
+          getSavedPlants().then((plants) => {
+            setSavedPlants(plants)
+            getSavePosts().then((p) => {
+              setSavedPosts(p)
+            })
+          })
         })
         .catch((error) => console.log(error));
     }
@@ -66,7 +79,7 @@ const Profile = () => {
       {/* <img src={logo} /> */}
       <Header />
       {/* Perfil de otro usuario */}
-      {userId && user ? (
+      {userId && user  ? (
         <div className="BlockProfile">
           <div className="ProfileData">
             <div>
@@ -95,7 +108,7 @@ const Profile = () => {
           <>Publicaciones</>
 
           <div className="Publications">
-            {user ? (
+            {user  ? (
               <div className="ShowMyPosts">
                 {user.posts.map((post) => {
                   return <MyPostCard key={post._id} post={post} />;
@@ -170,7 +183,6 @@ const Profile = () => {
             </button>
           </div>
 
-          <div>
             {showMyPosts ? (
               <div className="ShowMyPosts">
                 {myPosts.map((post) => {
@@ -180,17 +192,22 @@ const Profile = () => {
             ) : null}
 
             {showMyPlants ? (
-              <div>
-                <PlantsList />
+              <div className="showMyPlants">
+              {savedPlants.map((p) => {                    
+                    return <MyPlantCard key={p.plant._id} plant={p.plant} />;
+                })}
+                {/* <PlantsList /> */}
               </div>
             ) : null}
 
             {showMyLikes && !showMyPosts && !showMyPlants ? (
               <div className="ShowMyPostsSaved">
-                <PostsList />
+              {savedPosts.map((p) => {        
+                console.log(p)            
+                    return <MyPostSaved key={p.post._id} post={p.post} />;
+                })}
               </div>
             ) : null}
-          </div>
         </div>
       )}
     </div>

@@ -23,7 +23,7 @@ const Navbar = () => {
               </NavLink>
               </li>
               <li >
-              <NavLink style={{textDecoration:'none', color:'white'}}  to="/profile">
+              <NavLink reloadDocument style={{textDecoration:'none', color:'white'}}  to="/profile">
               <i className="bi bi-person-circle"></i>
               </NavLink>
             </li>

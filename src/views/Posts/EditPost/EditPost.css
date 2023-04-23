@@ -28,8 +28,13 @@
 }
 
 .InputEditPost {
+    margin-top: 20px;
     width: 100%;
-    border: 1px solid grey;
+    border: 1px solid #27AE60;
+    border-radius: 12px;
+    padding: 0 8px;
+    text-align: center;
+    font-size: 24px;
 }z
 
 .MultipleImages {

@@ -51,7 +51,7 @@ const EditPost = () => {
       ...newImages[selectedImageIndex],
       date: new Date(newDate).toISOString(),
     };
-    console.log(newImages)
+    console.log(newImages);
     setImages(newImages);
   };
 
@@ -106,13 +106,9 @@ const EditPost = () => {
         <Navbar />
       </>
       <Header />
-      Editar Post
-      <>
-        <form onSubmit={handleOnSubmit}>
-          <div className="ImagesEdit">
-            <div className="LeftSideImages">
-                <div>
-                <input className="InputEditPost"
+      <div>
+                <input
+                  className="InputEditPost"
                   type="text"
                   defaultValue={postData.name}
                   name="name"
@@ -120,11 +116,17 @@ const EditPost = () => {
                   onChange={handleOnChange}
                 ></input>
               </div>
+      <>
+        <form onSubmit={handleOnSubmit}>
+          <div className="ImagesEdit">
+            <div className="LeftSideImages">
+              
               <div className="MultipleImages">
                 {images &&
                   images.map((image, index) => (
                     <div key={index}>
-                      <img style={{width:'50px', height:'50px'}}
+                      <img
+                        style={{ width: "50px", height: "50px" }}
                         src={image.url}
                         onClick={() => handleImageClick(index)}
                         className={
@@ -148,20 +150,20 @@ const EditPost = () => {
                 className="form-control"
               />
             </div>
-              <div className="RightSideImages">
-                <div className="ImageOne">
-                  <img src={post.image[selectedImageIndex].url} />
-                  <input
-                    type="date"
-                    value={beautifyDate(images[selectedImageIndex].date)}
-                    //value="2022-01-01"
-                    name="date"
-                    id="date"
-                    onChange={handleChangeDate}
-                  ></input>
-                  <button onClick={handleSaveDate}>Guardar fecha</button>
-                </div>
+            <div className="RightSideImages">
+              <div className="ImageOne">
+                <img src={post.image[selectedImageIndex].url} />
+                <input
+                  type="date"
+                  value={beautifyDate(images[selectedImageIndex].date)}
+                  //value="2022-01-01"
+                  name="date"
+                  id="date"
+                  onChange={handleChangeDate}
+                ></input>
+                <button onClick={handleSaveDate}>Guardar fecha</button>
               </div>
+            </div>
           </div>
 
           <button className="btn btn-primary" type="submit">

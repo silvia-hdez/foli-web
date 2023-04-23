@@ -30,6 +30,7 @@
 - ~~Editar el Plant Detail~~
 - Hacer un botón de subir arriba del todo cuando se hace scroll
 
+
 *Vista Posts*
 - Se solapa con la NavBar el listado
 - Modificar la card
@@ -38,6 +39,8 @@
 - Editar vista comentarios
 - ~~Quitar editar comentario~~
 - En eliminar comentario poner una papelera
+- Poner fecha del comentario
+- El cerrar sesión, ponerlo en rojo, como 'cerrar sesión' y fuera del recuadro
 
 *Vista crear Post*
 - Editar vista
