@@ -6,6 +6,7 @@
     width: 100%;
     max-width: 1000px;
     /* height: 745px; */
+    border: 1px solid blue;
 }
 
 p {
@@ -45,14 +46,14 @@ p {
 .ProfileData > div > p {
     margin: 0;
     font-weight: bold;
-    font-family: 'Prata', serif;
+
     color: #717374
 }
 
 .Profile > p {
     font-size: 24px;
     margin: 8px 0;
-    font-family: 'Prata', serif;
+
     color: #2F3134
 }
 
@@ -61,7 +62,7 @@ p {
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-   
+    margin: 10px 0;
 }
 
 .ButtonsProfile > button {
@@ -78,6 +79,10 @@ p {
     color: #27AE60;
 
 }
+
+.ButtonsProfile button.active i {
+    color: #50FA97;
+  }
 
 .MyPosts {
 
@@ -108,9 +113,16 @@ p {
 .ShowMyPosts {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 16px;
+    border: 1px solid red;
+    max-height: 670px;
+    overflow-y: scroll;
+
+    
 }
+
+
 
 .ShowMyPostsSaved {
     display: flex;

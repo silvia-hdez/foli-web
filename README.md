@@ -17,7 +17,7 @@
 - ~~BottomBar mejorar estilo (quitar el redondeo)~~
 - ~~Quitar el icono mensaje (dejar los que son)~~
 - ~~En los botones, cambiar el icono de postGuarddos~~
-- En los botones de perfil, resaltar el icono en el que estoy
+- ~~En los botones de perfil, resaltar el icono en el que estoy~~
 - ~~Eliminar el botón de editar y que sea diréctamente editar en la foto de perfil.~~
 - ~~Quitar el botón de cerrar y que esté en editar perfil~~
 - Vista de editar perfil: CSS
@@ -28,6 +28,7 @@
 - Poner los iconos en función de lo que viene
 - Hacer desplegable de filtros
 - Editar el Plant Detail
+- Hacer un botón de subir arriba del todo cuando se hace scroll
 
 *Vista Posts*
 - Se solapa con la NavBar el listado

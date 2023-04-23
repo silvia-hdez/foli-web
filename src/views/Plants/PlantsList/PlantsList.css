@@ -1,27 +1,42 @@
 
 .PlantsList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 1000px;
-    /* background-color: lightblue; */
+    /* border: 1px solid blue; */
+
 }
 
 
 .PlantsFilter {
-    display: flex;
-    /* border: 1px solid green; */
-    height: 135px;
+    border: 1px solid #27AE60;
+    height: 230px;
+    position: relative;
+    width: 90%;
+    border-radius: 20px;
+    padding: 8px 20px 15px 20px;
+    margin-bottom: 16px;
 }
 
 
 .allPlants {
-    height: 735px;
-    width: 9;
+  
     /* border: 1px solid red;
     background-color: aquamarine; */
+    max-height: 650px;
+    width: 90%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.BottonFilterPlants {
+    background-color: #27AE60;
+    margin: 4px;
 }
 
 

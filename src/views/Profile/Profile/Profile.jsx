@@ -21,6 +21,7 @@ const Profile = () => {
   const [showMyPlants, setShowMyPlants] = useState(false);
   const [showMyPosts, setShowMyPosts] = useState(true);
   const [showMyLikes, setShowMyLikes] = useState(false);
+  const [activeButton, setActiveButton] = useState("posts");
   const [myPosts, setMyPosts] = useState([]);
   const { userId } = useParams();
   const { currentUser } = useContext(AuthContext);
@@ -32,21 +33,18 @@ const Profile = () => {
           setUser(u);
         })
         .catch((err) => console.log(err));
-    }
-    else if (!userId) {
+    } else if (!userId) {
       getAllMyPosts()
-      .then((posts) => {
-        setMyPosts(posts);
-      })
-      .catch((error) => console.log(error));
-      console.log('myposts', myPosts)
+        .then((posts) => {
+          setMyPosts(posts);
+        })
+        .catch((error) => console.log(error));
+      console.log("myposts", myPosts);
 
       console.log("user", userId);
       console.log("current", currentUser);
     }
-      
   }, [user, currentUser]);
-  
 
   const handleFollowUser = () => {
     if (user.followers.includes(currentUser.id)) {
@@ -122,7 +120,7 @@ const Profile = () => {
             </div>
 
             <Link to="/edit-profile">
-            <img className="ProfileImg" src={currentUser.image} />
+              <img className="ProfileImg" src={currentUser.image} />
             </Link>
             <div>
               <p>{currentUser.following.length}</p>
@@ -131,37 +129,41 @@ const Profile = () => {
           </div>
 
           <div className="ProfileData">
-     
             <p>{currentUser.userName}</p>
-
           </div>
 
           <div className="ButtonsProfile">
             <button
+              className={activeButton === "posts" ? "active" : ""}
               onClick={() => {
                 setShowMyPosts(true);
                 setShowMyPlants(false);
                 setShowMyLikes(false);
+                setActiveButton("posts");
               }}
             >
               <i className="bi bi-images"></i>
             </button>
 
             <button
+              className={activeButton === "plants" ? "active" : ""}
               onClick={() => {
                 setShowMyPosts(false);
                 setShowMyPlants(true);
                 setShowMyLikes(false);
+                setActiveButton("plants");
               }}
             >
               <i className="bi bi-flower1"></i>
             </button>
 
             <button
+              className={activeButton === "likes" ? "active" : ""}
               onClick={() => {
                 setShowMyPosts(false);
                 setShowMyPlants(false);
                 setShowMyLikes(true);
+                setActiveButton("likes");
               }}
             >
               <i className="bi bi-bookmarks"></i>
