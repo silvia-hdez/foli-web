@@ -116,7 +116,7 @@ p {
     justify-content: flex-start;
     padding: 16px;
     /* border: 1px solid red; */
-    max-height: 670px;
+    /* max-height: 670px; */
     overflow-y: scroll;
 
     
@@ -137,7 +137,7 @@ p {
     justify-content: flex-start;
     padding: 16px;
     /* border: 1px solid red; */
-    max-height: 670px;
+    /* max-height: 670px; */
     overflow-y: scroll;
 
 }

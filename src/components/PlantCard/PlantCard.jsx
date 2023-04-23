@@ -12,19 +12,18 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
   return (
     <>
       <div className="plantCard">
-      <Link to={`/plants/${plant._id}`}>
-        <div className="ImagePlantList">
+        <Link to={`/plants/${plant._id}`}>
+          <div className="ImagePlantList">
             <img src={plant.image} />
-        </div>
+          </div>
         </Link>
 
         <div className="TitlePlantCard">
-          <h4 style={{fontWeight:'bold'}}>{plant.commonName}</h4>
-          <img src={sun} style={{width:'20px'}}/> <p>{plant.sunlight}</p> 
+          <h4 style={{ fontWeight: "bold" }}>{plant.commonName}</h4>
+          <img src={sun} style={{ width: "20px" }} /> <p>{plant.sunlight}</p>
           {/* <p>{plant.watering} </p> */}
           {/* <p>{plant.growthRate}</p> */}
         </div>
-
 
         {plant.sunlight === "Full sun" && (
           <div className="IconsPlantCard">
@@ -44,26 +43,25 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
 
         {plant.watering === "Frequent" && (
           <div className="IconsPlantCard">
-          <i class="bi bi-droplet-fill"></i>
-          <i class="bi bi-droplet-fill"></i>
-          <i class="bi bi-droplet-fill"></i>
+            <i className="bi bi-droplet-fill"></i>
+            <i className="bi bi-droplet-fill"></i>
+            <i className="bi bi-droplet-fill"></i>
           </div>
         )}
 
         {plant.watering === "Average" && (
           <div className="IconsPlantCard">
-          <i class="bi bi-droplet-fill"></i>
-          <i class="bi bi-droplet-fill"></i>
-          <i class="bi bi-droplet"></i>
+            <i className="bi bi-droplet-fill"></i>
+            <i className="bi bi-droplet-fill"></i>
+            <i className="bi bi-droplet"></i>
           </div>
         )}
 
         {plant.watering === "Minimum" && (
           <div className="IconsPlantCard">
-          <i class="bi bi-droplet-fill"></i>
-            <i class="bi bi-droplet"></i>
-            <i class="bi bi-droplet"></i>
-            
+            <i className="bi bi-droplet-fill"></i>
+            <i className="bi bi-droplet"></i>
+            <i className="bi bi-droplet"></i>
           </div>
         )}
 
@@ -76,12 +74,20 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
           {isSaved ? (
             <i
               className="bi bi-bookmark-fill"
-               style={{ fontSize: "20px", color: "#27AE60", borderColor:'#50FA97'}}
+              style={{
+                fontSize: "20px",
+                color: "#27AE60",
+                borderColor: "#50FA97",
+              }}
             ></i>
           ) : (
             <i
               className="bi bi-bookmark"
-               style={{ fontSize: "20px", color: "#27AE60", borderColor:'#50FA97'}}
+              style={{
+                fontSize: "20px",
+                color: "#27AE60",
+                borderColor: "#50FA97",
+              }}
             ></i>
           )}
         </button>

@@ -5,7 +5,7 @@
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    max-height: 840px;
+    /* max-height: 840px; */
     overflow-y: scroll;
     /* border: 1px solid blue */
 }
@@ -17,7 +17,7 @@
    padding: 8px 20px 8px 20px;
    align-items: center;
    /* border: 1px solid red; */
-   max-height: 795px;
+   /* max-height: 795px; */
    overflow-y: scroll;
    ;
 }

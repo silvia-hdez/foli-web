@@ -36,7 +36,11 @@ const PostDetail = () => {
       getPostDetail(postId)
         .then((p) => {
           setLoading(false);
-
+          p.image.sort((a, b) => {
+            if (a.date < b.date) return 1;
+            if (a.date > b.date) return -1;
+            return 0;
+          });
           setPost(p);
           setCommentsList(p.comments);
         })
@@ -107,9 +111,14 @@ const PostDetail = () => {
       <Navbar />
       <div className="PostDetail">
         <div className="HeaderPost">
-          <Link to={`/profile${post.user.id !== currentUser.id ? '/' + post.user.id : '' }`} style={{textDecoration:'none'}}>
+          <Link
+            to={`/profile${
+              post.user.id !== currentUser.id ? "/" + post.user.id : ""
+            }`}
+            style={{ textDecoration: "none" }}
+          >
             <div className="UserPost">
-              <img src={post.user.image}/>
+              <img src={post.user.image} />
               <p>{post.user.userName}</p>
             </div>
           </Link>
@@ -125,7 +134,12 @@ const PostDetail = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span className="sr-only" style={{fontWeight:'bold', fontSize:'50px'}}>...</span>
+                <span
+                  className="sr-only"
+                  style={{ fontWeight: "bold", fontSize: "50px" }}
+                >
+                  ...
+                </span>
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <button
@@ -153,7 +167,6 @@ const PostDetail = () => {
           <div>
             <div className="ImagesEditDetail">
               <div className="LeftSideImages">
-                
                 <div className="MultipleImages">
                   {post.image.map((image, index) => (
                     <img
@@ -203,9 +216,7 @@ const PostDetail = () => {
                             <div className="TextBox">
                               <div>
                                 <p>{currentUser.userName}</p>
-                                <>
-                                  
-                                </>
+                                <></>
                               </div>
                               <div className="TextComment">
                                 <p>{text}</p>
@@ -232,12 +243,13 @@ const PostDetail = () => {
                                 backgroundColor: "transparent",
                                 color: "red",
                                 border: "none",
-                                position:'absolute',
-                                top:0, right:'8px'
+                                position: "absolute",
+                                top: 0,
+                                right: "8px",
                               }}
                               onClick={() => handleDeleteComment(comment._id)}
                             >
-                              <i class="bi bi-trash3-fill"></i>
+                              <i className="bi bi-trash3-fill"></i>
                             </button>
                           </div>
                         )}
@@ -251,8 +263,11 @@ const PostDetail = () => {
                 placeholder="Write your comment here..."
                 name="comments"
                 id="comments"
-                style={{borderRadius:'8px', padding:'4px',
-                borderColor:'#27AE60'}}
+                style={{
+                  borderRadius: "8px",
+                  padding: "4px",
+                  borderColor: "#27AE60",
+                }}
                 value={comment}
                 onChange={(event) => setComment(event.target.value)}
               ></input>
