@@ -40,16 +40,16 @@ const Profile = () => {
         })
         .catch((err) => console.log(err));
     } else if (!userId) {
-      console.log(currentUser)
+      console.log(currentUser);
       getAllMyPosts()
         .then((posts) => {
           setMyPosts(posts);
           getSavedPlants().then((plants) => {
-            setSavedPlants(plants)
+            setSavedPlants(plants);
             getSavePosts().then((p) => {
-              setSavedPosts(p)
-            })
-          })
+              setSavedPosts(p);
+            });
+          });
         })
         .catch((error) => console.log(error));
     }
@@ -79,36 +79,33 @@ const Profile = () => {
       {/* <img src={logo} /> */}
       <Header />
       {/* Perfil de otro usuario */}
-      {userId && user  ? (
+      {userId && user ? (
         <div className="BlockProfile">
           <div className="ProfileData">
-            <div>
+            <div className="FollowsDiv">
               <p>{user.followers.length}</p>
               <p>Seguidores</p>
             </div>
 
             <img className="ProfileImg" src={user.image} />
 
-            <div>
+            <div className="FollowsDiv">
               <p>{user.following.length}</p>
               <p>Siguiendo</p>
             </div>
           </div>
 
           <div className="ProfileData">
-            <button onClick={handleFollowUser}>
+            <p>{user.userName}</p>
+            <button onClick={handleFollowUser} className="SubmitCreatePost">
               {user && user.followers.includes(currentUser.id)
                 ? "Unfollow"
                 : "Follow"}
             </button>
-            <p>{user.userName}</p>
-            <button>Mensaje</button>
           </div>
 
-          <>Publicaciones</>
-
           <div className="Publications">
-            {user  ? (
+            {user ? (
               <div className="ShowMyPosts">
                 {user.posts.map((post) => {
                   return <MyPostCard key={post._id} post={post} />;
@@ -121,8 +118,10 @@ const Profile = () => {
         <div className="BlockProfile">
           {/* Mi perfil */}
           <div className="ProfileData">
-            <Link to={`/profile/${currentUser.id}/followers`}
-            style={{textDecoration:'none'}}>
+            <Link
+              to={`/profile/${currentUser.id}/followers`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="FollowsDiv">
                 <p>{currentUser.followers.length}</p>
                 <p>Seguidores</p>
@@ -132,8 +131,10 @@ const Profile = () => {
             <Link to="/edit-profile">
               <img className="ProfileImg" src={currentUser.image} />
             </Link>
-            <Link to={`/profile/${currentUser.id}/following`}
-            style={{textDecoration:'none'}}>
+            <Link
+              to={`/profile/${currentUser.id}/following`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="FollowsDiv">
                 <p>{currentUser.following.length}</p>
                 <p>Siguiendo</p>
@@ -183,31 +184,31 @@ const Profile = () => {
             </button>
           </div>
 
-            {showMyPosts ? (
-              <div className="ShowMyPosts">
-                {myPosts.map((post) => {
-                  return <MyPostCard key={post._id} post={post} />;
-                })}
-              </div>
-            ) : null}
+          {showMyPosts ? (
+            <div className="ShowMyPosts">
+              {myPosts.map((post) => {
+                return <MyPostCard key={post._id} post={post} />;
+              })}
+            </div>
+          ) : null}
 
-            {showMyPlants ? (
-              <div className="showMyPlants">
-              {savedPlants.map((p) => {                    
-                    return <MyPlantCard key={p.plant._id} plant={p.plant} />;
-                })}
-                {/* <PlantsList /> */}
-              </div>
-            ) : null}
+          {showMyPlants ? (
+            <div className="showMyPlants">
+              {savedPlants.map((p) => {
+                return <MyPlantCard key={p.plant._id} plant={p.plant} />;
+              })}
+              {/* <PlantsList /> */}
+            </div>
+          ) : null}
 
-            {showMyLikes && !showMyPosts && !showMyPlants ? (
-              <div className="ShowMyPostsSaved">
-              {savedPosts.map((p) => {        
-                console.log(p)            
-                    return <MyPostSaved key={p.post._id} post={p.post} />;
-                })}
-              </div>
-            ) : null}
+          {showMyLikes && !showMyPosts && !showMyPlants ? (
+            <div className="ShowMyPostsSaved">
+              {savedPosts.map((p) => {
+                console.log(p);
+                return <MyPostSaved key={p.post._id} post={p.post} />;
+              })}
+            </div>
+          ) : null}
         </div>
       )}
     </div>

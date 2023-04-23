@@ -6,20 +6,15 @@
 
 }
 
-.EditPost form {
-    /* border: 1px solid red; */
-    
-}
 
 .ImagesEdit {
     display: flex;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 
 }
 
 .LeftSideImages {
     width: 35%;
-    height: 460px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -28,14 +23,20 @@
 }
 
 .InputEditPost {
-    margin-top: 20px;
-    width: 100%;
+    margin: 15px 20px;
+    width: 90%;
     border: 1px solid #27AE60;
     border-radius: 12px;
     padding: 0 8px;
     text-align: center;
     font-size: 24px;
-}z
+    background-color: rgb(242, 250, 242);
+}
+
+.FormEditPost {
+    width: 100%;
+    padding: 0 20px 60px 20px;
+}
 
 .MultipleImages {
     display: flex;

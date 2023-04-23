@@ -117,7 +117,7 @@ const EditPost = () => {
                 ></input>
               </div>
       <>
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleOnSubmit} className="FormEditPost">
           <div className="ImagesEdit">
             <div className="LeftSideImages">
               
@@ -148,6 +148,7 @@ const EditPost = () => {
                 id="image"
                 onChange={handleOnChange}
                 className="form-control"
+                style={{width:'330px', marginBottom:'12px'}}
               />
             </div>
             <div className="RightSideImages">
@@ -161,12 +162,12 @@ const EditPost = () => {
                   id="date"
                   onChange={handleChangeDate}
                 ></input>
-                <button onClick={handleSaveDate}>Guardar fecha</button>
+                <button onClick={handleSaveDate} className="SubmitCreatePost">Guardar fecha</button>
               </div>
             </div>
           </div>
 
-          <button className="btn btn-primary" type="submit">
+          <button className="SubmitCreatePost" type="submit">
             Aplicar Cambios
           </button>
         </form>

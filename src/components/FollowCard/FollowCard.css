@@ -1,0 +1,15 @@
+.FollowCard {
+    width: 90%;
+    border: 1px solid #27AE60;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.FollowCard > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+}

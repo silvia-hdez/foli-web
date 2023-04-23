@@ -90,7 +90,7 @@ const Login = () => {
         </FormControl>
 
         <button
-          className="btn btn-primary"
+          className="SubmitCreatePost"
           type="submit"
           disabled={isSubmitting}
         >

@@ -10,19 +10,21 @@
 }
 .ImagePlantList {
     width: 150px; 
+    height: 100%;
 }
 .ImagePlantList > img{
     width: 100%;
-    
-    border-radius: 10px;
+    height: 100%;
+    border-radius: 10px 0 0 10px
 }
 
 .TitlePlantCard {
+    width: 200px;
     display: flex;
     justify-content: center;
-    margin-left: 20px;
+    margin-left: 12px;
+    margin-right: 8px;
     flex-direction: column;
-
 }
 
 .TitlePlantCard > button {
@@ -38,6 +40,13 @@
     
 }
 
+.IconsCard {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 8px;
+}
 
 .IconsPlantCard {
     display: flex;

@@ -194,7 +194,7 @@ const PostDetail = () => {
             <div className="Comments">
               <div>
                 <label htmlFor="comments" className="form-label">
-                  Commentarios
+                  Comentarios
                 </label>
 
                 {commentsList &&
@@ -216,11 +216,12 @@ const PostDetail = () => {
                             <div className="TextBox">
                               <div>
                                 <p>{currentUser.userName}</p>
-                                <></>
+                              
                               </div>
                               <div className="TextComment">
                                 <p>{text}</p>
                               </div>
+                              <p className="DateComment">{beautifyDate(comment.createdAt)}</p>
                             </div>
                           </>
                         ) : (
@@ -232,6 +233,7 @@ const PostDetail = () => {
                               <div className="TextComment">
                                 <p>{text}</p>
                               </div>
+                              <p className="DateComment">{beautifyDate(comment.createdAt)}</p>
                             </div>
                           </>
                         )}

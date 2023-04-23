@@ -126,7 +126,7 @@ const ProfileEdit = () => {
             <button className="SubmitCreatePost" type="submit">
               Editar Perfil
             </button>
-            <button className="SubmitCreatePost" onClick={logout}> Cerrar </button>
+            <button className="SubmitCreatePost" onClick={logout}> Cerrar Sesión</button>
           </div>
         </form>
       </div>

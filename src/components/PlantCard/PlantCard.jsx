@@ -20,51 +20,50 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
 
         <div className="TitlePlantCard">
           <h4 style={{ fontWeight: "bold" }}>{plant.commonName}</h4>
-          <img src={sun} style={{ width: "20px" }} /> <p>{plant.sunlight}</p>
-          {/* <p>{plant.watering} </p> */}
-          {/* <p>{plant.growthRate}</p> */}
         </div>
+        <div className="IconsCard">
+          {plant.watering === "Frequent" && (
+            <div className="IconsPlantCard">
+              <i className="bi bi-droplet-fill"></i>
+              <i className="bi bi-droplet-fill"></i>
+              <i className="bi bi-droplet-fill"></i>
+            </div>
+          )}
 
-        {plant.sunlight === "Full sun" && (
-          <div className="IconsPlantCard">
-            <img src={fullLight} />
-          </div>
-        )}
-        {plant.sunlight === "Part shadefull shade " && (
-          <div className="IconsPlantCard">
-            <img src={partLight} />
-          </div>
-        )}
-        {plant.sunlight === "Filtered shade" && (
-          <div className="IconsPlantCard">
-            <img src={filteredLight} />
-          </div>
-        )}
+          {plant.watering === "Average" && (
+            <div className="IconsPlantCard">
+              <i className="bi bi-droplet-fill"></i>
+              <i className="bi bi-droplet-fill"></i>
+              <i className="bi bi-droplet"></i>
+            </div>
+          )}
 
-        {plant.watering === "Frequent" && (
-          <div className="IconsPlantCard">
-            <i className="bi bi-droplet-fill"></i>
-            <i className="bi bi-droplet-fill"></i>
-            <i className="bi bi-droplet-fill"></i>
-          </div>
-        )}
+          {plant.watering === "Minimum" && (
+            <div className="IconsPlantCard">
+              <i className="bi bi-droplet-fill"></i>
+              <i className="bi bi-droplet"></i>
+              <i className="bi bi-droplet"></i>
+            </div>
+          )}
 
-        {plant.watering === "Average" && (
-          <div className="IconsPlantCard">
-            <i className="bi bi-droplet-fill"></i>
-            <i className="bi bi-droplet-fill"></i>
-            <i className="bi bi-droplet"></i>
-          </div>
-        )}
+          {plant.maintenance === "Low" && (
+            <div className="IconsPlantCard">
+              <i className="bi bi-1-circle"></i>
+            </div>
+          )}
 
-        {plant.watering === "Minimum" && (
-          <div className="IconsPlantCard">
-            <i className="bi bi-droplet-fill"></i>
-            <i className="bi bi-droplet"></i>
-            <i className="bi bi-droplet"></i>
-          </div>
-        )}
+          {plant.maintenance === "Moderate" && (
+            <div className="IconsPlantCard">
+              <i className="bi bi-2-circle"></i>
+            </div>
+          )}
 
+          {plant.maintenance === "Hight" && (
+            <div className="IconsPlantCard">
+              <i className="bi bi-3-circle"></i>
+            </div>
+          )}
+        </div>
         <button
           onClick={clickHandler}
           style={{ backgroundColor: "transparent", border: "none" }}

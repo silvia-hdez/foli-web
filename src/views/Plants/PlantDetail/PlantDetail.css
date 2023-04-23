@@ -13,7 +13,7 @@
 .DetailsPlant {
     /* border: 1px solid red; */
     width: 90%;
-    margin-top: 16px;
+    padding-bottom: 60px;
 }
 
 .DetailsPlant > img {
