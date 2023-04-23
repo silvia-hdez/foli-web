@@ -73,8 +73,9 @@ const CreatePost = (post) => {
     <div className="CreatePost">
      <Header/>
       <Navbar />
-      New Post
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <p style={{marginTop:'20px'}}>Crea un nuevo Post</p>
+      
+      <form className="FormCreatePost" onSubmit={handleSubmit} encType="multipart/form-data">
         <FormControl
           text="Name"
           error={touched.name && errors.name}
@@ -107,26 +108,8 @@ const CreatePost = (post) => {
           />
         </FormControl>
 
-        {/* <FormControl
-          text="Descripción"
-          error={touched.description && errors.description}
-          htmlFor="description"
-        >
-          <Input
-            id="description"
-            name="description"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.description}
-            error={touched.description && errors.description}
-            placeholder="Descripción"
-            type="textarea"
-          />
-          
-        </FormControl> */}
-
         <button
-          className="btn btn-primary"
+          className="SubmitCreatePost"
           type="submit"
           disabled={isSubmitting}
         >

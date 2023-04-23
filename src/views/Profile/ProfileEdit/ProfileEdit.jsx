@@ -4,7 +4,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import { editCurrentUser } from "../../../services/UserService";
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
-import './ProfileEdit.css'
+import "./ProfileEdit.css";
 import Header from "../../../components/misc/Header/Header";
 import { logout } from "../../../stores/AccesTokenStore";
 
@@ -20,7 +20,7 @@ const ProfileEdit = () => {
         userName: currentUser.userName,
         userPhone: currentUser.userPhone,
         email: currentUser.email,
-        image: currentUser.image
+        image: currentUser.image,
       });
     }
   }, [currentUser]);
@@ -60,14 +60,15 @@ const ProfileEdit = () => {
 
   return (
     <div className="EditProfile">
-     <Header />
+      <Header />
       <Navbar />
       <h1>Editar Perfil</h1>
 
-      <div className="user-data-container">
+      <div className="UserContainer">
         <form onSubmit={handleOnSubmit}>
           <div>
-            <label htmlFor="fullName" className="form-label">
+            <label htmlFor="fullName" className="form-label"
+            style={{marginRight:'8px'}}>
               Nombre
             </label>
             <input
@@ -80,7 +81,8 @@ const ProfileEdit = () => {
           </div>
 
           <div>
-            <label htmlFor="userName" className="form-label">
+            <label htmlFor="userName" className="form-label"
+             style={{marginRight:'8px'}}>
               Nombre Usuario
             </label>
             <input
@@ -93,7 +95,7 @@ const ProfileEdit = () => {
           </div>
 
           <div>
-            <label htmlFor="image" className="form-label">
+            <label htmlFor="image" className="form-label" >
               Image
             </label>
             <input
@@ -118,12 +120,14 @@ const ProfileEdit = () => {
             ></input>
           </div>
 
-          <button className="btn btn-primary" type="submit">
-            Editar Perfil
-          </button>
+          <div style={{display:'flex', justifyContent:'space-between', marginTop:'16px'}}>
+            <button className="SubmitCreatePost" type="submit">
+              Editar Perfil
+            </button>
+            <button className="SubmitCreatePost" onClick={logout}> Cerrar </button>
+          </div>
         </form>
       </div>
-   <button onClick={logout}> Cerrar </button>
     </div>
   );
 };

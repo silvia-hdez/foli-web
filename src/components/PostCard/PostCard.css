@@ -1,20 +1,20 @@
 .postCard {
-    border: 1px solid blue;
+    border: 1px solid #27AE60;
+    border-radius: 12px;
     position: relative;
-    width: 185px;
-    height: 185px;
     margin: 2px;
 }
 
 .allPostCard {
-
+    width: 400px;
+    height: 450px;
 }
 
 
 
-.postCard img {
+.ImagePostList {
     width: 100%;
-    height: 300px;
+    height: 400px;
 }
 
 .postCard p {
@@ -24,12 +24,14 @@
 /* SI estoy en mi vista de perfil */
 
 .myPost {
-
+    width: 200px;
+    height: 200px;
 }
 
 
 .PostResume {
     display: flex;
+    padding: 9px 14px;
 }
 
 .UserPostCard {
@@ -50,7 +52,7 @@
 
 .UserPostCard > p {
     background-color: white;
-    border: 1px solid #9FB578;
+    border: 1px solid #27AE60;
     font-size: 14px;
     font-weight: bold;
     border-radius: 12px;
@@ -60,5 +62,12 @@
 .UserPostCard > h4 {
     /* position: absolute; */
     bottom: 0;
+}
+
+.ButtonBookmarkPost {
+    background-color: transparent;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
 }
 

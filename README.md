@@ -26,8 +26,8 @@
 *Vista Plantas*
 - Modificar la card
 - Poner los iconos en función de lo que viene
-- Hacer desplegable de filtros
-- Editar el Plant Detail
+- ~~Hacer desplegable de filtros~~
+- ~~Editar el Plant Detail~~
 - Hacer un botón de subir arriba del todo cuando se hace scroll
 
 *Vista Posts*

@@ -14,39 +14,41 @@ const PostCard = ({ post, viewType, clickHandler, isSaved  }) => {
     postCardClass += " myPost";
   }
 
+  console.log(post)
+
   return (
     <>
    
     <div className={postCardClass}>
     
       <Link to={`/posts/${post._id}`}>
-        <img src={post.image[0].url} />
+        <img className="ImagePostList" src={post.image[0].url} />
       </Link>
       
       {(currentUser && post.user)  && post.user.id !== currentUser.id ? (
-          <div className="UserPostCard">
+        <Link to={`/profile/${post.user.id}`}><div className="UserPostCard">
           <img src={post.user.image}/>
           <p>{post.user.userName}</p>
           
-          </div>
+          </div> </Link>
         ):''}
-        {viewType === 'all' && <h4>{post.name}</h4>}
+       
         <div className="PostResume">
-        
+        {viewType === 'all' && <h4>{post.name}</h4>}
 
         
 
         <button onClick={clickHandler} style={{backgroundColor:'transparent', border:'none'}}
-            id={post._id} className="ButtonBookmark">
+            id={post._id} className="ButtonBookmarkPost">
                   {isSaved ? (
                     <i
                       className="bi bi-bookmark-fill"
-                      style={{ fontSize: "20px", color: "#9FB578"}}
+                      style={{ fontSize: "20px", color: "#27AE60"}}
                     ></i>
                   ) : (
                     <i
                       className="bi bi-bookmark"
-                      style={{ fontSize: "20px", color: "#9FB578"                               }}
+                      style={{ fontSize: "20px", color: "#27AE60" }}
                     ></i>
                   )}
             </button>

@@ -23,7 +23,10 @@ const PostDetail = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [commentsList, setCommentsList] = useState([]);
   const [comment, setComment] = useState("");
-  const [editingComment, setEditingComment] = useState({ commentId: null, content: '' });
+  const [editingComment, setEditingComment] = useState({
+    commentId: null,
+    content: "",
+  });
   const { postId } = useParams();
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -54,7 +57,6 @@ const PostDetail = () => {
     console.log(postId);
     deletePost(postId)
       .then(() => {
-        
         navigate("/profile");
       })
       .catch((err) => console.log(err));
@@ -83,7 +85,7 @@ const PostDetail = () => {
         editPost({ postId, post: editedPostToDb })
           .then(() => setPost(editedPost))
           .catch((err) => console.log(err));
-         // window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -100,117 +102,91 @@ const PostDetail = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleEditComment = ({ commentId, content }) => {
-    editComment({ commentId, content })
-      .then((updatedComment) => {
-        const updatedComments = commentsList.map((comment) => {
-          if (comment._id === updatedComment._id) {
-            return updatedComment;
-          } else {
-            return comment;
-          }
-        });
-        setCommentsList(updatedComments);
-        setEditingComment(null);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const handleEditButtonClick = (commentId, content) => {
-    setEditingComment({ id: commentId, content });
-  };
-
   if (!post) {
     return <p> ... fetching post</p>;
   }
   return (
     <>
-    <Header />
-    <Navbar />
-    <div className="PostDetail">
-      
-      
+      <Header />
+      <Navbar />
+      <div className="PostDetail">
+        <div className="HeaderPost">
+          <Link to={`/profile/${post.user.id}`}>
+            <div className="UserPost">
+              <img src={post.user.image} style={{ width: "30px" }} />
+              <p>User: {post.user.userName}</p>
+            </div>
+          </Link>
 
-      <div className="HeaderPost">
-        <Link to={`/profile/${post.user.id}`}>
-          <div className="UserPost">
-            <img src={post.user.image} style={{ width: "30px" }} />
-            <p>User: {post.user.userName}</p>
-          </div>
-        </Link>
-
-        {currentUser.id === post.user.id && (
-          <div className="btn-group dropleft" role="group">
-            <button
-              className="btn btn-secondary dropdown-toggle 
+          {currentUser.id === post.user.id && (
+            <div className="btn-group dropleft" role="group">
+              <button
+                className="btn btn-secondary dropdown-toggle 
             dropdown-toggle-split btn-lg p-0 bg-white border border-white text-secondary"
-              type="button"
-              id="dropdownMenu2"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span className="sr-only">...</span>
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button
-                className="dropdown-item"
                 type="button"
-                onClick={handleEdit}
+                id="dropdownMenu2"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
-                Editar
+                <span className="sr-only">...</span>
               </button>
-              <button
-                className="dropdown-item"
-                type="button"
-                onClick={handleDeletePost}
-              >
-                Eliminar
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {loading ? (
-        "Loading..."
-      ) : (
-        <div>
-          <div className="ImagesEditDetail">
-            <div className="LeftSideImages">
-            <p> {post.name} </p>
-              <div className="MultipleImages">
-                {post.image.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image.url}
-                    onClick={() => handleImageClick(index)}
-                    className={selectedImageIndex === index ? "selected" : ""}
-                  />
-                ))}
+              <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={handleEdit}
+                >
+                  Editar
+                </button>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={handleDeletePost}
+                >
+                  Eliminar
+                </button>
               </div>
             </div>
-            <div className="RightSideImages">
-              <div className="ImageOne">
-                <img src={post.image[0].url} />
-                <p>{beautifyDate(post.image[0].date)}</p>
-              </div>
+          )}
+        </div>
 
-              <div className="ImageOne">
-                <img src={post.image[selectedImageIndex].url} />
-                <p>{beautifyDate(post.image[selectedImageIndex].date)}</p>
+        {loading ? (
+          "Loading..."
+        ) : (
+          <div>
+            <div className="ImagesEditDetail">
+              <div className="LeftSideImages">
+                <p> {post.name} </p>
+                <div className="MultipleImages">
+                  {post.image.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image.url}
+                      onClick={() => handleImageClick(index)}
+                      className={selectedImageIndex === index ? "selected" : ""}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="RightSideImages">
+                <div className="ImageOne">
+                  <img src={post.image[0].url} />
+                  <p>{beautifyDate(post.image[0].date)}</p>
+                </div>
+
+                <div className="ImageOne">
+                  <img src={post.image[selectedImageIndex].url} />
+                  <p>{beautifyDate(post.image[selectedImageIndex].date)}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-         
-
-        
-          <div className="Comments">
-            <div>
-              <label htmlFor="comments" className="form-label">
-                Commentarios
-              </label>
+            <div className="Comments">
+              <div>
+                <label htmlFor="comments" className="form-label">
+                  Commentarios
+                </label>
 
                 {commentsList &&
                   commentsList.map((comment) => {
@@ -223,18 +199,18 @@ const PostDetail = () => {
                       <div key={comment._id} className="CommentBox">
                         {currentUser.id === comment.user ? (
                           <>
-                            <img className="ImgComment"
-                             
+                            <img
+                              className="ImgComment"
                               src={currentUser.image}
                             />
-                            
+
                             <div className="TextBox">
-                              
+                            <div>
+
                               <p>{currentUser.userName}</p>
+                            </div>
                               <div className="TextComment">
-                              <p>
-                                {text}
-                              </p>
+                                <p>{text}</p>
                               </div>
                             </div>
                           </>
@@ -242,71 +218,29 @@ const PostDetail = () => {
                           <>
                             <img className="ImgComment" src={user.image} />
 
-                             <div className="TextBox">
+                            <div className="TextBox">
                               <p>{user.userName}</p>
                               <div className="TextComment">
-                              <p>
-                                {text}
-                              </p>
+                                <p>{text}</p>
                               </div>
-                              
-                              </div>
+                            </div>
                           </>
                         )}
 
-                       
                         {currentUser.id === comment.user.id && (
                           <div>
                             <button
-                              className="btn btn-primary"
                               onClick={() => handleDeleteComment(comment._id)}
                             >
-                              <i className="bi bi-x-lg"></i>
+                              <i class="bi bi-trash3-fill"></i>
                             </button>
-
-                            {!isEditing && (
-                              <button
-                                onClick={() =>
-                                  handleEditButtonClick(_id, content)
-                                }
-                              >
-                                <i className="bi bi-pencil"></i>
-                              </button>
-                            )}
-                            {isEditing && (
-                              <>
-                                <input
-                                  type="text"
-                                  value={editingComment.content}
-                                  onChange={(e) =>
-                                    setEditingComment({
-                                      id: editingComment.id,
-                                      content: e.target.value,
-                                    })
-                                  }
-                                />
-                                <button
-                                  onClick={() =>
-                                    handleEditComment({
-                                      commentId: editingComment.id,
-                                      content: editingComment.content,
-                                    })
-                                  }
-                                >
-                                  <i className="bi bi-check-lg"></i>
-                                </button>
-                              </>
-                            )}
                           </div>
                         )}
                       </div>
                     );
                   })}
               </div>
-             
-             
-             
-             
+
               <input
                 type="textarea"
                 placeholder="Write your comment here..."
@@ -320,9 +254,8 @@ const PostDetail = () => {
               </button>
             </div>
           </div>
-    
-      )}
-    </div>
+        )}
+      </div>
     </>
   );
 };

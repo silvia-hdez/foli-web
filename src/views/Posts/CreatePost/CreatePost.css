@@ -1,4 +1,24 @@
 .CreatePost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 1000px;
+    max-height: 840px;
+    overflow-y: scroll;
+    /* border: 1px solid blue */
+}
+
+.FormCreatePost {
+    border: 1px solid #27AE60;
+    width: 90%;
+    margin-top: 20px;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.SubmitCreatePost {
+    background-color: #27AE60;
+    border-radius: 4px;
 }
