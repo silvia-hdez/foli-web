@@ -12,14 +12,14 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
   return (
     <>
       <div className="plantCard">
+      <Link to={`/plants/${plant._id}`}>
         <div className="ImagePlantList">
-          <Link to={`/plants/${plant._id}`}>
             <img src={plant.image} />
-          </Link>
         </div>
+        </Link>
 
         <div className="TitlePlantCard">
-          <h4>{plant.commonName}</h4>
+          <h4 style={{fontWeight:'bold'}}>{plant.commonName}</h4>
           <img src={sun} style={{width:'20px'}}/> <p>{plant.sunlight}</p> 
           {/* <p>{plant.watering} </p> */}
           {/* <p>{plant.growthRate}</p> */}
@@ -75,12 +75,12 @@ const PlantCard = ({ plant, clickHandler, isSaved }) => {
           {isSaved ? (
             <i
               className="bi bi-bookmark-fill"
-              style={{ fontSize: "20px", color: "rgb(109, 101, 101)" }}
+               style={{ fontSize: "20px", color: "#27AE60", borderColor:'#50FA97'}}
             ></i>
           ) : (
             <i
               className="bi bi-bookmark"
-              style={{ fontSize: "20px", color: "rgb(109, 101, 101)" }}
+               style={{ fontSize: "20px", color: "#27AE60", borderColor:'#50FA97'}}
             ></i>
           )}
         </button>

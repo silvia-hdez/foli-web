@@ -14,8 +14,6 @@ const PostCard = ({ post, viewType, clickHandler, isSaved  }) => {
     postCardClass += " myPost";
   }
 
-  console.log(post)
-
   return (
     <>
    
@@ -27,7 +25,7 @@ const PostCard = ({ post, viewType, clickHandler, isSaved  }) => {
       
       {(currentUser && post.user)  && post.user.id !== currentUser.id ? (
         <Link to={`/profile/${post.user.id}`}><div className="UserPostCard">
-          <img src={post.user.image}/>
+          <img src={post.user.image} />
           <p>{post.user.userName}</p>
           
           </div> </Link>
@@ -43,12 +41,12 @@ const PostCard = ({ post, viewType, clickHandler, isSaved  }) => {
                   {isSaved ? (
                     <i
                       className="bi bi-bookmark-fill"
-                      style={{ fontSize: "20px", color: "#27AE60"}}
+                      style={{ fontSize: "20px", color: "#27AE60", borderColor:'#50FA97'}}
                     ></i>
                   ) : (
                     <i
                       className="bi bi-bookmark"
-                      style={{ fontSize: "20px", color: "#27AE60" }}
+                      style={{ fontSize: "20px", color: "#27AE60", borderColor:'#50FA97' }}
                     ></i>
                   )}
             </button>

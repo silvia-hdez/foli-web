@@ -7,7 +7,7 @@
     max-width: 1000px;
     max-height: 840px;
     overflow-y: scroll;
-    border: 1px solid blue
+    /* border: 1px solid blue */
 }
 
 .allPosts {
@@ -16,7 +16,7 @@
     flex-wrap: wrap;
    padding: 8px 20px 8px 20px;
    align-items: center;
-   border: 1px solid red;
+   /* border: 1px solid red; */
    max-height: 795px;
    overflow-y: scroll;
    ;

@@ -36,7 +36,7 @@
 - ~~Cambiar la imagen de perfil por defecto (parece de los 2000)~~
 - Editar el PostDetail
 - Editar vista comentarios
-- Quitar editar comentario
+- ~~Quitar editar comentario~~
 - En eliminar comentario poner una papelera
 
 *Vista crear Post*

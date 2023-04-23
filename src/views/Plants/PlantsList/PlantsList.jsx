@@ -65,7 +65,6 @@ const PlantsList = ({ all }) => {
           } else {
             getAllPlants()
               .then((allPlants) => {
-                console.log("Saved plants: ", currentUser.saves);
                 const plants = allPlants.map((plant) => {
                   const isPlantSaved = savedPlants.some(
                     (savedPlant) => savedPlant.plant._id === plant._id
@@ -215,21 +214,21 @@ const PlantsList = ({ all }) => {
               <p style={{fontWeight:'bold', fontSize:'16px'}}>Riego: </p>
 
               <label style={{marginRight:'4px', marginBottom:'8px'}}>Average</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="watering-average"
                 checked={watering["average"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Frequent</label>
-              <input style={{marginRight:'10px'}}   
+              <input className="InputStyle"  
                 id="watering-frequent"
                 checked={watering["frequent"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Minimum</label>
-              <input style={{marginRight:'10px'}} 
+              <input className="InputStyle"
                 id="watering-minimum"
                 checked={watering["minimum"]}
                 type="checkbox"
@@ -241,21 +240,21 @@ const PlantsList = ({ all }) => {
               <p style={{fontWeight:'bold', fontSize:'16px'}}>Crecimiento: </p>
 
               <label style={{marginRight:'4px', marginBottom:'8px'}}>Bajo</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="growthRate-low"
                 checked={growthRate["low"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Medio</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="growthRate-moderate"
                 checked={growthRate["moderate"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Alto</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="growthRate-high"
                 checked={growthRate["high"]}
                 type="checkbox"
@@ -267,21 +266,21 @@ const PlantsList = ({ all }) => {
               <p style={{fontWeight:'bold', fontSize:'16px'}}>Mantenimiento: </p>
 
               <label style={{marginRight:'4px', marginBottom:'8px'}}>Bajo</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="maintenance-low"
                 checked={maintenance["low"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Medio</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="maintenance-moderate"
                 checked={maintenance["moderate"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Alto</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="maintenance-high"
                 checked={maintenance["high"]}
                 type="checkbox"
@@ -294,21 +293,21 @@ const PlantsList = ({ all }) => {
               <p style={{fontWeight:'bold', fontSize:'16px'}}>Luz: </p>
 
               <label style={{marginRight:'4px', marginBottom:'8px'}}>Total</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="sunlight-full"
                 checked={sunlight["full"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Parcial</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="sunlight-partial"
                 checked={sunlight["partial"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
               <label style={{marginRight:'4px'}}>Filtrada</label>
-              <input style={{marginRight:'10px'}}
+              <input className="InputStyle"
                 id="sunlight-filtered"
                 checked={sunlight["filtered"]}
                 type="checkbox"
@@ -318,7 +317,8 @@ const PlantsList = ({ all }) => {
 
             <button
               style={{ width: "53px", position: "absolute", 
-              right: "8px", top: '8px', backgroundColor:'#27AE60'}}
+              right: "8px", top: '8px', backgroundColor:'#27AE60',
+              borderRadius:'8px', border:'1px solid #50FA97', color:'white'}}
               onClick={() => handleSort("name")}
             >
               {sortOrder === "asc" ? "abc ↑" : "abc ↓"}

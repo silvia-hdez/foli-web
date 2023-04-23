@@ -10,11 +10,10 @@
 }
 .ImagePlantList {
     width: 150px; 
-
-    
 }
-.plantCard > div img{
+.ImagePlantList > img{
     width: 100%;
+    
     border-radius: 10px;
 }
 
@@ -36,6 +35,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    
 }
 
 

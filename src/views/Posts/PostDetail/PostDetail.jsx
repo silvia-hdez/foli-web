@@ -38,7 +38,6 @@ const PostDetail = () => {
           setLoading(false);
 
           setPost(p);
-          console.log("p.comments", p);
           setCommentsList(p.comments);
         })
         .catch((err) => console.log(err));
@@ -54,7 +53,6 @@ const PostDetail = () => {
   };
 
   const handleDeletePost = () => {
-    console.log(postId);
     deletePost(postId)
       .then(() => {
         navigate("/profile");
@@ -81,7 +79,6 @@ const PostDetail = () => {
         };
 
         const { image, ...editedPostToDb } = editedPost;
-        console.log("POST TO EDIT: ", { postId, post: editedPostToDb });
         editPost({ postId, post: editedPostToDb })
           .then(() => setPost(editedPost))
           .catch((err) => console.log(err));
@@ -91,7 +88,6 @@ const PostDetail = () => {
   };
 
   const handleDeleteComment = (commentId) => {
-    console.log(commentId);
     deleteComment(commentId)
       .then(() => {
         const updatedComments = commentsList.filter(
@@ -111,9 +107,9 @@ const PostDetail = () => {
       <Navbar />
       <div className="PostDetail">
         <div className="HeaderPost">
-          <Link to={`/profile/${post.user.id}`}>
+          <Link to={`/profile/${post.user.id}`} style={{textDecoration:'none'}}>
             <div className="UserPost">
-              <img src={post.user.image} style={{ width: "30px" }} />
+              <img src={post.user.image}/>
               <p>User: {post.user.userName}</p>
             </div>
           </Link>
@@ -205,10 +201,12 @@ const PostDetail = () => {
                             />
 
                             <div className="TextBox">
-                            <div>
-
-                              <p>{currentUser.userName}</p>
-                            </div>
+                              <div>
+                                <p>{currentUser.userName}</p>
+                                <>
+                                  
+                                </>
+                              </div>
                               <div className="TextComment">
                                 <p>{text}</p>
                               </div>
@@ -230,6 +228,13 @@ const PostDetail = () => {
                         {currentUser.id === comment.user.id && (
                           <div>
                             <button
+                              style={{
+                                backgroundColor: "transparent",
+                                color: "red",
+                                border: "none",
+                                position:'absolute',
+                                top:0, right:'8px'
+                              }}
                               onClick={() => handleDeleteComment(comment._id)}
                             >
                               <i class="bi bi-trash3-fill"></i>
@@ -246,10 +251,12 @@ const PostDetail = () => {
                 placeholder="Write your comment here..."
                 name="comments"
                 id="comments"
+                style={{borderRadius:'8px', padding:'4px',
+                borderColor:'#27AE60'}}
                 value={comment}
                 onChange={(event) => setComment(event.target.value)}
               ></input>
-              <button className="btn btn-primary" onClick={handleSubmitComment}>
+              <button className="BtnNewComment" onClick={handleSubmitComment}>
                 New Comment
               </button>
             </div>

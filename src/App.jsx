@@ -12,6 +12,8 @@ import CreatePost from "./views/Posts/CreatePost/CreatePost";
 import ProfileEdit from "./views/Profile/ProfileEdit/ProfileEdit";
 import EditPost from "./views/Posts/EditPost/EditPost";
 import './App.css'
+import Following from "./views/Following/Following";
+import Followers from "./views/Followers/Followers";
 
 function App() {
   const { isAuthLoaded, currentUser } = useContext(AuthContext);
@@ -43,6 +45,9 @@ function App() {
           <Route path="/new" element={<CreatePost />}/>
          <Route path="/posts/:postId/edit" element={<EditPost />}/>
          <Route path='/profile/:userId' element={<Profile />} />
+
+         <Route path="/profile/:userId/following" element={<Following />}/>
+         <Route path="/profile/:userId/followers" element={<Followers />}/>
         </Routes>
       )}
     </div>

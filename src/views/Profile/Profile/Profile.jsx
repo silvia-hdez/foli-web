@@ -39,10 +39,6 @@ const Profile = () => {
           setMyPosts(posts);
         })
         .catch((error) => console.log(error));
-      console.log("myposts", myPosts);
-
-      console.log("user", userId);
-      console.log("current", currentUser);
     }
   }, [user, currentUser]);
 
@@ -58,8 +54,6 @@ const Profile = () => {
       followUser(userId)
         .then((response) => {
           setUser(response.data);
-          console.log("user", user);
-          console.log("current", currentUser);
         })
 
         .catch((error) => console.log(error));
@@ -114,18 +108,24 @@ const Profile = () => {
         <div className="BlockProfile">
           {/* Mi perfil */}
           <div className="ProfileData">
-            <div>
-              <p>{currentUser.followers.length}</p>
-              <p>Seguidores</p>
-            </div>
+            <Link to={`/profile/${currentUser.id}/followers`}
+            style={{textDecoration:'none'}}>
+              <div className="FollowsDiv">
+                <p>{currentUser.followers.length}</p>
+                <p>Seguidores</p>
+              </div>
+            </Link>
 
             <Link to="/edit-profile">
               <img className="ProfileImg" src={currentUser.image} />
             </Link>
-            <div>
-              <p>{currentUser.following.length}</p>
-              <p>Siguiendo</p>
-            </div>
+            <Link to={`/profile/${currentUser.id}/following`}
+            style={{textDecoration:'none'}}>
+              <div className="FollowsDiv">
+                <p>{currentUser.following.length}</p>
+                <p>Siguiendo</p>
+              </div>
+            </Link>
           </div>
 
           <div className="ProfileData">

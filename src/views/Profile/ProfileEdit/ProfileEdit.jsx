@@ -62,7 +62,7 @@ const ProfileEdit = () => {
     <div className="EditProfile">
       <Header />
       <Navbar />
-      <h1>Editar Perfil</h1>
+      <h2 style={{marginTop:'20px'}}>Editar Perfil</h2>
 
       <div className="UserContainer">
         <form onSubmit={handleOnSubmit}>
@@ -74,6 +74,7 @@ const ProfileEdit = () => {
             <input
               type="text"
               defaultValue={userData.fullName}
+              style={{borderColor:'#dee2e6', borderRadius:'10px'}}
               name="fullName"
               id="fullName"
               onChange={handleOnChange}
@@ -88,6 +89,7 @@ const ProfileEdit = () => {
             <input
               type="text"
               defaultValue={userData.userName}
+              style={{borderColor:'#dee2e6', borderRadius:'10px'}}
               name="userName"
               id="userName"
               onChange={handleOnChange}
