@@ -14,9 +14,6 @@ const PostCard = ({ post, viewType, clickHandler, isSaved }) => {
     postCardClass += " myPost";
   }
 
-  console.log('post',post)
-  console.log('view',viewType)
-  console.log('isSave',isSaved)
   return (
     <div className={postCardClass}>
       <Link to={`/posts/${post._id}`}>

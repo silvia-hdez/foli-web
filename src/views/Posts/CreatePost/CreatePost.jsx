@@ -37,7 +37,7 @@ const CreatePost = (post) => {
     validateOnChange: false,
     validationSchema: postSchema,
     onSubmit: (values) => {
-      console.log("Values:", values);
+      // console.log("Values:", values);
 
       const formData = new FormData();
 
@@ -55,7 +55,7 @@ const CreatePost = (post) => {
 
       createPost(formData)
       .then((response) => {
-        console.log('response: ',response)
+
         navigate("/profile")
       })
       .catch((err) => {

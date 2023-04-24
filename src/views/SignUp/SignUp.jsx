@@ -37,7 +37,7 @@ const SignUp = () => {
           signupService({ email: values.email, password: values.password, fullName: values.fullName,
                         userName: values.userName, userPhone: values.userPhone }) 
             .then((response) => {
-              console.log(JSON.stringify(response))
+            //   console.log(JSON.stringify(response))
               setSignedUp(true)
             })
             .catch((err) => {

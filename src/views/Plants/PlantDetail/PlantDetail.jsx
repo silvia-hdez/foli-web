@@ -10,7 +10,7 @@ const PlantDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(plant);
+
     getPlantDetail(id)
       .then((plant) => setPlant(plant))
       .catch((err) => console.log(err));

@@ -40,7 +40,7 @@ const Profile = () => {
         })
         .catch((err) => console.log(err));
     } else if (!userId) {
-      console.log(currentUser);
+  
       getAllMyPosts()
         .then((posts) => {
           setMyPosts(posts);
@@ -204,7 +204,7 @@ const Profile = () => {
           {showMyLikes && !showMyPosts && !showMyPlants ? (
             <div className="ShowMyPostsSaved">
               {savedPosts.map((p) => {
-                console.log(p);
+             
                 return <MyPostSaved key={p.post._id} post={p.post} />;
               })}
             </div>

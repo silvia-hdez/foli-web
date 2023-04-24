@@ -51,7 +51,7 @@ const EditPost = () => {
       ...newImages[selectedImageIndex],
       date: new Date(newDate).toISOString(),
     };
-    console.log(newImages);
+  
     setImages(newImages);
   };
 

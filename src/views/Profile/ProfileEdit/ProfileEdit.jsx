@@ -44,12 +44,12 @@ const ProfileEdit = () => {
 
     for (let data in userData) {
       formData.append(data, userData[data]);
-      console.log("onSubmit: ", userData);
+   
     }
 
     editCurrentUser(formData)
       .then((res) => {
-        console.log("***** ", res);
+   
         setCurrentUser(res);
         navigate("/profile");
       })

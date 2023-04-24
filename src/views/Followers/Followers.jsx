@@ -15,7 +15,7 @@ const Followers = () => {
     useEffect(() => {
         getFollowers(userId)
             .then((f) => {
-                console.log(f)
+
                 setFollowers(f);
             })
             .catch((err) => console.log(err));
