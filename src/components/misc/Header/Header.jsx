@@ -16,7 +16,7 @@ const Header = () => {
              <input type="button" value="<" onClick={goBack} 
              style={{backgroundColor: 'transparent', border:'none', color:'#27AE60'}}/>
              <h3>Instaplant</h3>
-             <input type="button" value=">" onClick={goForward}
+             <input className="inputHeader" type="button" value=">" onClick={goForward}
               style={{backgroundColor: 'transparent', border:'none', color:'#27AE60'}}
              />
 

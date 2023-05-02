@@ -74,9 +74,10 @@ const Profile = () => {
   };
 
   return (
+    <>
     <div className="Profile">
-      <Navbar />
-      {/* <img src={logo} /> */}
+    <Navbar />
+    
       <Header />
       {/* Perfil de otro usuario */}
       {userId && user ? (
@@ -212,6 +213,8 @@ const Profile = () => {
         </div>
       )}
     </div>
+    
+    </>
   );
 };
 

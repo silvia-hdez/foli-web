@@ -9,6 +9,58 @@
     /* border: 1px solid blue; */
 }
 
+
+@media (min-width: 850px) {
+    .Profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        margin-left: 50px;
+        width: 100%;
+        top: 0px;
+    }
+
+    .BlockProfile {
+        width: 100%;
+    }
+    .ShowMyPosts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 16px;
+
+        overflow-y: scroll;
+    }
+}
+
+@media (min-width: 1060px) {
+    .Profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        margin-left: 200px;
+        width: 100%;
+        top: 0px;
+    }
+
+    .BlockProfile {
+        width: 100%;
+    }
+    .ShowMyPosts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 16px;
+
+        overflow-y: scroll;
+    }
+}
+
+
 p {
     margin: 0;
 }
@@ -119,7 +171,7 @@ p {
 .ShowMyPosts {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 16px;
     /* border: 1px solid red; */
     /* max-height: 670px; */
@@ -127,6 +179,9 @@ p {
     padding-bottom: 60px;
     
 }
+
+
+
 
 .showMyPlants {    
     /* overflow-y: scroll;

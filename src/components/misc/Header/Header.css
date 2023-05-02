@@ -8,6 +8,27 @@
     max-width: 1000px;
 }
 
+@media(min-width: 850px) {
+    .Header {
+        display: flex;
+        justify-content: space-between;
+        height: 50px;
+        align-items: center;
+        width: 100%;
+        padding: 8px 20px 8px 20px;
+        
+    }
+}
+
+@media(min-width: 1060px) {
+    .Header > .inputHeader {
+        color: red;
+        
+    }
+}
+
+
+
 h3 {
     font-family: 'Clicker Script', cursive;
     font-size: 30px;
