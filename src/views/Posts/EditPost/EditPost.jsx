@@ -106,7 +106,7 @@ const EditPost = () => {
         <Navbar />
       </>
       <Header />
-      <div>
+      <div style={{display:'flex', justifyContent:'center'}}>
                 <input
                   className="InputEditPost"
                   type="text"
@@ -148,7 +148,7 @@ const EditPost = () => {
                 id="image"
                 onChange={handleOnChange}
                 className="form-control"
-                style={{width:'330px', marginBottom:'12px'}}
+                style={{width:'330px', marginBottom:'12px', marginTop:'20px'}}
               />
             </div>
             <div className="RightSideImages">

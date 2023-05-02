@@ -107,8 +107,9 @@ const PostDetail = () => {
   }
   return (
     <>
+    <Navbar />
       <Header />
-      <Navbar />
+      
       <div className="PostDetail">
         <div className="HeaderPost">
           <Link
@@ -123,6 +124,7 @@ const PostDetail = () => {
             </div>
           </Link>
           <p> {post.name} </p>
+          
           {currentUser.id === post.user.id && (
             <div className="btn-group dropleft" role="group">
               <button
@@ -164,7 +166,7 @@ const PostDetail = () => {
         {loading ? (
           "Loading..."
         ) : (
-          <div>
+          <div style={{width:'100%'}}>
             <div className="ImagesEditDetail">
               <div className="LeftSideImages">
                 <div className="MultipleImages">

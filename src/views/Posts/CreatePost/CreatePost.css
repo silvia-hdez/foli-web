@@ -10,6 +10,35 @@
     /* border: 1px solid blue */
 }
 
+@media (min-width: 850px) {
+    .CreatePost {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1000px;
+        max-height: 840px;
+        overflow-y: scroll;
+        margin-left: 50px;
+    }
+
+}
+
+@media (min-width: 1060px) {
+    .CreatePost {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        max-width: 1000px;
+        max-height: 840px;
+        overflow-y: scroll;
+        margin-left: 200px;
+    }
+
+}
 .FormCreatePost {
     border: 1px solid #27AE60;
     width: 90%;
