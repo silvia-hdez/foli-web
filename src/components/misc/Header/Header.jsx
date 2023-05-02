@@ -13,10 +13,10 @@ const Header = () => {
  
     return (
         <div className='Header'>
-             <input type="button" value="<" onClick={goBack} 
+             <input id='inputButton' type="button" value="<" onClick={goBack} 
              style={{backgroundColor: 'transparent', border:'none', color:'#27AE60'}}/>
              <h3>Instaplant</h3>
-             <input className="inputHeader" type="button" value=">" onClick={goForward}
+             <input id='inputButton' type="button" value=">" onClick={goForward}
               style={{backgroundColor: 'transparent', border:'none', color:'#27AE60'}}
              />
 

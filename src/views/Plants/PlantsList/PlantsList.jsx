@@ -206,12 +206,12 @@ const PlantsList = ({ all }) => {
       {all && (
         <>
           <Header />
-          <div style={{display:'flex', width:'90%'}}>
-          <button onClick={handleShowFilters} className="BottonFilterPlants">Filtros {showFilters ? "▲" : "▼"}</button>
+          <div id="divFiltersPlants" style={{display:'flex', width:'90%'}}>
+          <button onClick={handleShowFilters} className="BottonFilterPlants">Filters {showFilters ? "▲" : "▼"}</button>
           </div>
           <div className="PlantsFilter" style={{ display: showFilters ? 'block' : 'none' }}>
             <div>
-              <p style={{fontWeight:'bold', fontSize:'16px'}}>Riego: </p>
+              <p style={{fontWeight:'bold', fontSize:'16px'}}>Watering: </p>
 
               <label style={{marginRight:'4px', marginBottom:'8px'}}>Average</label>
               <input className="InputStyle"
@@ -237,23 +237,23 @@ const PlantsList = ({ all }) => {
             </div>
 
             <div>
-              <p style={{fontWeight:'bold', fontSize:'16px'}}>Crecimiento: </p>
+              <p style={{fontWeight:'bold', fontSize:'16px'}}>Growth: </p>
 
-              <label style={{marginRight:'4px', marginBottom:'8px'}}>Bajo</label>
+              <label style={{marginRight:'4px', marginBottom:'8px'}}>Low</label>
               <input className="InputStyle"
                 id="growthRate-low"
                 checked={growthRate["low"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Medio</label>
+              <label style={{marginRight:'4px'}}>Moderate</label>
               <input className="InputStyle"
                 id="growthRate-moderate"
                 checked={growthRate["moderate"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Alto</label>
+              <label style={{marginRight:'4px'}}>Hight</label>
               <input className="InputStyle"
                 id="growthRate-high"
                 checked={growthRate["high"]}
@@ -263,23 +263,23 @@ const PlantsList = ({ all }) => {
             </div>
 
             <div>
-              <p style={{fontWeight:'bold', fontSize:'16px'}}>Mantenimiento: </p>
+              <p style={{fontWeight:'bold', fontSize:'16px'}}>Maintenance: </p>
 
-              <label style={{marginRight:'4px', marginBottom:'8px'}}>Bajo</label>
+              <label style={{marginRight:'4px', marginBottom:'8px'}}>Low</label>
               <input className="InputStyle"
                 id="maintenance-low"
                 checked={maintenance["low"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Medio</label>
+              <label style={{marginRight:'4px'}}>Moderate</label>
               <input className="InputStyle"
                 id="maintenance-moderate"
                 checked={maintenance["moderate"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Alto</label>
+              <label style={{marginRight:'4px'}}>Hight</label>
               <input className="InputStyle"
                 id="maintenance-high"
                 checked={maintenance["high"]}
@@ -290,23 +290,23 @@ const PlantsList = ({ all }) => {
 
 
             <div>
-              <p style={{fontWeight:'bold', fontSize:'16px'}}>Luz: </p>
+              <p style={{fontWeight:'bold', fontSize:'16px'}}>Sun light: </p>
 
-              <label style={{marginRight:'4px', marginBottom:'8px'}}>Total</label>
+              <label style={{marginRight:'4px', marginBottom:'8px'}}>Full</label>
               <input className="InputStyle"
                 id="sunlight-full"
                 checked={sunlight["full"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Parcial</label>
+              <label style={{marginRight:'4px'}}>Partial</label>
               <input className="InputStyle"
                 id="sunlight-partial"
                 checked={sunlight["partial"]}
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Filtrada</label>
+              <label style={{marginRight:'4px'}}>Filtered</label>
               <input className="InputStyle"
                 id="sunlight-filtered"
                 checked={sunlight["filtered"]}

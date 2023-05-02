@@ -24,8 +24,13 @@
 }
 
 .TextNav {
-    color: transparent;
+    display: none;
 }
+
+#TitleNav {
+    display: none;
+}
+
 
 @media (min-width: 850px) {
     .NavBar {
@@ -49,8 +54,10 @@
         flex-direction: column;
         height: 100%;
         justify-content: space-around;
-       padding-left: 37px;
+
     }
+
+
 
 }
 
@@ -95,7 +102,18 @@
        
     }
     .TextNav {
+        display: inline;
         color: white;
+        margin-left: 20px;
+    }
+
+    #TitleNav {
+        display: inline;
+        color: white;
+        position: absolute;
+        top: 16px;
+        font-family: 'Clicker Script', cursive;
+        font-size: 30px;;
     }
 
 }

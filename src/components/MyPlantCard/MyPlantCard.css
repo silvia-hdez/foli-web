@@ -7,3 +7,10 @@
     position: relative;
     border-radius: 10px;
 }
+
+@media (min-width: 830px) {
+    .MyPlantCard {
+        width: 250px;
+        height: 250px;
+    }
+}

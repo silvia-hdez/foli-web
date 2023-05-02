@@ -7,10 +7,57 @@
     width: 100%;
     max-width: 1000px;
     /* max-height: 840px; */
-    overflow-y: scroll;
+    overflow-y: hidden;
     /* border: 1px solid blue; */
 
 }
+
+@media (min-width: 850px) {
+    .PlantsList {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        margin-left: 50px;
+        width: 100%;
+        top: 0px;
+        overflow-y: hidden;
+    }
+
+ 
+}
+
+@media (min-width: 1060px) {
+    .PlantsList {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        margin-left: 300px;
+        width: 100%;
+        top: 0px;
+        overflow-y: hidden;
+    }
+
+    .allPlants {
+
+        width: 100%;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 60px;
+    }
+
+    #divFiltersPlants {
+        margin-top: 32px;
+    }
+
+
+}
+
 
 
 .PlantsFilter {
@@ -29,7 +76,7 @@
 
     
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;

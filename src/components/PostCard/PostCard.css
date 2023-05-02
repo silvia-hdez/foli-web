@@ -6,8 +6,17 @@
 }
 
 .allPostCard {
-    width: 400px;
+    width: 315px;
     height: 450px;
+}
+
+
+@media (min-width: 1060px) {
+    .allPostCard {
+        width: 350px;
+        height: 450px;
+    }
+
 }
 
 

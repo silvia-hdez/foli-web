@@ -16,16 +16,26 @@
         align-items: center;
         width: 100%;
         padding: 8px 20px 8px 20px;
-        
+    }
+
+    #inputButton {
+        display: none;
+    }
+
+    .Header > h3 {
+        margin-left: 30px;
     }
 }
 
+
 @media(min-width: 1060px) {
-    .Header > .inputHeader {
-        color: red;
-        
+    .Header {
+        display: none
     }
+
+   
 }
+
 
 
 
