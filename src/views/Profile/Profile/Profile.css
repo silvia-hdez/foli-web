@@ -185,7 +185,7 @@ p {
     padding: 16px;
     /* border: 1px solid red; */
     /* max-height: 670px; */
-    overflow-y: scroll;
+    overflow-y: hidden;
     padding-bottom: 60px;
     
 }
@@ -200,7 +200,7 @@ p {
     justify-content: flex-start;
     padding: 16px;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y: hidden;
     padding-bottom: 60px;
 
 }
@@ -212,7 +212,7 @@ p {
     padding: 16px;
     justify-content: center;
     max-height: 670px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     width: 100%;
     padding-bottom: 60px;
 }

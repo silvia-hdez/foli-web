@@ -53,13 +53,14 @@ const Login = () => {
      
       <div className="BoxLogin">
       
-      <h1>Inicia Sesión</h1>
+      <h1>Log in to Instaplant</h1>
 
       <form onSubmit={handleSubmit}>
-        <FormControl className="FormControl"
+        <FormControl className="FormControl" 
           text="Email"
           error={touched.email && errors.email}
           htmlFor="email"
+          
         >
           <Input className="Input"
             id="email"
@@ -98,8 +99,8 @@ const Login = () => {
         </button>
       </form>
       <div className="LinkRegistro">
-        <p>¿No tienes una cuenta?</p>
-        <Link className="LinkLogin" to='/sign-up'>Regístrate</Link>
+        <p>Don't have an account?</p>
+        <Link className="LinkLogin" to='/sign-up'>Sign up</Link>
       </div>
       
       </div>

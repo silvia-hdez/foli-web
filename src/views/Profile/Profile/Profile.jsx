@@ -85,19 +85,19 @@ const Profile = () => {
           <div className="ProfileData">
             <div className="FollowsDiv">
               <p>{user.followers.length}</p>
-              <p>Seguidores</p>
+              <p>Followers</p>
             </div>
 
             <img className="ProfileImg" src={user.image} />
 
             <div className="FollowsDiv">
               <p>{user.following.length}</p>
-              <p>Siguiendo</p>
+              <p>Following</p>
             </div>
           </div>
 
           <div className="ProfileData">
-            <p>{user.userName}</p>
+            <p style={{fontSize:'24px'}}>{user.userName}</p>
             <button onClick={handleFollowUser} className="SubmitCreatePost">
               {user && user.followers.includes(currentUser.id)
                 ? "Unfollow"
@@ -125,7 +125,7 @@ const Profile = () => {
             >
               <div className="FollowsDiv">
                 <p>{currentUser.followers.length}</p>
-                <p>Seguidores</p>
+                <p>Followers</p>
               </div>
             </Link>
 
@@ -138,13 +138,13 @@ const Profile = () => {
             >
               <div className="FollowsDiv">
                 <p>{currentUser.following.length}</p>
-                <p>Siguiendo</p>
+                <p>Following</p>
               </div>
             </Link>
           </div>
 
           <div className="ProfileData">
-            <p>{currentUser.userName}</p>
+            <p style={{fontSize:'24px'}}>{currentUser.userName}</p>
           </div>
 
           <div className="ButtonsProfile">

@@ -73,10 +73,10 @@ const CreatePost = (post) => {
     <div className="CreatePost">
      <Header/>
       <Navbar />
-      <p style={{marginTop:'20px'}}>Crea un nuevo Post</p>
+      <p style={{marginTop:'20px', fontSize:'30px'}}>Create a New Post</p>
       
       <form className="FormCreatePost" onSubmit={handleSubmit} encType="multipart/form-data">
-        <FormControl
+        <FormControl 
           text="Name"
           error={touched.name && errors.name}
           htmlFor="name"
@@ -102,6 +102,7 @@ const CreatePost = (post) => {
             name="image"
             type="file"
             multiple
+            className="form-control"
             onChange={(event) => {
               setFieldValue("image", event.currentTarget.files);
             }}

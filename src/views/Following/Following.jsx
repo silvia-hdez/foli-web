@@ -23,7 +23,7 @@ const Following = () => {
            <Header />
         <Navbar />
             <div className='FollowsList'>
-            <h4>Followings</h4>
+            <h4 style={{marginTop:'20px', fontSize:'30px', marginBottom:'20px'}}>Followings</h4>
                 {followings.length > 0 
                 ? (followings.map((follow) => {
                     return <FollowCard follow={follow} key={follow.id}/>

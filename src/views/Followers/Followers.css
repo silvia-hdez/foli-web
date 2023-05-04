@@ -5,8 +5,7 @@
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    /* height: 745px; */
-    /* border: 1px solid blue; */
+
 }
 
 .FollowsList {
@@ -15,4 +14,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media (min-width: 850px) {
+    .Follows {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        max-width: 1000px;
+        max-height: 840px;
+        overflow-y: hidden;
+        margin-left: 50px;
+    }
+
+}
+
+@media (min-width: 1060px) {
+    .Follows {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        max-width: 1000px;
+        max-height: 840px;
+        overflow-y: hidden;
+        margin-left: 200px;
+    }
+
 }

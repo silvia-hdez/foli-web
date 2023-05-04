@@ -58,27 +58,27 @@ const SignUp = () => {
         <div className="BoxLogin">
 
         
-            <h1>Registro Usuario</h1>
+            <h1>Create your account</h1>
 
             <form onSubmit={handleSubmit}>
-                <FormControl text= "Nombre Completo" error={touched.fullName && errors.fullName} htmlFor="fullName">
+                <FormControl text= "Full Name" error={touched.fullName && errors.fullName} htmlFor="fullName">
                     <Input id="fullName" name="fullName" onBlur={handleBlur}
                         onChange={handleChange} value={values.fullName} error={touched.fullName && errors.fullName}
-                        placeholder="Nombre completo" 
+                        placeholder="Full Name" 
                     />
                 </FormControl>
 
-                <FormControl text= "Nombre de usuario" error={touched.userName && errors.userName} htmlFor="userName">
+                <FormControl text= "User Name" error={touched.userName && errors.userName} htmlFor="userName">
                     <Input id="userName" name="userName" onBlur={handleBlur}
                         onChange={handleChange} value={values.userName} error={touched.userName && errors.userName}
-                        placeholder="Nombre de Usuario" 
+                        placeholder="User Name" 
                     />
                 </FormControl>
 
-                <FormControl text= "Teléfono" error={touched.userPhone && errors.userPhone} htmlFor="userPhone">
+                <FormControl text= "Phone" error={touched.userPhone && errors.userPhone} htmlFor="userPhone">
                     <Input id="userPhone" name="userPhone" onBlur={handleBlur}
                         onChange={handleChange} value={values.userPhone} error={touched.userPhone && errors.userPhone}
-                        placeholder="Número de teléfono" 
+                        placeholder="Phone" 
                     />
                 </FormControl>
 
@@ -90,7 +90,7 @@ const SignUp = () => {
                     />
                 </FormControl>
 
-                <FormControl text= "Contraseña" error={touched.password && errors.password} htmlFor="password">
+                <FormControl text= "Password" error={touched.password && errors.password} htmlFor="password">
                     <Input id="password" name="password" onBlur={handleBlur}
                         onChange={handleChange} value={values.password} error={touched.password && errors.password}
                         placeholder="*******" type='password'
@@ -108,8 +108,8 @@ const SignUp = () => {
             </form>
             {signedUp && <Navigate to="/login" />}
             <div className="LinkRegistro">
-        <p>¿Ya tienes una cuenta?</p>
-        <Link className="LinkLogin" to='/login'>Inicia Sesión</Link>
+        <p>Have an account already?</p>
+        <Link className="LinkLogin" to='/login'>Log in</Link>
       </div>
       </div>
         </div>

@@ -10,8 +10,57 @@
     overflow-y: scroll;
 }
 
+@media (min-width: 850px) {
+    .PlantDetail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 50px;
+    }
+
+    .DetailsPlant {
+        width: 90%;
+        padding-bottom: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    .DetailsPlant > img {
+        width: 200px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+    }
+
+    .PlantProperties {
+        width: 600px;
+        margin-left: 20px;
+    }
+
+}
+
+@media (min-width: 1060px) {
+    .PlantDetail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        overflow-y: hidden;
+        margin-left: 130px;
+    }
+
+    .DetailsPlant {
+        width: 90%;
+        padding-bottom: 60px;
+        display: flex;
+        align-items: center;
+    }
+}   
+
 .DetailsPlant {
-    /* border: 1px solid red; */
     width: 90%;
     padding-bottom: 60px;
 }
@@ -26,4 +75,28 @@
     border: 1px solid #27AE60;
     border-radius: 12px;
     padding: 10px;
+    width: 100%;
+}
+
+.CommonName {
+    text-align: center;
+    font-family: 'Rouge Script', cursive;
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+.ScientidName {
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.PlantProperties > p {
+    margin-bottom: 4px;
+}
+
+.PlantProperties > ul {
+   list-style-type: none;
+   padding-left: 0px;
 }

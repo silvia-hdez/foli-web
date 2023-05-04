@@ -195,8 +195,8 @@ const PostDetail = () => {
 
             <div className="Comments">
               <div>
-                <label htmlFor="comments" className="form-label">
-                  Comentarios
+                <label htmlFor="comments" className="form-label" style={{fontWeight:'bold'}}>
+                  Comments
                 </label>
 
                 {commentsList &&
