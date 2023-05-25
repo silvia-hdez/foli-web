@@ -126,7 +126,7 @@ const EditPost = () => {
                   images.map((image, index) => (
                     <div key={index}>
                       <img
-                        style={{ width: "50px", height: "50px" }}
+                        style={{ width: "50px", height: "50px", objectFit:'cover' }}
                         src={image.url}
                         onClick={() => handleImageClick(index)}
                         className={
@@ -142,14 +142,7 @@ const EditPost = () => {
                     </div>
                   ))}
               </div>
-              <input
-                type="file"
-                name="image"
-                id="image"
-                onChange={handleOnChange}
-                className="form-control"
-                style={{width:'330px', marginBottom:'12px', marginTop:'20px'}}
-              />
+              
             </div>
             <div className="RightSideImages">
               <div className="ImageOne">
@@ -166,7 +159,14 @@ const EditPost = () => {
               </div>
             </div>
           </div>
-
+          <input
+                type="file"
+                name="image"
+                id="image"
+                onChange={handleOnChange}
+                className="form-control"
+                style={{width:'330px', marginBottom:'12px', marginTop:'20px'}}
+              />              
           <button className="SubmitCreatePost" type="submit">
             Aplicar Cambios
           </button>

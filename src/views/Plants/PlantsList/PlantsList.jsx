@@ -209,8 +209,15 @@ const PlantsList = ({ all }) => {
         <>
           <Header />
           
-          <div id="divFiltersPlants" style={{display:'flex', width:'90%'}}>
+          <div id="divFiltersPlants" style={{display:'flex', width:'90%', alignItems:'center', justifyContent:'space-between'}}>
           <button onClick={handleShowFilters} className="BottonFilterPlants">Filters {showFilters ? "▲" : "▼"}</button>
+          <button
+              style={{ width: "53px", height:'30px', backgroundColor:'#27AE60',
+              borderRadius:'8px', border:'1px solid #50FA97', color:'white'}}
+              onClick={() => handleSort("name")}
+            >
+              {sortOrder === "asc" ? "abc ↑" : "abc ↓"}
+            </button>
           </div>
           <div className="PlantsFilter" style={{ display: showFilters ? 'block' : 'none' }}>
             <div>
@@ -319,15 +326,9 @@ const PlantsList = ({ all }) => {
               />
             </div>
 
-            <button
-              style={{ width: "53px", position: "absolute", 
-              right: "8px", top: '8px', backgroundColor:'#27AE60',
-              borderRadius:'8px', border:'1px solid #50FA97', color:'white'}}
-              onClick={() => handleSort("name")}
-            >
-              {sortOrder === "asc" ? "abc ↑" : "abc ↓"}
-            </button>
+
           </div>
+
         </>
       )}
 

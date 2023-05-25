@@ -47,7 +47,6 @@ const Profile = () => {
   
       getAllMyPosts()
       .then((posts) => {
-        console.log (posts)
         const sortedPosts = sortPostsByDate(posts); // Ordenar posts por fecha
         setMyPosts(sortedPosts);
         getSavedPlants().then((plants) => {
@@ -103,7 +102,7 @@ const Profile = () => {
           </div>
 
           <div className="ProfileData">
-            <p style={{fontSize:'24px'}}>{user.userName}</p>
+            <p style={{fontSize:'24px', fontWeight:'bold', color:'green'}}>{user.userName}</p>
             <button onClick={handleFollowUser} className="SubmitCreatePost">
               {user && user.followers.includes(currentUser.id)
                 ? "Unfollow"
@@ -150,7 +149,7 @@ const Profile = () => {
           </div>
 
           <div className="ProfileData">
-            <p style={{fontSize:'24px'}}>{currentUser.userName}</p>
+            <p style={{fontSize:'24px', fontWeight:'bold', color:'green'}}>{currentUser.userName}</p>
           </div>
 
           <div className="ButtonsProfile">
