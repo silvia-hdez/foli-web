@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Modal, Button } from 'react-bootstrap';
 import Navbar from "../../../components/misc/NavBar/NavBar";
 import {
   deletePost,
@@ -138,9 +139,10 @@ const PostDetail = () => {
               >
                 <span
                   className="sr-only"
-                  style={{ fontWeight: "bold", fontSize: "50px" }}
+                  style={{ fontWeight: "bold", fontSize: "20px", color:'white',
+                  backgroundColor:'#27AE60', padding:'4px', borderRadius:'4px' }}
                 >
-                  ...
+                  <i class="bi bi-gear"></i>
                 </span>
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenu2">

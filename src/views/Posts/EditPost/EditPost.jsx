@@ -155,10 +155,11 @@ const EditPost = () => {
                   id="date"
                   onChange={handleChangeDate}
                 ></input>
-                <button onClick={handleSaveDate} className="SubmitCreatePost">Guardar fecha</button>
+                <button onClick={handleSaveDate} className="SubmitCreatePost">Save Date</button>
               </div>
             </div>
           </div>
+          <p style={{fontWeight:'bold'}}>Add more images:</p>
           <input
                 type="file"
                 name="image"
@@ -168,7 +169,7 @@ const EditPost = () => {
                 style={{width:'330px', marginBottom:'12px', marginTop:'20px'}}
               />              
           <button className="SubmitCreatePost" type="submit">
-            Aplicar Cambios
+           Update
           </button>
         </form>
       </>
