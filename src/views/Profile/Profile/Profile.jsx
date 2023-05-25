@@ -7,6 +7,7 @@ import PlantsList from "../../Plants/PlantsList/PlantsList";
 import PostsList from "../../Posts/PostsList/PostsList";
 import logo from "../../../assets/img/Logo.png";
 
+import { sortPostsByDate } from "../../../utils/sortPostsByDate"
 import {
   followUser,
   getOtherUser,
@@ -19,6 +20,7 @@ import PlantCard from "../../../components/PlantCard/PlantCard";
 import { getSavePosts, getSavedPlants } from "../../../services/SaveService";
 import MyPlantCard from "../../../components/MyPlantCard/MyPlantCard";
 import MyPostSaved from "../../../components/MyPostSaved/MyPostSaved";
+import ScrollToTopButton from "../../../components/ScrollUp/ScrollUp";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -32,6 +34,8 @@ const Profile = () => {
   const { userId } = useParams();
   const { currentUser } = useContext(AuthContext);
 
+  
+
   useEffect(() => {
     if (userId && !user) {
       getOtherUser(userId)
@@ -42,15 +46,17 @@ const Profile = () => {
     } else if (!userId) {
   
       getAllMyPosts()
-        .then((posts) => {
-          setMyPosts(posts);
-          getSavedPlants().then((plants) => {
-            setSavedPlants(plants);
-            getSavePosts().then((p) => {
-              setSavedPosts(p);
-            });
+      .then((posts) => {
+        console.log (posts)
+        const sortedPosts = sortPostsByDate(posts); // Ordenar posts por fecha
+        setMyPosts(sortedPosts);
+        getSavedPlants().then((plants) => {
+          setSavedPlants(plants);
+          getSavePosts().then((p) => {
+            setSavedPosts(p);
           });
-        })
+        });
+      })
         .catch((error) => console.log(error));
     }
   }, [user, currentUser]);
@@ -212,6 +218,8 @@ const Profile = () => {
           ) : null}
         </div>
       )}
+
+      <ScrollToTopButton />
     </div>
     
     </>

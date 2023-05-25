@@ -12,6 +12,7 @@ import { getSavePosts } from "../../../services/SaveService";
 import { deleteSavePost } from "../../../services/SaveService";
 import { postSavePost } from "../../../services/SaveService";
 import AuthContext from "../../../contexts/AuthContext";
+import ScrollToTopButton from "../../../components/ScrollUp/ScrollUp";
 
 const PostsList = ({ all }) => {
   const [initialize, setInitialize] = useState(false);
@@ -118,6 +119,7 @@ const PostsList = ({ all }) => {
               );
             })}
       </div>
+      <ScrollToTopButton />
     </div>
   );
 };

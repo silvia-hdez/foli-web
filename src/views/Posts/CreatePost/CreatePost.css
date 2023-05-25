@@ -45,7 +45,7 @@
     margin-top: 20px;
     border-radius: 12px;
     padding: 14px;
-    background-color: #4ff190;
+
 }
 
 .SubmitCreatePost {
@@ -54,5 +54,6 @@
     border-radius: 8px;
     margin: 4px;
     color: white;
+    margin-top: 16px;
 }
 

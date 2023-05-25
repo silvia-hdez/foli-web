@@ -14,3 +14,16 @@
         height: 250px;
     }
 }
+
+.PlantNamePost {
+position: absolute;
+background-color: white;
+color: green;
+font-size: 12px;
+padding: 2px 4px;
+max-width: 100px;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+border-radius: 0 0px 4px 0;
+}

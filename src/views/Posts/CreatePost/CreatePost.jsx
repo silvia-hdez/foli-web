@@ -76,11 +76,11 @@ const CreatePost = (post) => {
       <p style={{marginTop:'20px', fontSize:'30px'}}>Create a New Post</p>
       
       <form className="FormCreatePost" onSubmit={handleSubmit} encType="multipart/form-data">
-        <FormControl 
+        <label 
           text="Name"
           error={touched.name && errors.name}
           htmlFor="name"
-        >
+        > Name 
           <Input
             id="name"
             name="name"
@@ -90,13 +90,13 @@ const CreatePost = (post) => {
             error={touched.name && errors.name}
             placeholder="Nombre de la planta"
           />
-        </FormControl>
+        </label>
 
-        <FormControl
+        <label
           text="Photos"
           error={touched.image && errors.image}
           htmlFor="image"
-        >
+        > Photos
           <input
             id="image"
             name="image"
@@ -107,7 +107,7 @@ const CreatePost = (post) => {
               setFieldValue("image", event.currentTarget.files);
             }}
           />
-        </FormControl>
+        </label>
 
         <button
           className="SubmitCreatePost"

@@ -11,6 +11,7 @@ import {
 import AuthContext from "../../../contexts/AuthContext";
 import "./PlantsList.css";
 import Header from "../../../components/misc/Header/Header";
+import ScrollToTopButton from "../../../components/ScrollUp/ScrollUp";
 
 const PlantsList = ({ all }) => {
   const [initialize, setInitialize] = useState(false);
@@ -202,16 +203,25 @@ const PlantsList = ({ all }) => {
 
   return (
     <div className="PlantsList">
+
     {all && <Navbar />}
       {all && (
         <>
           <Header />
+          
           <div id="divFiltersPlants" style={{display:'flex', width:'90%'}}>
           <button onClick={handleShowFilters} className="BottonFilterPlants">Filters {showFilters ? "▲" : "▼"}</button>
           </div>
           <div className="PlantsFilter" style={{ display: showFilters ? 'block' : 'none' }}>
             <div>
               <p style={{fontWeight:'bold', fontSize:'16px'}}>Watering: </p>
+              <label style={{marginRight:'4px'}}>Frequent</label>
+              <input className="InputStyle"  
+                id="watering-frequent"
+                checked={watering["frequent"]}
+                type="checkbox"
+                onChange={(e) => handleCheckBox(e)}
+              />
 
               <label style={{marginRight:'4px', marginBottom:'8px'}}>Average</label>
               <input className="InputStyle"
@@ -220,13 +230,7 @@ const PlantsList = ({ all }) => {
                 type="checkbox"
                 onChange={(e) => handleCheckBox(e)}
               />
-              <label style={{marginRight:'4px'}}>Frequent</label>
-              <input className="InputStyle"  
-                id="watering-frequent"
-                checked={watering["frequent"]}
-                type="checkbox"
-                onChange={(e) => handleCheckBox(e)}
-              />
+              
               <label style={{marginRight:'4px'}}>Minimum</label>
               <input className="InputStyle"
                 id="watering-minimum"
@@ -332,6 +336,7 @@ const PlantsList = ({ all }) => {
           ? "Loading...."
           : plants.map((plant) => {
               return (
+                
                 <PlantCard
                   key={plant._id}
                   plant={plant}
@@ -341,7 +346,7 @@ const PlantsList = ({ all }) => {
               );
             })}
       </div>
-      
+      <ScrollToTopButton />
     </div>
   );
 };
