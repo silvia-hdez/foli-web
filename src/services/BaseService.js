@@ -5,7 +5,7 @@ const INVALID_STATUS_CODES = [401];
 
 export const createHttp = (useAccessToken = false) => {
   const http = axios.create({
-    baseURL: process.env.VITE_API_URL
+    baseURL: "https://foli-project-production-1143.up.railway.app"
   });
 
 
