@@ -73,6 +73,7 @@ const CreatePost = (post) => {
     <div className="CreatePost">
      <Header/>
       <Navbar />
+      
       <p style={{marginTop:'20px', fontSize:'30px'}}>Create a New Post</p>
       
       <form className="FormCreatePost" onSubmit={handleSubmit} encType="multipart/form-data">
